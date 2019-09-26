@@ -29,8 +29,7 @@ public class TraceTraversalSourceDsl extends GraphTraversalSource {
 
   public GraphTraversal<Vertex, Vertex> trace(int traceId) {
     GraphTraversal traversal = this.clone().V();
-    GraphTraversal has = traversal.has(Keys.TRACE_ID, traceId);
-    return traversal;
+    return traversal.has(Keys.TRACE_ID, traceId);
   }
 
   public GraphTraversal<Vertex, Vertex> service(String service) {

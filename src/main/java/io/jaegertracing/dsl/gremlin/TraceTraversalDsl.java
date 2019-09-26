@@ -7,8 +7,16 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
 @GremlinDsl(traversalSource = "io.jaegertracing.dsl.gremlin.TraceTraversalSourceDsl")
 public interface TraceTraversalDsl<S, E> extends GraphTraversal.Admin<S, E> {
 
-  default GraphTraversal<S, Vertex> traceId(int traceId) {
+  default GraphTraversal<S, Vertex> trace(int traceId) {
     return (GraphTraversal<S, Vertex>) has(Keys.TRACE_ID, traceId);
+  }
+
+  default GraphTraversal<S, Vertex> hasTag(String key) {
+    return (GraphTraversal<S, Vertex>) has(key);
+  }
+
+  default GraphTraversal<S, Vertex> hasTag(String key, Object value) {
+    return (GraphTraversal<S, Vertex>) has(key, value);
   }
 
 
