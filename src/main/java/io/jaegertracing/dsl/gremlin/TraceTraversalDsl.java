@@ -1,5 +1,6 @@
 package io.jaegertracing.dsl.gremlin;
 
+import java.util.function.Predicate;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.GremlinDsl;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
@@ -19,6 +20,9 @@ public interface TraceTraversalDsl<S, E> extends GraphTraversal.Admin<S, E> {
     return (GraphTraversal<S, Vertex>) has(key, value);
   }
 
+  default GraphTraversal<S, Vertex> startTime(Predicate<Integer> p) {
+    return (GraphTraversal<S, Vertex>) has(Keys.START_TIME, p);
+  }
 
 //  /**
 //   * Filters objects by the "person" label. This step is designed to work with incoming vertices.
