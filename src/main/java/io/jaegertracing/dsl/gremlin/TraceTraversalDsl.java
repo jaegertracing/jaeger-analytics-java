@@ -24,6 +24,10 @@ public interface TraceTraversalDsl<S, E> extends GraphTraversal.Admin<S, E> {
     return (GraphTraversal<S, Vertex>) has(Keys.START_TIME, p);
   }
 
+  default GraphTraversal<S, Vertex> duration(Predicate<Integer> p) {
+    return (GraphTraversal<S, Vertex>) has(Keys.DURATION, p);
+  }
+
 //  /**
 //   * Filters objects by the "person" label. This step is designed to work with incoming vertices.
 //   */

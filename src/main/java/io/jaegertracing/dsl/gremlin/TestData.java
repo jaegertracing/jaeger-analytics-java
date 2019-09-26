@@ -13,7 +13,7 @@ public class TestData {
     rootSpan.property(Keys.SPAN_ID, 0);
     rootSpan.property(Keys.TRACE_ID, 1);
     rootSpan.property(Keys.OPERATION_NAME, "root_span");
-    rootSpan.property(Tags.SPAN_KIND.getKey(), "client");
+    rootSpan.property(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CLIENT);
     rootSpan.property(Keys.START_TIME, 22);
     rootSpan.property(Keys.DURATION, 15);
 
@@ -21,8 +21,9 @@ public class TestData {
     childSpan.property(Keys.SPAN_ID, 1);
     childSpan.property(Keys.TRACE_ID, 1);
     childSpan.property(Keys.OPERATION_NAME, "child");
-    childSpan.property(Tags.SPAN_KIND.getKey(), "server");
+    childSpan.property(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_SERVER);
     childSpan.property(Keys.START_TIME, 33);
+    childSpan.property(Keys.DURATION, 22);
     childSpan.property("foo", "bar");
     rootSpan.addEdge(References.CHILD_OF, childSpan);
 
@@ -30,7 +31,8 @@ public class TestData {
     childSpan2.property(Keys.SPAN_ID, 2);
     childSpan2.property(Keys.TRACE_ID, 1);
     childSpan2.property(Keys.OPERATION_NAME, "child2");
-    childSpan2.property(Tags.SPAN_KIND.getKey(), "server");
+    childSpan2.property(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CLIENT);
+    childSpan2.property(Keys.DURATION, 255);
     childSpan2.property("baz", "kar");
     childSpan.addEdge(References.FOLLOWS_FROM, childSpan2);
 
