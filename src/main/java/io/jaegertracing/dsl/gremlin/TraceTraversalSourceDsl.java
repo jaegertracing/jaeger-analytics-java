@@ -10,6 +10,7 @@ import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversalSource;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
+import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__;
 
 public class TraceTraversalSourceDsl extends GraphTraversalSource {
 
@@ -36,6 +37,12 @@ public class TraceTraversalSourceDsl extends GraphTraversalSource {
     GraphTraversal traversal = this.clone().V();
     traversal = traversal.has(Keys.SERVICE_NAME, service);
     return traversal;
+  }
+
+  public GraphTraversal<Vertex, Vertex> hasName(String name) {
+    GraphTraversal traversal = this.clone().V();
+    traversal = traversal.has(Keys.OPERATION_NAME, name);
+    return (TraceTraversal<Vertex, Vertex>) traversal;
   }
 
   public GraphTraversal<Vertex, Vertex> hasTag(String key) {
@@ -77,7 +84,14 @@ public class TraceTraversalSourceDsl extends GraphTraversalSource {
     return traversal;
   }
 
+  public GraphTraversal<Vertex, Vertex> rootSpans() {
+    GraphTraversal traversal = this.clone().V();
+    traversal = traversal.V().not(__.inE()).dedup();
+    return (GraphTraversal<Vertex, Vertex>) traversal;
+  }
+
   // Two spans are connected (tag, tag)
   // Distance between two spans
   // What is the maximum/average service depth
+  // group by traceId Map<Id, List<Vertex>>
 }
