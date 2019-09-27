@@ -43,9 +43,12 @@ public class Main {
         .group()
         .by(Keys.TRACE_ID);
     System.out.println("--------");
-    by.forEachRemaining(v -> {
-      System.out.println(v.keySet());
-      System.out.println(v.values());
+    by.forEachRemaining(map -> {
+      System.out.println(map.keySet());
+      map.values().forEach(o -> {
+        List<Vertex> vertices = (List<Vertex>) o;
+        vertices.forEach(vv -> printVertex(vv));
+      });
     });
   }
 
