@@ -12,11 +12,36 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <version.protobuf>3.6.1</version.protobuf>
+    <version.spark>2.4.4</version.spark>
+    <version.scala>2.12</version.scala>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-core_${version.scala}</artifactId>
+      <version>${version.spark}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-streaming_${version.scala}</artifactId>
+      <version>${version.spark}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-streaming-kafka-0-10_${version.scala}</artifactId>
+      <version>${version.spark}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka_${version.scala}</artifactId>
+      <version>2.3.0</version>
+    </dependency>
+
+
     <dependency>
       <groupId>io.opentracing</groupId>
       <artifactId>opentracing-api</artifactId>
@@ -26,6 +51,16 @@
       <groupId>org.apache.tinkerpop</groupId>
       <artifactId>tinkergraph-gremlin</artifactId>
       <version>3.4.3</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <version>${version.protobuf}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java-util</artifactId>
+      <version>${version.protobuf}</version>
     </dependency>
 
     <dependency>
@@ -50,7 +85,7 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>io.jaegertracing.dsl.gremlin.Main</mainClass>
+          <mainClass>io.jaegertracing.dsl.gremlin.GraphDSLExamples</mainClass>
         </configuration>
       </plugin>
     </plugins>

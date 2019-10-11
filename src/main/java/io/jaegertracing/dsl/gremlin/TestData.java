@@ -12,7 +12,7 @@ public class TestData {
     Vertex rootSpan = graph.addVertex(Keys.SPAN_TYPE);
     rootSpan.property(Keys.SPAN_ID, 0);
     rootSpan.property(Keys.TRACE_ID, 1);
-    rootSpan.property(Keys.OPERATION_NAME, "root_span");
+    rootSpan.property(Keys.OPERATION_NAME, "root");
     rootSpan.property(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CLIENT);
     rootSpan.property(Keys.START_TIME, 22);
     rootSpan.property(Keys.DURATION, 15);

@@ -90,8 +90,4 @@ public class TraceTraversalSourceDsl extends GraphTraversalSource {
     return (GraphTraversal<Vertex, Vertex>) traversal;
   }
 
-  // Two spans are connected (tag, tag)
-  // Distance between two spans
-  // What is the maximum/average service depth
-  // group by traceId Map<Id, List<Vertex>>
 }
