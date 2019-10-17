@@ -41,12 +41,4 @@ public interface TraceTraversalDsl<S, E> extends GraphTraversal.Admin<S, E> {
   default GraphTraversal<S, Vertex> rootSpan() {
     return (GraphTraversal<S, Vertex>) not(__.inE());
   }
-
-//  /**
-//   * Filters objects by the "person" label. This step is designed to work with incoming vertices.
-//   */
-//  @GremlinDsl.AnonymousMethod(returnTypeParameters = {"A", "A"}, methodTypeParameters = {"A"})
-//  default GraphTraversal<S, E> person() {
-//    return hasLabel(Keys.SPAN_TYPE);
-//  }
 }

@@ -3,9 +3,10 @@ package io.jaegertracing.dsl.gremlin;
 import io.jaegertracing.dsl.gremlin.model.Span;
 import io.jaegertracing.dsl.gremlin.model.SpanDeserializer;
 import io.jaegertracing.dsl.gremlin.model.Trace;
+import io.prometheus.client.exporter.HTTPServer;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,9 +23,7 @@ import org.apache.spark.streaming.api.java.JavaStreamingContext;
 import org.apache.spark.streaming.kafka010.ConsumerStrategies;
 import org.apache.spark.streaming.kafka010.KafkaUtils;
 import org.apache.spark.streaming.kafka010.LocationStrategies;
-import org.apache.tinkerpop.gremlin.process.traversal.Scope;
 import org.apache.tinkerpop.gremlin.structure.Graph;
-import org.apache.tinkerpop.gremlin.structure.Vertex;
 import scala.Tuple2;
 
 /**
@@ -32,14 +31,15 @@ import scala.Tuple2;
  */
 public class SparkRunner {
 
-  public static void main(String []args) throws InterruptedException {
+  public static void main(String []args) throws InterruptedException, IOException {
+    HTTPServer server = new HTTPServer(9001);
+
     SparkConf sparkConf = new SparkConf().setAppName("Trace DSL").setMaster("local[*]");
     JavaSparkContext sc = new JavaSparkContext(sparkConf);
     JavaStreamingContext ssc = new JavaStreamingContext(sc, new Duration(5000));
 
     Set<String> topics = Collections.singleton("jaeger-spans");
     Map<String, Object> kafkaParams = new HashMap<>();
-    kafkaParams.put("bootstrap.servers", "192.168.42.6:30310");
 //    kafkaParams.put("bootstrap.servers", "192.168.42.6:32632");
     kafkaParams.put("key.deserializer", StringDeserializer.class);
     kafkaParams.put("value.deserializer", SpanDeserializer.class);
@@ -72,11 +72,7 @@ public class SparkRunner {
     tracesStream.foreachRDD((traceRDD, time) -> {
       traceRDD.foreach(trace -> {
         Graph graph = GraphCreator.create(trace);
-        TraceTraversal<Vertex, Comparable> maxDepth = graph.traversal(TraceTraversalSource.class).V()
-            .repeat(__.in()).emit().path().count(Scope.local).max();
-          maxDepth.forEachRemaining(depth -> System.out.println(depth));
-//        graph.traversal(TraceTraversalSource.class).V().
-//        System.out.println("Trace size: " + graph.Ttrace.spans.size());
+        TraceDepth.calculate(graph);
       });
     });
 
