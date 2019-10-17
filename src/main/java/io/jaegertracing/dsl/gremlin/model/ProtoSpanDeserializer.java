@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.apache.kafka.common.serialization.Deserializer;
 
-public class SpanDeserializer implements Deserializer<Span>, Serializable {
+public class ProtoSpanDeserializer implements Deserializer<Span>, Serializable {
 
   @Override
   public void configure(Map<String, ?> configs, boolean isKey) {

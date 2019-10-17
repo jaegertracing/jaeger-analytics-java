@@ -1,0 +1,120 @@
+{
+  "data": [
+    {
+      "traceID": "2db17286b3e6b148",
+      "spans": [
+        {
+          "traceID": "2db17286b3e6b148",
+          "spanID": "2db17286b3e6b148",
+          "flags": 1,
+          "operationName": "/api/services/{service}/operations",
+          "references": [],
+          "startTime": 1571326774777373,
+          "duration": 4199,
+          "tags": [
+            {
+              "key": "sampler.type",
+              "type": "string",
+              "value": "probabilistic"
+            },
+            {
+              "key": "sampler.param",
+              "type": "float64",
+              "value": 1
+            },
+            {
+              "key": "span.kind",
+              "type": "string",
+              "value": "server"
+            },
+            {
+              "key": "http.method",
+              "type": "string",
+              "value": "GET"
+            },
+            {
+              "key": "http.url",
+              "type": "string",
+              "value": "/api/services/frontend/operations"
+            },
+            {
+              "key": "component",
+              "type": "string",
+              "value": "net/http"
+            },
+            {
+              "key": "http.status_code",
+              "type": "int64",
+              "value": 200
+            },
+            {
+              "key": "internal.span.format",
+              "type": "string",
+              "value": "proto"
+            }
+          ],
+          "logs": [],
+          "processID": "p1",
+          "warnings": null
+        },
+        {
+          "traceID": "2db17286b3e6b148",
+          "spanID": "ec2b4e0bcea566d",
+          "flags": 1,
+          "operationName": "GetOperations",
+          "references": [
+            {
+              "refType": "CHILD_OF",
+              "traceID": "2db17286b3e6b148",
+              "spanID": "2db17286b3e6b148"
+            }
+          ],
+          "startTime": 1571326774777428,
+          "duration": 3873,
+          "tags": [
+            {
+              "key": "internal.span.format",
+              "type": "string",
+              "value": "proto"
+            }
+          ],
+          "logs": [],
+          "processID": "p1",
+          "warnings": null
+        }
+      ],
+      "processes": {
+        "p1": {
+          "serviceName": "jaeger-query",
+          "tags": [
+            {
+              "key": "client-uuid",
+              "type": "string",
+              "value": "46d69fcdf947a814"
+            },
+            {
+              "key": "hostname",
+              "type": "string",
+              "value": "simple-streaming-query-66f49db66-8x9hd"
+            },
+            {
+              "key": "ip",
+              "type": "string",
+              "value": "10.129.2.13"
+            },
+            {
+              "key": "jaeger.version",
+              "type": "string",
+              "value": "Go-2.15.1dev"
+            }
+          ]
+        }
+      },
+      "warnings": null
+    }
+  ],
+  "total": 0,
+  "limit": 0,
+  "offset": 0,
+  "errors": null
+}

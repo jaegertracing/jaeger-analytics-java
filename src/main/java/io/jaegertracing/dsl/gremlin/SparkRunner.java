@@ -1,7 +1,7 @@
 package io.jaegertracing.dsl.gremlin;
 
 import io.jaegertracing.dsl.gremlin.model.Span;
-import io.jaegertracing.dsl.gremlin.model.SpanDeserializer;
+import io.jaegertracing.dsl.gremlin.model.ProtoSpanDeserializer;
 import io.jaegertracing.dsl.gremlin.model.Trace;
 import io.prometheus.client.exporter.HTTPServer;
 import java.io.IOException;
@@ -42,7 +42,7 @@ public class SparkRunner {
     Map<String, Object> kafkaParams = new HashMap<>();
 //    kafkaParams.put("bootstrap.servers", "192.168.42.6:32632");
     kafkaParams.put("key.deserializer", StringDeserializer.class);
-    kafkaParams.put("value.deserializer", SpanDeserializer.class);
+    kafkaParams.put("value.deserializer", ProtoSpanDeserializer.class);
     // hack to start always from beginning
     kafkaParams.put("group.id", "trace-aggregation-" + System.currentTimeMillis());
     kafkaParams.put("auto.offset.reset", "earliest");
