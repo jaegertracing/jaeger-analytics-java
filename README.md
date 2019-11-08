@@ -66,7 +66,7 @@ inject it as volume `-v ${PWD}:/home/jovyan/work` or rebuild the image too see t
 
 ```bash
 docker build -t pavolloffay/jaeger-tracedsl:latest .
-docker run --rm -it -p 8888:8888 -p 4040:4040 -p 9001:9001 -e JUPYTER_ENABLE_LAB=yes -v ${PWD}:/home/jovyan/work  pavolloffay/jaeger-tracedsl:latest
+docker run --rm -it -p 8888:8888 -p 4040:4040 -p 9001:9001 -e JUPYTER_ENABLE_LAB=yes -v ${PWD}:/home/jovyan/work  pavolloffay/trace-dsl:latest
 ```
 
 Open browser on http://localhost:8888/lab and copy token from the command line. Then navigate to `./work/jupyter/` directory and open notebook.

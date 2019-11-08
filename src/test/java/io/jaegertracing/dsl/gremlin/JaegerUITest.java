@@ -3,15 +3,18 @@ package io.jaegertracing.dsl.gremlin;
 import io.jaegertracing.dsl.gremlin.model.Trace;
 import io.jaegertracing.dsl.gremlin.ui.JaegerQueryService;
 import java.io.IOException;
+import org.junit.Test;
 
 /**
  * @author Pavol Loffay
  */
 public class JaegerUITest {
 
-//  @Test
+  @Test
   public void load() throws IOException {
-    Trace load = JaegerQueryService.load("2db17286b3e6b148",
-        "https://simple-streaming-default.apps.ploffay-cluster1.devcluster.openshift.com/api/traces/");
+//    Trace trace2 = JaegerQueryService.load("54e26ad4bbea6606", "http://192.168.122.1:16686/api/traces");
+    Trace tracae = JaegerQueryService.load("54e26ad4bbea6606",
+        "http://192.168.122.1:16686/api/traces/");
+    System.out.println(tracae);
   }
 }
