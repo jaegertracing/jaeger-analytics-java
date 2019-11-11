@@ -39,4 +39,5 @@ USER $NB_USER
 
 # Launch the notebook server
 WORKDIR $HOME
+RUN ./mvnw clean install -DskipTests
 CMD ["jupyter", "notebook", "--ip", "0.0.0.0"]
