@@ -1,0 +1,14 @@
+on: [push, pull_request]
+name: Test
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Checkout code
+      uses: actions/checkout@v1
+    - name: Test
+      run: ./mvnw clean install
