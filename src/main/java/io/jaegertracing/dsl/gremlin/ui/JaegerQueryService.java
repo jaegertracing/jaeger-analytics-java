@@ -1,9 +1,6 @@
 package io.jaegertracing.dsl.gremlin.ui;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jaegertracing.dsl.gremlin.model.Trace;
-import io.jaegertracing.dsl.gremlin.ui.json.JsonHelper;
 import io.jaegertracing.dsl.gremlin.ui.json.JsonSpanDeserializer;
 import java.io.IOException;
 import java.security.cert.CertificateException;
@@ -20,7 +17,7 @@ import okhttp3.Response;
 
 public class JaegerQueryService {
 
-  private static String UI_ENDPOINT = System.getenv("JAEGER_UI_ENDPOINT");
+  private static String UI_ENDPOINT = System.getProperty("JAEGER_UI_ENDPOINT", System.getenv("JAEGER_UI_ENDPOINT"));
   private static OkHttpClient client = getUnsafeOkHttpClient();
 
   public static Trace load(String traceId, String queryEndpoint) throws IOException {

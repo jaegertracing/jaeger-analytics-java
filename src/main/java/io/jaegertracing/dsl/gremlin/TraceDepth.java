@@ -1,8 +1,12 @@
 package io.jaegertracing.dsl.gremlin;
 
+import static java.util.stream.Collectors.*;
+
 import io.prometheus.client.Gauge;
 import io.prometheus.client.Histogram;
 import io.prometheus.client.Summary;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.apache.tinkerpop.gremlin.process.traversal.Scope;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
@@ -35,15 +39,20 @@ public class TraceDepth {
 
   private TraceDepth() {}
 
-  public static void calculate(Graph graph) {
+  public static void calculateWithMetrics(Graph graph) {
+    int depth = calculate(graph);
+    TRACE_DEPTH_HISTOGRAM.observe(depth);
+    TRACE_DEPTH_SUMMARY.observe(depth);
+    TRACE_DEPTH_SUMMARY.observe(depth);
+  }
+
+  public static int calculate(Graph graph) {
     TraceTraversal<Vertex, Comparable> maxDepth = graph.traversal(TraceTraversalSource.class).V()
         .repeat(__.in()).emit().path().count(Scope.local).max();
-    maxDepth.forEachRemaining(depth -> {
+    List<Integer> depths = maxDepth.toStream().map(depth -> {
       int depthInt = Integer.valueOf(depth.toString());
-      System.out.println(depthInt);
-      TRACE_DEPTH_HISTOGRAM.observe(depthInt);
-      TRACE_DEPTH_SUMMARY.observe(depthInt);
-      TRACE_DEPTH_SUMMARY.observe(depthInt);
-    });
+      return depthInt;
+    }).collect(toList());
+    return depths.size() > 0 ? depths.get(0) : 0;
   }
 }

@@ -72,7 +72,7 @@ public class SparkRunner {
     tracesStream.foreachRDD((traceRDD, time) -> {
       traceRDD.foreach(trace -> {
         Graph graph = GraphCreator.create(trace);
-        TraceDepth.calculate(graph);
+        TraceDepth.calculateWithMetrics(graph);
       });
     });
 

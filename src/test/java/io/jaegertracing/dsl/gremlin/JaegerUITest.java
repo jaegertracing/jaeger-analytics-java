@@ -10,7 +10,8 @@ import org.junit.Test;
  */
 public class JaegerUITest {
 
-  @Test
+//  @Test
+  // TODO use test containers
   public void load() throws IOException {
 //    Trace trace2 = JaegerQueryService.load("54e26ad4bbea6606", "http://192.168.122.1:16686/api/traces");
     Trace tracae = JaegerQueryService.load("54e26ad4bbea6606",
