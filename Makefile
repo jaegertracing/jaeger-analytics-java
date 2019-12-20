@@ -1,5 +1,5 @@
 
-DOCKER_IMAGE?=quay.io/repository/jaegertracing/jaeger-analytics-java
+DOCKER_IMAGE?=quay.io/jaegertracing/jaeger-analytics-java
 DOCKER_TAG?=latest
 
 .PHONY: test
