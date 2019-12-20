@@ -1,8 +1,15 @@
 [![Build Status][ci-img]][ci]
 
-# Jaeger trace DSL
+# Jaeger analytics Java
 
-Experimental repository with Jaeger graph DSL.
+Experimental repository with data analytics models, pipelines for Jaeger tracing data.
+
+Repository contains:
+* Trace DSL library based on Apache Gremlin
+* Spark streaming integration with Kafka for Jaeger topics
+* Loading trace from Jaeger query service
+* Jupyter notebooks to run examples data analytic models
+* Data analytics models for tracing data
 
 ### Development
 
