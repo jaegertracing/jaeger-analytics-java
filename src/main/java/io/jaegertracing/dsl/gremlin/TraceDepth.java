@@ -13,6 +13,8 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 /**
  * @author Pavol Loffay
+ *
+ * {@link TraceDepth} calculates the trace depth based on number of spans.
  */
 public class TraceDepth {
 
