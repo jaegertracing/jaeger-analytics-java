@@ -2,11 +2,9 @@ package io.jaegertracing.dsl.gremlin;
 
 import static java.util.stream.Collectors.*;
 
-import io.prometheus.client.Gauge;
 import io.prometheus.client.Histogram;
 import io.prometheus.client.Summary;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.apache.tinkerpop.gremlin.process.traversal.Scope;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;

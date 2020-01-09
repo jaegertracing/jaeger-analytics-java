@@ -1,6 +1,7 @@
 package io.jaegertracing.dsl.gremlin.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Span implements Serializable {
@@ -12,5 +13,5 @@ public class Span implements Serializable {
     public String operationName;
     public long startTimeMicros;
     public long durationMicros;
-    public Map<String, String> tags;
+    public Map<String, String> tags = new HashMap<>();
 }

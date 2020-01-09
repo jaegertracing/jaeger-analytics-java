@@ -30,14 +30,16 @@ mvn clean compile exec:java
 * https://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html
 * https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html
 
-
 ## Deploy Kafka, Elasticsearch and Jaeger on Kubernetes using operators
+The following command creates Jaeger CR which triggers deployment of Jaeger, Kafka and Elasticsearch.
+This works only on OpenShift 4.x and prior deploying make sure Jaeger, Strimzi(Kafka) and
+Elasticsearch(from OpenShift cluster logging) operators are running.
 ```
-make kafka
-make es
-make run
-oc create -f manifests/jaeger-simple-streaming.yaml
+oc create -f manifests/jaeger-auto-provisioned.yaml
 ```
+
+If you are running on vanilla Kubernetes you can deploy `jaeger-external-kafka-es.yaml` CR and configure
+connection strings to Kafka and Elasticsearch.
 
 ### Expose Kafka outside of cluster and get host:port
 Expose Kafka IP address outside of the cluster:

@@ -1,5 +1,3 @@
-# setup an elasticsearch with `make es`
-# setup a kafka platform with `make kafka`  See https://strimzi.io for more information
 apiVersion: jaegertracing.io/v1
 kind: Jaeger
 metadata:
@@ -11,18 +9,19 @@ spec:
       kafka:
         producer:
           topic: jaeger-spans
-          brokers: my-cluster-kafka-brokers.kafka:9092
+          # Note: This assumes kafka is running in the "project1" namespace.
+          brokers: my-cluster-kafka-brokers.project1:9092
   ingester:
     options:
       kafka:
         consumer:
           topic: jaeger-spans
-          brokers: my-cluster-kafka-brokers.kafka:9092
+          brokers: my-cluster-kafka-brokers.project1:9092
       ingester:
         deadlockInterval: 0
   storage:
     type: elasticsearch
     options:
       es:
-        # Note: This assumes elasticsearch is running in the "default" namespace.
-        server-urls: http://elasticsearch.default.svc:9200
+        # Note: This assumes elasticsearch is running in the "project1" namespace.
+        server-urls: http://elasticsearch.project1.svc:9200

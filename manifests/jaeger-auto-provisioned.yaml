@@ -1,0 +1,18 @@
+# Jaeger with auto-provisioned Kafka and Elasticsearch
+# Before running make sure strimzi and cluster logging ES operators are running
+apiVersion: jaegertracing.io/v1
+kind: Jaeger
+metadata:
+  name: simple-streaming
+spec:
+  strategy: streaming
+  storage:
+    type: elasticsearch
+    elasticsearch:
+      nodeCount: 1
+      resources:
+        requests:
+          cpu: 200m
+          memory: 1Gi
+        limits:
+          memory: 1Gi

@@ -10,7 +10,7 @@ public class Keys {
   public static final String PARENT_ID = "parentId";
   public static final String TRACE_ID = "traceId";
   public static final String OPERATION_NAME = "operationName";
-  public static final String SERVICE_NAME = "operationName";
+  public static final String SERVICE_NAME = "serviceName";
   public static final String START_TIME = "startTime";
   public static final String DURATION = "duration";
 }
