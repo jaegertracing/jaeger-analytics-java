@@ -12,12 +12,14 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+
     <version.protobuf>3.6.1</version.protobuf>
     <version.spark>2.4.4</version.spark>
     <version.scala>2.12</version.scala>
     <version.prometheus>0.7.0</version.prometheus>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <version.maven-shade-plugin>3.1.0</version.maven-shade-plugin>
   </properties>
 
   <dependencies>
@@ -100,6 +102,102 @@
           <mainClass>io.jaegertracing.analytics.gremlin.Examples</mainClass>
         </configuration>
       </plugin>
+
+      <plugin>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>${version.maven-shade-plugin}</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <transformers>
+                <!-- Protect against http://stackoverflow.com/questions/31011243/no-configuration-setting-found-for-key-akka-version -->
+                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                  <resource>reference.conf</resource>
+                </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>io.jaegertracing.analytics.spark.SparkRunner</mainClass>
+                </transformer>
+              </transformers>
+              <!-- spark + scala + ... = lots and lots of classes! -->
+              <minimizeJar>true</minimizeJar>
+              <filters>
+                <!-- Prevent minification from excluding classes looked up by name -->
+                <filter>
+                  <artifact>org.apache.hadoop:hadoop-common</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+                <filter>
+                  <artifact>log4j:log4j</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+                <filter>
+                  <artifact>io.netty:*</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+                <filter>
+                  <artifact>org.slf4j:*</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+                <filter>
+                  <artifact>org.scala-lang:*</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+                <filter>
+                  <artifact>org.apache.spark:*</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+                <filter>
+                  <artifact>org.lz4:*</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+                <filter>
+                  <!-- elasticsearch -->
+                  <artifact>commons-httpclient:commons-httpclient</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+                <filter>
+                  <!-- org.apache.xerces.jaxp.DocumentBuilderFactoryImpl -->
+                  <artifact>xerces:xercesImpl</artifact>
+                  <includes>
+                    <include>**</include>
+                  </includes>
+                </filter>
+                <!-- Prevent Invalid signature file digest for Manifest main attributes -->
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/*.SF</exclude>
+                    <exclude>META-INF/*.DSA</exclude>
+                    <exclude>META-INF/*.RSA</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+              <createDependencyReducedPom>false</createDependencyReducedPom>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
   </build>
 </project>

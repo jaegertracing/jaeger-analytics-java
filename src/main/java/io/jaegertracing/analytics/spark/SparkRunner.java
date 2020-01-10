@@ -1,5 +1,6 @@
 package io.jaegertracing.analytics.spark;
 
+import io.jaegertracing.analytics.NetworkLatency;
 import io.jaegertracing.analytics.TraceDepth;
 import io.jaegertracing.analytics.gremlin.GraphCreator;
 import io.jaegertracing.analytics.model.Span;
@@ -34,19 +35,22 @@ import scala.Tuple2;
 public class SparkRunner {
 
   public static void main(String []args) throws InterruptedException, IOException {
-    HTTPServer server = new HTTPServer(9001);
+    HTTPServer server = new HTTPServer(getPropOrEnv("PROMETHEUS_PORT", 9111));
 
-    SparkConf sparkConf = new SparkConf().setAppName("Trace DSL").setMaster("local[*]");
+    SparkConf sparkConf = new SparkConf()
+        .setAppName("Trace DSL")
+        .setMaster(getPropOrEnv("SPARK_MASTER","local[*]"));
+
     JavaSparkContext sc = new JavaSparkContext(sparkConf);
     JavaStreamingContext ssc = new JavaStreamingContext(sc, new Duration(5000));
 
-    Set<String> topics = Collections.singleton("jaeger-spans");
+    Set<String> topics = Collections.singleton(getPropOrEnv("KAFKA_JAEGER_TOPIC", "jaeger-spans"));
     Map<String, Object> kafkaParams = new HashMap<>();
-//    kafkaParams.put("bootstrap.servers", "192.168.42.6:32632");
+    kafkaParams.put("bootstrap.servers", getPropOrEnv("KAFKA_BOOTSTRAP_SERVER", "localhost:9092"));
     kafkaParams.put("key.deserializer", StringDeserializer.class);
     kafkaParams.put("value.deserializer", ProtoSpanDeserializer.class);
     // hack to start always from beginning
-    kafkaParams.put("group.id", "trace-aggregation-" + System.currentTimeMillis());
+    kafkaParams.put("group.id", "jaeger-trace-aggregation-" + System.currentTimeMillis());
     kafkaParams.put("auto.offset.reset", "earliest");
     kafkaParams.put("enable.auto.commit", false);
     kafkaParams.put("startingOffsets", "earliest");
@@ -75,10 +79,17 @@ public class SparkRunner {
       traceRDD.foreach(trace -> {
         Graph graph = GraphCreator.create(trace);
         TraceDepth.calculateWithMetrics(graph);
+        Map<String, Set<Long>> networkLatencies = NetworkLatency.calculate(graph);
+        System.out.println(networkLatencies);
       });
     });
 
     ssc.start();
     ssc.awaitTermination();
+  }
+
+  private static  <T>  T getPropOrEnv(String key, T defaultValue) {
+    String value = System.getProperty(key, System.getenv(key));
+    return value != null ? (T) value : defaultValue;
   }
 }

@@ -23,6 +23,15 @@ Build and run
 mvn clean compile exec:java
 ```
 
+### Configuration
+
+Configuration properties for `SparkRunner`.
+
+* `SPARK_MASTER`: Spark master to submit the job to; Defaults to `local[*]
+* `KAFKA_JAEGER_TOPIC`: Kafka topic with Jaeger spans; Defaults to `jaeger-spans`
+* `KAFKA_BOOTSTRAP_SERVER`: Kafka bootstrap servers; Defaults to `localhost:9092`
+* `PROMETHEUS_PORT`: Prometheus exporter port; Defaults to `9111`
+
 ## Gremlin documentation
 * http://kelvinlawrence.net/book/Gremlin-Graph-Guide.html
 
@@ -53,17 +62,17 @@ listeners:
 
 Get external broker address:
 ```bash
-oc get kafka my-cluster -n kafka -o yaml
+oc get kafka simple-streaming -o yaml
 ```
 
-### Expose Jaeger collector outside of cluster:
+### Expose Jaeger collector outside of the cluster
 ```bash
 oc create route edge --service=simple-streaming-collector --port c-binary-trft --insecure-policy=Allow
 ```
 
-### Deploy Hotrod
+### Deploy Hotrod example application
 ```bash
-oc get routes
+oc get routes # get jaeger collector route
 docker run --rm -it -e "JAEGER_ENDPOINT=http://host:80/api/traces" -p 8080:8080 jaegertracing/example-hotrod:latest
 ```
 
