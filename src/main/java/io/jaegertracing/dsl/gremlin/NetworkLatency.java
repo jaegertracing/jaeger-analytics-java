@@ -28,7 +28,6 @@ public class NetworkLatency {
           Long clientStartTime = (Long)client.property(Keys.START_TIME).value();
           Long serverStartTime = (Long)child.property(Keys.START_TIME).value();
           Long latency = serverStartTime - clientStartTime;
-          System.out.printf("Network time of %s:%s=%d", serviceA, serviceB, latency);
 
           String name = getName(serviceA, serviceB);
           Set<Long> latencies = results.get(name);
