@@ -30,6 +30,7 @@ Configuration properties for `SparkRunner`.
 * `SPARK_MASTER`: Spark master to submit the job to; Defaults to `local[*]
 * `KAFKA_JAEGER_TOPIC`: Kafka topic with Jaeger spans; Defaults to `jaeger-spans`
 * `KAFKA_BOOTSTRAP_SERVER`: Kafka bootstrap servers; Defaults to `localhost:9092`
+* `KAFKA_START_FROM_BEGINNING`: Read kafka topic from the beginning; Default to true
 * `PROMETHEUS_PORT`: Prometheus exporter port; Defaults to `9111`
 
 ## Gremlin documentation

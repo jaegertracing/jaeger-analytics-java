@@ -35,7 +35,7 @@ import scala.Tuple2;
 public class SparkRunner {
 
   public static void main(String []args) throws InterruptedException, IOException {
-    HTTPServer server = new HTTPServer(getPropOrEnv("PROMETHEUS_PORT", 9111));
+    HTTPServer server = new HTTPServer(Integer.valueOf(getPropOrEnv("PROMETHEUS_PORT", "9111")));
 
     SparkConf sparkConf = new SparkConf()
         .setAppName("Trace DSL")
@@ -51,10 +51,12 @@ public class SparkRunner {
     kafkaParams.put("value.deserializer", ProtoSpanDeserializer.class);
     // hack to start always from beginning
     kafkaParams.put("group.id", "jaeger-trace-aggregation-" + System.currentTimeMillis());
-    kafkaParams.put("auto.offset.reset", "earliest");
-    kafkaParams.put("enable.auto.commit", false);
-    kafkaParams.put("startingOffsets", "earliest");
-    kafkaParams.put("endingOffsets", "latest");
+
+    if (Boolean.parseBoolean(getPropOrEnv("KAFKA_START_FROM_BEGINNING", "true"))) {
+      kafkaParams.put("auto.offset.reset", "earliest");
+      kafkaParams.put("enable.auto.commit", false);
+      kafkaParams.put("startingOffsets", "earliest");
+    }
 
     JavaInputDStream<ConsumerRecord<String, Span>> messages =
         KafkaUtils.createDirectStream(
@@ -79,8 +81,7 @@ public class SparkRunner {
       traceRDD.foreach(trace -> {
         Graph graph = GraphCreator.create(trace);
         TraceDepth.calculateWithMetrics(graph);
-        Map<String, Set<Long>> networkLatencies = NetworkLatency.calculate(graph);
-        System.out.println(networkLatencies);
+        NetworkLatency.calculateWithMetrics(graph);
       });
     });
 
@@ -88,8 +89,8 @@ public class SparkRunner {
     ssc.awaitTermination();
   }
 
-  private static  <T>  T getPropOrEnv(String key, T defaultValue) {
+  private static  String getPropOrEnv(String key, String defaultValue) {
     String value = System.getProperty(key, System.getenv(key));
-    return value != null ? (T) value : defaultValue;
+    return value != null ? value : defaultValue;
   }
 }

@@ -1,5 +1,6 @@
 package io.jaegertracing.analytics;
 
+import io.jaegertracing.analytics.NetworkLatency.Name;
 import io.jaegertracing.analytics.gremlin.GraphCreator;
 import io.jaegertracing.analytics.model.Span;
 import io.jaegertracing.analytics.model.Trace;
@@ -22,34 +23,34 @@ public class NetworkLatencyTest {
     root.serviceName = "root";
 
     Span child = Util.newChild("child", root);
-    child.startTimeMicros = 10;
+    child.startTimeMicros = 10000;
     child.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CLIENT);
     child.serviceName = "gandalf";
 
     Span childChild = Util.newChild("childChild", child);
-    childChild.startTimeMicros = 15;
+    childChild.startTimeMicros = 15000;
     childChild.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_SERVER);
     childChild.serviceName = "frodo";
 
     // simulates another server span
     Span childChild2 = Util.newChild("childChild2", child);
-    childChild2.startTimeMicros = 20;
+    childChild2.startTimeMicros = 20000;
     childChild2.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_SERVER);
     childChild2.serviceName = "frodo2";
 
     Span child2 = Util.newChild("child2", root);
     child2.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CLIENT);
     child2.serviceName = "gandalf";
-    child2.startTimeMicros = 20;
+    child2.startTimeMicros = 20000;
 
     Span child3 = Util.newChild("child3", root);
     child3.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CLIENT);
     child3.serviceName = "gandalf";
-    child3.startTimeMicros = 25;
+    child3.startTimeMicros = 25000;
 
     // simulates another server span
     Span childChild3 = Util.newChild("childChild3", child3);
-    childChild3.startTimeMicros = 50;
+    childChild3.startTimeMicros = 50000;
     childChild3.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_SERVER);
     childChild3.serviceName = "faramir";
 
@@ -57,17 +58,17 @@ public class NetworkLatencyTest {
     trace.spans = Arrays.asList(root, child, child2, child3, childChild, childChild2 ,childChild3);
 
     Graph graph = GraphCreator.create(trace);
-    Map<String, Set<Long>> results = NetworkLatency.calculate(graph);
+    Map<Name, Set<Long>> results = NetworkLatency.calculate(graph);
     Assert.assertEquals(3, results.size());
-    Set<Long> latencies = results.get(NetworkLatency.getName("gandalf", "frodo"));
+    Set<Long> latencies = results.get(new Name("gandalf", "frodo"));
     Assert.assertEquals(1, latencies.size());
     Assert.assertEquals(5, (long)latencies.iterator().next());
 
-    latencies = results.get(NetworkLatency.getName("gandalf", "frodo2"));
+    latencies = results.get(new Name("gandalf", "frodo2"));
     Assert.assertEquals(1, latencies.size());
     Assert.assertEquals(10, (long)latencies.iterator().next());
 
-    latencies = results.get(NetworkLatency.getName("gandalf", "faramir"));
+    latencies = results.get(new Name ("gandalf", "faramir"));
     Assert.assertEquals(1, latencies.size());
     Assert.assertEquals(25, (long)latencies.iterator().next());
   }
