@@ -1,7 +1,7 @@
 package io.jaegertracing.dsl.gremlin;
 
-import static io.jaegertracing.dsl.gremlin.Util.newChild;
-import static io.jaegertracing.dsl.gremlin.Util.newTrace;
+import static io.jaegertracing.dsl.gremlin.TestUtil.newChild;
+import static io.jaegertracing.dsl.gremlin.TestUtil.newTrace;
 
 import io.jaegertracing.dsl.gremlin.model.Span;
 import io.jaegertracing.dsl.gremlin.model.Trace;

@@ -6,9 +6,9 @@ import java.util.UUID;
 /**
  * @author Pavol Loffay
  */
-public class Util {
+public class TestUtil {
 
-  private Util() {}
+  private TestUtil() {}
 
   public static Span newTrace(String operationName) {
     Span span = new Span();

@@ -16,6 +16,8 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
  */
 public class TraceDepth {
 
+  private TraceDepth() {}
+
   private static final Histogram TRACE_DEPTH_HISTOGRAM = Histogram.build()
       .linearBuckets(1, 1, 15)
       .name("trace_depth_histogram")
@@ -36,8 +38,6 @@ public class TraceDepth {
       .name("trace_depth_summary")
       .help("Trace graph depth")
       .register();
-
-  private TraceDepth() {}
 
   public static void calculateWithMetrics(Graph graph) {
     int depth = calculate(graph);

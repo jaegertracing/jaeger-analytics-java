@@ -5,8 +5,8 @@ import io.opentracing.tag.Tags;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 
-public class TestData {
-  private TestData() {}
+public class ExampleTrace {
+  private ExampleTrace() {}
 
   public static void initData(Graph graph) {
     Vertex rootSpan = graph.addVertex(Keys.SPAN_TYPE);
