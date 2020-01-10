@@ -1,10 +1,10 @@
 package io.jaegertracing.dsl.gremlin;
 
-import static java.util.stream.Collectors.toList;
-
 import io.opentracing.tag.Tags;
-import java.util.List;
-import org.apache.tinkerpop.gremlin.process.traversal.Scope;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 
@@ -13,9 +13,9 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
  */
 public class NetworkLatency {
 
-  public static final String HOSTNAME_TAG = "hostname";
+  public static Map<String, Set<Long>> calculate(Graph graph) {
+    Map<String, Set<Long>> results = new LinkedHashMap<>();
 
-  public static void calculate(Graph graph) {
     TraceTraversal<Vertex, Vertex> clientSpans = graph
         .traversal(TraceTraversalSource.class).V()
         .hasTag(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CLIENT);
@@ -27,10 +27,24 @@ public class NetworkLatency {
           String serviceB = (String)child.property(Keys.SERVICE_NAME).value();
           Long clientStartTime = (Long)client.property(Keys.START_TIME).value();
           Long serverStartTime = (Long)child.property(Keys.START_TIME).value();
-          Long networkTime = serverStartTime - clientStartTime;
-          System.out.printf("Network time of %s:%s=%d", serviceA, serviceB, networkTime);
+          Long latency = serverStartTime - clientStartTime;
+          System.out.printf("Network time of %s:%s=%d", serviceA, serviceB, latency);
+
+          String name = getName(serviceA, serviceB);
+          Set<Long> latencies = results.get(name);
+          if (latencies == null) {
+            latencies = new LinkedHashSet<>();
+            results.put(name, latencies);
+          }
+          latencies.add(latency);
         }
       }
     });
+
+    return results;
+  }
+
+  public static String getName(String serviceA, String serviceB) {
+    return String.format("%s:%s", serviceA, serviceB);
   }
 }
