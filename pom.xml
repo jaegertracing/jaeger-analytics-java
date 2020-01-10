@@ -97,7 +97,7 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>io.jaegertracing.dsl.gremlin.GraphDSLExamples</mainClass>
+          <mainClass>io.jaegertracing.analytics.gremlin.Examples</mainClass>
         </configuration>
       </plugin>
     </plugins>
