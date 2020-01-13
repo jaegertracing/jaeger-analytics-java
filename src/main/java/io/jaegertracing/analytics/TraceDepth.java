@@ -16,6 +16,7 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
  * @author Pavol Loffay
  *
  * {@link TraceDepth} calculates the trace depth based on number of spans.
+ * The maximum distance between a leaf node and the root.
  */
 public class TraceDepth implements ModelRunner {
 
@@ -54,6 +55,6 @@ public class TraceDepth implements ModelRunner {
       int depthInt = Integer.valueOf(depth.toString());
       return depthInt;
     }).collect(toList());
-    return depths.size() > 0 ? depths.get(0) : 0;
+    return depths.size() > 0 ? depths.get(0) - 1 : 0;
   }
 }

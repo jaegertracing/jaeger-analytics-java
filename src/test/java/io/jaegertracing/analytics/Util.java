@@ -10,16 +10,18 @@ public class Util {
 
   private Util() {}
 
-  public static Span newTrace(String operationName) {
+  public static Span newTrace(String serviceName, String operationName) {
     Span span = new Span();
+    span.serviceName = serviceName;
     span.operationName = operationName;
     span.spanId = UUID.randomUUID().toString();
     span.traceId = UUID.randomUUID().toString();
     return span;
   }
 
-  public static Span newChild(String operationName, Span parent) {
+  public static Span newChild(String serviceName, String operationName, Span parent) {
     Span span = new Span();
+    span.serviceName = serviceName;
     span.operationName = operationName;
     span.spanId = UUID.randomUUID().toString();
     span.traceId = parent.traceId;

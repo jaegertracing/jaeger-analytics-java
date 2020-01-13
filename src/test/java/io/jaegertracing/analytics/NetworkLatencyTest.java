@@ -19,40 +19,33 @@ public class NetworkLatencyTest {
 
   @Test
   public void calculate() {
-    Span root = Util.newTrace("root");
-    root.serviceName = "root";
+    Span root = Util.newTrace("root", "root");
 
-    Span child = Util.newChild("child", root);
+    Span child = Util.newChild("gandalf", "child", root);
     child.startTimeMicros = 10000;
     child.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CLIENT);
-    child.serviceName = "gandalf";
 
-    Span childChild = Util.newChild("childChild", child);
+    Span childChild = Util.newChild("frodo", "childChild", child);
     childChild.startTimeMicros = 15000;
     childChild.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_SERVER);
-    childChild.serviceName = "frodo";
 
     // simulates another server span
-    Span childChild2 = Util.newChild("childChild2", child);
+    Span childChild2 = Util.newChild("frodo2", "childChild2", child);
     childChild2.startTimeMicros = 20000;
     childChild2.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_SERVER);
-    childChild2.serviceName = "frodo2";
 
-    Span child2 = Util.newChild("child2", root);
+    Span child2 = Util.newChild("gandalf", "child2", root);
     child2.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CLIENT);
-    child2.serviceName = "gandalf";
     child2.startTimeMicros = 20000;
 
-    Span child3 = Util.newChild("child3", root);
+    Span child3 = Util.newChild("gandalf", "child3", root);
     child3.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CLIENT);
-    child3.serviceName = "gandalf";
     child3.startTimeMicros = 25000;
 
     // simulates another server span
-    Span childChild3 = Util.newChild("childChild3", child3);
+    Span childChild3 = Util.newChild("faramir", "childChild3", child3);
     childChild3.startTimeMicros = 50000;
     childChild3.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_SERVER);
-    childChild3.serviceName = "faramir";
 
     Trace trace = new Trace();
     trace.spans = Arrays.asList(root, child, child2, child3, childChild, childChild2 ,childChild3);
