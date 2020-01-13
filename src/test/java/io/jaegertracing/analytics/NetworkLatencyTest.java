@@ -72,4 +72,14 @@ public class NetworkLatencyTest {
     Assert.assertEquals(1, latencies.size());
     Assert.assertEquals(25, (long)latencies.iterator().next());
   }
+
+  @Test
+  public void nameEqualsAndHashCode() {
+    Name fooBar = new Name("foo", "bar");
+    Name fooBar2 = new Name("foo", "bar");
+    Assert.assertEquals(fooBar, fooBar2);
+    Assert.assertEquals(fooBar.hashCode(), fooBar2.hashCode());
+    Name barFoo = new Name("bar", "foo");
+    Assert.assertNotEquals(fooBar.hashCode(), barFoo.hashCode());
+  }
 }

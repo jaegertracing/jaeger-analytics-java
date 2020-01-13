@@ -68,10 +68,8 @@ public class NetworkLatency {
     Map<Name, Set<Long>> latencies = calculate(graph);
     System.out.println(latencies);
     for (Map.Entry<Name, Set<Long>> entry: latencies.entrySet()) {
-      // TODO are the labels ordered? We should not mix latency from A->B with B->A.
       Child child = histogram.labels(entry.getKey().client, entry.getKey().server);
       for (Long latency: entry.getValue()) {
-        // calculated latency is in microseconds
         child.observe(latency);
       }
     }
