@@ -18,7 +18,25 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
 /**
  * @author Pavol Loffay
  */
-public class NetworkLatency {
+public class NetworkLatency implements ModelRunner {
+
+  private static final Histogram histogram = Histogram.build()
+      .name("network_latency_milliseconds")
+      .help("Network latency between client and server span")
+      .labelNames("client", "server")
+      .create()
+      .register();
+
+  public void runWithMetrics(Graph graph) {
+    Map<Name, Set<Long>> latencies = calculate(graph);
+    System.out.println(latencies);
+    for (Map.Entry<Name, Set<Long>> entry: latencies.entrySet()) {
+      Child child = histogram.labels(entry.getKey().client, entry.getKey().server);
+      for (Long latency: entry.getValue()) {
+        child.observe(latency);
+      }
+    }
+  }
 
   /**
    * Returns network latency between client and server spans. Name contains service names
@@ -54,25 +72,6 @@ public class NetworkLatency {
     });
 
     return results;
-  }
-
-  private static final String METRIC_NAME = "network_latency_milliseconds";
-  private static final Histogram histogram = Histogram.build()
-      .name(METRIC_NAME)
-      .help("Network latency between client and server span")
-      .labelNames("client", "server")
-      .create()
-      .register();
-
-  public static void calculateWithMetrics(Graph graph) {
-    Map<Name, Set<Long>> latencies = calculate(graph);
-    System.out.println(latencies);
-    for (Map.Entry<Name, Set<Long>> entry: latencies.entrySet()) {
-      Child child = histogram.labels(entry.getKey().client, entry.getKey().server);
-      for (Long latency: entry.getValue()) {
-        child.observe(latency);
-      }
-    }
   }
 
   public static class Name {

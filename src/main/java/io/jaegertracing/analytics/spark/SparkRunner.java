@@ -1,5 +1,6 @@
 package io.jaegertracing.analytics.spark;
 
+import io.jaegertracing.analytics.ModelRunner;
 import io.jaegertracing.analytics.NetworkLatency;
 import io.jaegertracing.analytics.TraceDepth;
 import io.jaegertracing.analytics.gremlin.GraphCreator;
@@ -8,8 +9,10 @@ import io.jaegertracing.analytics.model.ProtoSpanDeserializer;
 import io.jaegertracing.analytics.model.Trace;
 import io.prometheus.client.exporter.HTTPServer;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -77,11 +80,15 @@ public class SparkRunner {
       return trace;
     });
 
+    List<ModelRunner> modelRunner = Arrays.asList(new TraceDepth(), new NetworkLatency());
+
     tracesStream.foreachRDD((traceRDD, time) -> {
       traceRDD.foreach(trace -> {
         Graph graph = GraphCreator.create(trace);
-        TraceDepth.calculateWithMetrics(graph);
-        NetworkLatency.calculateWithMetrics(graph);
+
+        for (ModelRunner model: modelRunner) {
+          model.runWithMetrics(graph);
+        }
       });
     });
 

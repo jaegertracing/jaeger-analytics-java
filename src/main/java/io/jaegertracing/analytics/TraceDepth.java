@@ -17,9 +17,7 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
  *
  * {@link TraceDepth} calculates the trace depth based on number of spans.
  */
-public class TraceDepth {
-
-  private TraceDepth() {}
+public class TraceDepth implements ModelRunner {
 
   private static final Histogram TRACE_DEPTH_HISTOGRAM = Histogram.build()
       .linearBuckets(1, 1, 15)
@@ -42,7 +40,7 @@ public class TraceDepth {
       .help("Trace graph depth")
       .register();
 
-  public static void calculateWithMetrics(Graph graph) {
+  public void runWithMetrics(Graph graph) {
     int depth = calculate(graph);
     TRACE_DEPTH_HISTOGRAM.observe(depth);
     TRACE_DEPTH_SUMMARY.observe(depth);
