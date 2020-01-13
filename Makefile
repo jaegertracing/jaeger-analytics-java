@@ -1,6 +1,7 @@
 
 DOCKER_IMAGE?=quay.io/jaegertracing/jaeger-analytics-java
 DOCKER_TAG?=latest
+SPARK_DOCKER_IMAGE?=quay.io/jaegertracing/jaeger-analytics-java-spark
 
 .PHONY: test
 test:
@@ -18,3 +19,7 @@ docker-run:
 spark-run:
 	echo "Do not forget to set KAFKA_BOOTSTRAP_SERVER"
 	java -jar target/jaeger-tracedsl-1.0-SNAPSHOT.jar
+
+.PHONY: spark-docker
+spark-docker:
+	docker build -t ${SPARK_DOCKER_IMAGE}:${DOCKER_TAG} -f Dockerfile.spark .
