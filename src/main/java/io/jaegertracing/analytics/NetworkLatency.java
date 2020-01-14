@@ -30,17 +30,17 @@ public class NetworkLatency implements ModelRunner {
       .register();
 
   public void runWithMetrics(Graph graph) {
-    Map<Name, Set<Long>> latencies = calculate(graph);
-    for (Map.Entry<Name, Set<Long>> entry: latencies.entrySet()) {
+    Map<Name, Set<Double>> latencies = calculate(graph);
+    for (Map.Entry<Name, Set<Double>> entry: latencies.entrySet()) {
       Child child = histogram.labels(entry.getKey().client, entry.getKey().server);
-      for (Long latency: entry.getValue()) {
+      for (Double latency: entry.getValue()) {
         child.observe(latency);
       }
     }
   }
 
-  public static Map<Name, Set<Long>> calculate(Graph graph) {
-    Map<Name, Set<Long>> results = new LinkedHashMap<>();
+  public static Map<Name, Set<Double>> calculate(Graph graph) {
+    Map<Name, Set<Double>> results = new LinkedHashMap<>();
 
     TraceTraversal<Vertex, Vertex> clientSpans = graph
         .traversal(TraceTraversalSource.class).V()
@@ -56,12 +56,12 @@ public class NetworkLatency implements ModelRunner {
           Long latency = serverStartTime - clientStartTime;
 
           Name name = new Name(clientService, serverService);
-          Set<Long> latencies = results.get(name);
+          Set<Double> latencies = results.get(name);
           if (latencies == null) {
             latencies = new LinkedHashSet<>();
             results.put(name, latencies);
           }
-          latencies.add(latency/(1000*1000));
+          latencies.add(latency/(1000.0*1000.0));
         }
       }
     });
