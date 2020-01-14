@@ -31,4 +31,5 @@ hotrod-run:
 
 .PHONY: prom-run
 prom-run:
+	echo "Open browser on :9090"
 	docker run --rm --net=host -v ${PWD}/manifests/prometheus-config.yml:/etc/prometheus/prometheus.yml prom/prometheus:latest
