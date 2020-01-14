@@ -2,6 +2,7 @@ package io.jaegertracing.analytics.spark;
 
 import io.jaegertracing.analytics.ModelRunner;
 import io.jaegertracing.analytics.NetworkLatency;
+import io.jaegertracing.analytics.ServiceDepth;
 import io.jaegertracing.analytics.TraceDepth;
 import io.jaegertracing.analytics.gremlin.GraphCreator;
 import io.jaegertracing.analytics.model.Span;
@@ -80,7 +81,7 @@ public class SparkRunner {
       return trace;
     });
 
-    List<ModelRunner> modelRunner = Arrays.asList(new TraceDepth(), new NetworkLatency());
+    List<ModelRunner> modelRunner = Arrays.asList(new TraceDepth(), new ServiceDepth(), new NetworkLatency());
 
     tracesStream.foreachRDD((traceRDD, time) -> {
       traceRDD.foreach(trace -> {

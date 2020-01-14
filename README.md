@@ -63,7 +63,7 @@ listeners:
 
 Get external broker address:
 ```bash
-oc get kafka simple-streaming -o yaml
+oc get kafka simple-streaming -o jsonpath="{.status.listeners[*].addresses}"
 ```
 
 ### Expose Jaeger collector outside of the cluster

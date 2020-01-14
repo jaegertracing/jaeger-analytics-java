@@ -11,6 +11,8 @@ import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph;
 
 public class GraphCreator {
 
+  private GraphCreator() {}
+
   public static Graph create(Trace trace) {
     TinkerGraph graph = TinkerGraph.open();
 
@@ -20,6 +22,7 @@ public class GraphCreator {
       Vertex vertex = graph.addVertex(Keys.SPAN_TYPE);
       vertexMap.put(span.spanId, vertex);
 
+      vertex.property(Keys.SPAN, span);
       vertex.property(Keys.TRACE_ID, span.traceId);
       vertex.property(Keys.SPAN_ID, span.spanId);
       if (span.parentId != null) {
@@ -45,5 +48,9 @@ public class GraphCreator {
     }
 
     return graph;
+  }
+
+  public static Span toSpan(Vertex vertex) {
+    return (Span) vertex.property(Keys.SPAN).value();
   }
 }

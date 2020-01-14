@@ -16,12 +16,14 @@ import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 /**
+ * Network latency between client and server spans. Name contains service names.
+ *
  * @author Pavol Loffay
  */
 public class NetworkLatency implements ModelRunner {
 
   private static final Histogram histogram = Histogram.build()
-      .name("network_latency_milliseconds")
+      .name("network_latency_seconds")
       .help("Network latency between client and server span")
       .labelNames("client", "server")
       .create()
@@ -29,7 +31,6 @@ public class NetworkLatency implements ModelRunner {
 
   public void runWithMetrics(Graph graph) {
     Map<Name, Set<Long>> latencies = calculate(graph);
-    System.out.println(latencies);
     for (Map.Entry<Name, Set<Long>> entry: latencies.entrySet()) {
       Child child = histogram.labels(entry.getKey().client, entry.getKey().server);
       for (Long latency: entry.getValue()) {
@@ -38,12 +39,6 @@ public class NetworkLatency implements ModelRunner {
     }
   }
 
-  /**
-   * Returns network latency between client and server spans. Name contains service names
-   *
-   * @param graph
-   * @return
-   */
   public static Map<Name, Set<Long>> calculate(Graph graph) {
     Map<Name, Set<Long>> results = new LinkedHashMap<>();
 
@@ -66,7 +61,7 @@ public class NetworkLatency implements ModelRunner {
             latencies = new LinkedHashSet<>();
             results.put(name, latencies);
           }
-          latencies.add(latency/1000);
+          latencies.add(latency/(1000*1000));
         }
       }
     });

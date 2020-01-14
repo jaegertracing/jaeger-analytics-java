@@ -1,10 +1,12 @@
 package io.jaegertracing.analytics.gremlin;
 
+import io.jaegertracing.analytics.query.Reference;
 import io.opentracing.References;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import org.apache.tinkerpop.gremlin.process.traversal.Path;
 import org.apache.tinkerpop.gremlin.structure.Direction;
@@ -19,13 +21,33 @@ public class Util {
   private Util() {}
 
   // Depth first search, we could have a variant with BiConsumer and pass node and parent
-  public static void dfs(Vertex root, Consumer<Vertex> vertexConsumer) {
-    vertexConsumer.accept(root);
-    Iterator<Edge> edges = root.edges(Direction.OUT, References.CHILD_OF);
+  public static void dfs(Vertex node, Consumer<Vertex> vertexConsumer) {
+    vertexConsumer.accept(node);
+    Iterator<Edge> edges = node.edges(Direction.OUT, References.CHILD_OF);
     while (edges.hasNext()) {
       Edge edge = edges.next();
       dfs(edge.inVertex(), vertexConsumer);
     }
+  }
+
+  public static void dfs(Vertex node, BiConsumer<Vertex, Vertex> vertexConsumer) {
+    Iterator<Edge> edges = node.edges(Direction.OUT, References.CHILD_OF);
+    if (!edges.hasNext()) {
+      vertexConsumer.accept(node, null);
+    }
+    while (edges.hasNext()) {
+      Edge edge = edges.next();
+      vertexConsumer.accept(node, edge.inVertex());
+      dfs(edge.inVertex(), vertexConsumer);
+    }
+  }
+
+  public static Vertex parent(Vertex vertex) {
+    Iterator<Edge> edges = vertex.edges(Direction.IN, References.CHILD_OF);
+    if (!edges.hasNext()) {
+      return null;
+    }
+    return edges.next().outVertex();
   }
 
   public static List<Vertex> descendants(Vertex vertex) {
