@@ -41,4 +41,8 @@ public interface TraceTraversalDsl<S, E> extends GraphTraversal.Admin<S, E> {
   default GraphTraversal<S, Vertex> rootSpan() {
     return (GraphTraversal<S, Vertex>) not(__.inE());
   }
+
+  default GraphTraversal<S, Vertex> leafSpan() {
+    return (GraphTraversal<S, Vertex>) not(__.outE());
+  }
 }

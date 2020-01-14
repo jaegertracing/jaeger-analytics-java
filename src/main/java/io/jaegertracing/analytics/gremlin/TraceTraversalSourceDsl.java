@@ -90,4 +90,10 @@ public class TraceTraversalSourceDsl extends GraphTraversalSource {
     return (GraphTraversal<Vertex, Vertex>) traversal;
   }
 
+  public GraphTraversal<Vertex, Vertex> leafSpans() {
+    GraphTraversal traversal = this.clone().V();
+    traversal = traversal.V().not(__.outE()).dedup();
+    return (GraphTraversal<Vertex, Vertex>) traversal;
+  }
+
 }

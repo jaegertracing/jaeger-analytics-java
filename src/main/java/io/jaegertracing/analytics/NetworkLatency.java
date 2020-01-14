@@ -16,36 +16,31 @@ import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 /**
+ * Network latency between client and server spans. Name contains service names.
+ *
  * @author Pavol Loffay
  */
 public class NetworkLatency implements ModelRunner {
 
   private static final Histogram histogram = Histogram.build()
-      .name("network_latency_milliseconds")
+      .name("network_latency_seconds")
       .help("Network latency between client and server span")
       .labelNames("client", "server")
       .create()
       .register();
 
   public void runWithMetrics(Graph graph) {
-    Map<Name, Set<Long>> latencies = calculate(graph);
-    System.out.println(latencies);
-    for (Map.Entry<Name, Set<Long>> entry: latencies.entrySet()) {
+    Map<Name, Set<Double>> latencies = calculate(graph);
+    for (Map.Entry<Name, Set<Double>> entry: latencies.entrySet()) {
       Child child = histogram.labels(entry.getKey().client, entry.getKey().server);
-      for (Long latency: entry.getValue()) {
+      for (Double latency: entry.getValue()) {
         child.observe(latency);
       }
     }
   }
 
-  /**
-   * Returns network latency between client and server spans. Name contains service names
-   *
-   * @param graph
-   * @return
-   */
-  public static Map<Name, Set<Long>> calculate(Graph graph) {
-    Map<Name, Set<Long>> results = new LinkedHashMap<>();
+  public static Map<Name, Set<Double>> calculate(Graph graph) {
+    Map<Name, Set<Double>> results = new LinkedHashMap<>();
 
     TraceTraversal<Vertex, Vertex> clientSpans = graph
         .traversal(TraceTraversalSource.class).V()
@@ -61,12 +56,12 @@ public class NetworkLatency implements ModelRunner {
           Long latency = serverStartTime - clientStartTime;
 
           Name name = new Name(clientService, serverService);
-          Set<Long> latencies = results.get(name);
+          Set<Double> latencies = results.get(name);
           if (latencies == null) {
             latencies = new LinkedHashSet<>();
             results.put(name, latencies);
           }
-          latencies.add(latency/1000);
+          latencies.add(latency/(1000.0*1000.0));
         }
       }
     });

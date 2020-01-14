@@ -6,6 +6,7 @@ public class Keys {
 
   public static final String SPAN_TYPE = "span";
 
+  public static final String SPAN = "span";
   public static final String SPAN_ID = "spanId";
   public static final String PARENT_ID = "parentId";
   public static final String TRACE_ID = "traceId";

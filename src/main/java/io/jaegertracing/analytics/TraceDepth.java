@@ -5,7 +5,6 @@ import static java.util.stream.Collectors.*;
 import io.jaegertracing.analytics.gremlin.TraceTraversal;
 import io.jaegertracing.analytics.gremlin.TraceTraversalSource;
 import io.jaegertracing.analytics.gremlin.__;
-import io.prometheus.client.Histogram;
 import io.prometheus.client.Summary;
 import java.util.List;
 import org.apache.tinkerpop.gremlin.process.traversal.Scope;
@@ -20,12 +19,6 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
  */
 public class TraceDepth implements ModelRunner {
 
-  private static final Histogram TRACE_DEPTH_HISTOGRAM = Histogram.build()
-      .linearBuckets(1, 1, 15)
-      .name("trace_depth_histogram")
-      .help("Trace graph depth")
-      .register();
-
   private static final Summary TRACE_DEPTH_SUMMARY = Summary.build()
       .quantile(0.1, 0.01)
       .quantile(0.2, 0.01)
@@ -37,14 +30,12 @@ public class TraceDepth implements ModelRunner {
       .quantile(0.8, 0.01)
       .quantile(0.9, 0.01)
       .quantile(0.99, 0.01)
-      .name("trace_depth_summary")
-      .help("Trace graph depth")
+      .name("trace_depth_total")
+      .help("Trace depth")
       .register();
 
   public void runWithMetrics(Graph graph) {
     int depth = calculate(graph);
-    TRACE_DEPTH_HISTOGRAM.observe(depth);
-    TRACE_DEPTH_SUMMARY.observe(depth);
     TRACE_DEPTH_SUMMARY.observe(depth);
   }
 

@@ -23,3 +23,12 @@ spark-run:
 .PHONY: spark-docker
 spark-docker:
 	docker build -t ${SPARK_DOCKER_IMAGE}:${DOCKER_TAG} -f Dockerfile.spark .
+
+.PHONY: hotrod-run
+hotrod-run:
+	oc create route edge --service=simple-streaming-collector --port c-binary-trft --insecure-policy=Allow 2>&1 | grep -v "already exists" || true
+	docker run --rm -it -e "JAEGER_ENDPOINT=http://$(shell oc get route simple-streaming-collector -o jsonpath="{.spec.host}"):80/api/traces" -p 8080:8080 jaegertracing/example-hotrod:latest
+
+.PHONY: prom-run
+prom-run:
+	docker run --rm --net=host -v ${PWD}/manifests/prometheus-config.yml:/etc/prometheus/prometheus.yml prom/prometheus:latest

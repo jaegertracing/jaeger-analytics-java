@@ -10,6 +10,7 @@ import java.util.Map;
 import org.apache.tinkerpop.gremlin.process.traversal.P;
 import org.apache.tinkerpop.gremlin.process.traversal.Path;
 import org.apache.tinkerpop.gremlin.process.traversal.Scope;
+import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph;
 
@@ -20,7 +21,7 @@ import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph;
 public class Examples {
 
   public static void main(String[] args) {
-    TinkerGraph graph = TinkerGraph.open();
+    Graph graph = TinkerGraph.open();
     ExampleTrace.initData(graph);
 
     // has tag and it is root span and duration is greater than 2

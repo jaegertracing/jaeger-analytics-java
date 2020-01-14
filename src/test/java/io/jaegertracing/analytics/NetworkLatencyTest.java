@@ -22,48 +22,48 @@ public class NetworkLatencyTest {
     Span root = Util.newTrace("root", "root");
 
     Span child = Util.newChild("gandalf", "child", root);
-    child.startTimeMicros = 10000;
+    child.startTimeMicros = 10000000;
     child.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CLIENT);
 
     Span childChild = Util.newChild("frodo", "childChild", child);
-    childChild.startTimeMicros = 15000;
+    childChild.startTimeMicros = 15000000;
     childChild.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_SERVER);
 
     // simulates another server span
     Span childChild2 = Util.newChild("frodo2", "childChild2", child);
-    childChild2.startTimeMicros = 20000;
+    childChild2.startTimeMicros = 20000000;
     childChild2.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_SERVER);
 
     Span child2 = Util.newChild("gandalf", "child2", root);
     child2.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CLIENT);
-    child2.startTimeMicros = 20000;
+    child2.startTimeMicros = 20000000;
 
     Span child3 = Util.newChild("gandalf", "child3", root);
     child3.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CLIENT);
-    child3.startTimeMicros = 25000;
+    child3.startTimeMicros = 25000000;
 
     // simulates another server span
     Span childChild3 = Util.newChild("faramir", "childChild3", child3);
-    childChild3.startTimeMicros = 50000;
+    childChild3.startTimeMicros = 50000000;
     childChild3.tags.put(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_SERVER);
 
     Trace trace = new Trace();
     trace.spans = Arrays.asList(root, child, child2, child3, childChild, childChild2 ,childChild3);
 
     Graph graph = GraphCreator.create(trace);
-    Map<Name, Set<Long>> results = NetworkLatency.calculate(graph);
+    Map<Name, Set<Double>> results = NetworkLatency.calculate(graph);
     Assert.assertEquals(3, results.size());
-    Set<Long> latencies = results.get(new Name("gandalf", "frodo"));
+    Set<Double> latencies = results.get(new Name("gandalf", "frodo"));
     Assert.assertEquals(1, latencies.size());
-    Assert.assertEquals(5, (long)latencies.iterator().next());
+    Assert.assertEquals(5, latencies.iterator().next(), 0.0);
 
     latencies = results.get(new Name("gandalf", "frodo2"));
     Assert.assertEquals(1, latencies.size());
-    Assert.assertEquals(10, (long)latencies.iterator().next());
+    Assert.assertEquals(10, latencies.iterator().next(), 0.0);
 
     latencies = results.get(new Name ("gandalf", "faramir"));
     Assert.assertEquals(1, latencies.size());
-    Assert.assertEquals(25, (long)latencies.iterator().next());
+    Assert.assertEquals(25, latencies.iterator().next(), 0.0);
   }
 
   @Test
