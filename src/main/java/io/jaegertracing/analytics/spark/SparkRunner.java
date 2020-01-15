@@ -46,7 +46,7 @@ public class SparkRunner {
         .setMaster(getPropOrEnv("SPARK_MASTER","local[*]"));
 
     JavaSparkContext sc = new JavaSparkContext(sparkConf);
-    JavaStreamingContext ssc = new JavaStreamingContext(sc, new Duration(5000));
+    JavaStreamingContext ssc = new JavaStreamingContext(sc, new Duration(Integer.parseInt(getPropOrEnv("SPARK_STREAMING_BATCH_DURATION", "5000"))));
 
     Set<String> topics = Collections.singleton(getPropOrEnv("KAFKA_JAEGER_TOPIC", "jaeger-spans"));
     Map<String, Object> kafkaParams = new HashMap<>();
