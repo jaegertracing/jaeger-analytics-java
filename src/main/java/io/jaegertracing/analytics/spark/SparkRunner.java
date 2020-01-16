@@ -1,5 +1,7 @@
 package io.jaegertracing.analytics.spark;
 
+import io.jaegertracing.analytics.HasClientServerSpans;
+import io.jaegertracing.analytics.MinimumClientVersion;
 import io.jaegertracing.analytics.ModelRunner;
 import io.jaegertracing.analytics.NetworkLatency;
 import io.jaegertracing.analytics.ServiceDepth;
@@ -72,7 +74,7 @@ public class SparkRunner {
       return new Tuple2<>(record.value().traceId, record.value());
     });
 
-    JavaDStream<Trace> tracesStream = traceIdSpanTuple.groupByKey().map(traceIdSpans -> {
+   JavaDStream<Trace> tracesStream = traceIdSpanTuple.groupByKey().map(traceIdSpans -> {
       Iterable<Span> spans = traceIdSpans._2();
       Trace trace = new Trace();
       trace.traceId = traceIdSpans._1();
@@ -81,7 +83,15 @@ public class SparkRunner {
       return trace;
     });
 
-    List<ModelRunner> modelRunner = Arrays.asList(new TraceDepth(), new ServiceDepth(), new NetworkLatency());
+    MinimumClientVersion minimumClientVersion = MinimumClientVersion.builder()
+        .withJavaVersion(getPropOrEnv("TRACE_QUALITY_JAVA_VERSION", "1.0.0"))
+        .withGoVersion(getPropOrEnv("TRACE_QUALITY_GO_VERSION", "2.22.0"))
+        .withNodeVersion(getPropOrEnv("TRACE_QUALITY_NODE_VERSION", "3.17.1"))
+        .withPythonVersion(getPropOrEnv("TRACE_QUALITY_PYTHON_VERSION", "4.0.0"))
+        .build();
+
+    List<ModelRunner> modelRunner = Arrays.asList(new TraceDepth(), new ServiceDepth(), new NetworkLatency(),
+        minimumClientVersion, new HasClientServerSpans());
 
     tracesStream.foreachRDD((traceRDD, time) -> {
       traceRDD.foreach(trace -> {
@@ -97,7 +107,7 @@ public class SparkRunner {
     ssc.awaitTermination();
   }
 
-  private static  String getPropOrEnv(String key, String defaultValue) {
+  private static String getPropOrEnv(String key, String defaultValue) {
     String value = System.getProperty(key, System.getenv(key));
     return value != null ? value : defaultValue;
   }

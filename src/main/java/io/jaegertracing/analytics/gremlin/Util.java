@@ -50,7 +50,7 @@ public class Util {
     return edges.next().outVertex();
   }
 
-  public static List<Vertex> descendants(Vertex vertex) {
+  public static List<Vertex> children(Vertex vertex) {
     Iterator<Edge> edges = vertex.edges(Direction.OUT, References.CHILD_OF);
     List<Vertex> vertices = new ArrayList<>();
     while (edges.hasNext()) {
