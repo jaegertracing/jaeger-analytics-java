@@ -70,7 +70,7 @@ public class MinimumClientVersion implements ModelRunner {
 
     private static final Counter counter = Counter.build()
         .name("trace_quality_failed_minimum_client_version_total")
-        .help("Failed minimum client versions")
+        .help("The service emitted spans with unacceptable Jaeger client version")
         .labelNames("service", "jaegerVersion")
         .create()
         .register();

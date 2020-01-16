@@ -16,14 +16,14 @@ public class HasClientServerSpans implements ModelRunner {
 
     private static final Counter counterMissingClientTag = Counter.build()
         .name("trace_quality_missing_client_tag_total")
-        .help("Missing client tag")
+        .help("The service didn't emit spans with client span.kind")
         .labelNames("service")
         .create()
         .register();
 
     private static final Counter counterMissingServerTag = Counter.build()
         .name("trace_quality_missing_server_tag_total")
-        .help("Missing server tag")
+        .help("The service didn't emit spans with server span.kind")
         .labelNames("service")
         .create()
         .register();
