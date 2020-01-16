@@ -33,6 +33,7 @@ Configuration properties for `SparkRunner`.
 * `KAFKA_BOOTSTRAP_SERVER`: Kafka bootstrap servers; Defaults to `localhost:9092`
 * `KAFKA_START_FROM_BEGINNING`: Read kafka topic from the beginning; Default to true
 * `PROMETHEUS_PORT`: Prometheus exporter port; Defaults to `9111`
+* `TRACE_QUALITY_{language}_VERSION`: Minimum Jaeger client version for trace quality metric; Supported languages `java`, `node`, `python`, `go`; Defaults to latest client versions
 
 ## Gremlin documentation
 * http://kelvinlawrence.net/book/Gremlin-Graph-Guide.html

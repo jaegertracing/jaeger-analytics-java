@@ -48,7 +48,7 @@ public class NetworkLatency implements ModelRunner {
 
     clientSpans.forEachRemaining(client -> {
       String clientService = (String)client.property(Keys.SERVICE_NAME).value();
-      for (Vertex child : Util.descendants(client)) {
+      for (Vertex child : Util.children(client)) {
         if (child.property(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_SERVER).isPresent()) {
           String serverService = (String)child.property(Keys.SERVICE_NAME).value();
           Long clientStartTime = (Long)client.property(Keys.START_TIME).value();

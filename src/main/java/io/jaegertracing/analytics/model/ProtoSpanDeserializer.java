@@ -6,9 +6,12 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.util.Durations;
 import com.google.protobuf.util.Timestamps;
 import io.jaegertracing.api_v2.Model;
+import io.jaegertracing.api_v2.Model.KeyValue;
 import io.jaegertracing.api_v2.Model.SpanRef;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.apache.kafka.common.serialization.Deserializer;
 
@@ -40,16 +43,8 @@ public class ProtoSpanDeserializer implements Deserializer<Span>, Serializable {
     span.serviceName = protoSpan.getProcess().getServiceName();
     span.startTimeMicros = Timestamps.toMicros(protoSpan.getStartTime());
     span.durationMicros = Durations.toMicros(protoSpan.getDuration());
-    span.tags = new HashMap<>();
-    for (Model.KeyValue kv : protoSpan.getTagsList()) {
-      if (!Model.ValueType.STRING.equals(kv.getVType())) {
-        continue;
-      }
-      String value = kv.getVStr();
-      if (value != null) {
-        span.tags.put(kv.getKey(), value);
-      }
-    }
+    addTags(span, protoSpan.getTagsList());
+    addTags(span, protoSpan.getProcess().getTagsList());
     if (protoSpan.getReferencesList().size() > 0) {
       SpanRef reference = protoSpan.getReferences(0);
       if (asHexString(reference.getTraceId()).equals(span.traceId)) {
@@ -69,5 +64,17 @@ public class ProtoSpanDeserializer implements Deserializer<Span>, Serializable {
       out.append(HEXES.charAt((b & 0xF0) >> 4)).append(HEXES.charAt((b & 0x0F)));
     }
     return out.toString();
+  }
+
+  private void addTags(Span span, List<KeyValue> tags) {
+    for (Model.KeyValue kv : tags) {
+      if (!Model.ValueType.STRING.equals(kv.getVType())) {
+        continue;
+      }
+      String value = kv.getVStr();
+      if (value != null) {
+        span.tags.put(kv.getKey(), value);
+      }
+    }
   }
 }
