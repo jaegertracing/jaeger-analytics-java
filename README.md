@@ -35,6 +35,10 @@ Trace quality metrics measure the quality of tracing data reported by services.
 These metrics can indicate that further instrumentation is needed or the instrumentation
 quality is not high enough.
 
+These metrics are ported from [jaeger-analytics-flink/tracequality](https://github.com/jaegertracing/jaeger-analytics-flink/tree/master/tracequality-job/src/main/java/io/jaegertracing/tracequality/score).
+The original design stores results in separate storage table (Cassandra). The intention here is to
+export results as metrics and link relevant traces as exemplars (once OSS metrics APIs support that).
+
 * Minimum Jaeger client version - minimum Jaeger client version
 * Has client and server tags - span contains client or server tags.
 
