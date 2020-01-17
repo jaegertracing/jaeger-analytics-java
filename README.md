@@ -5,11 +5,53 @@
 Experimental repository with data analytics models, pipelines for Jaeger tracing data.
 
 Repository contains:
-* Trace DSL library based on Apache Gremlin
+* Graph trace DSL based on Apache Gremlin. It helps to write graph "queries" against a trace
 * Spark streaming integration with Kafka for Jaeger topics
 * Loading trace from Jaeger query service
-* Jupyter notebooks to run examples data analytic models
-* Data analytics models for tracing data
+* Jupyter notebooks to run examples with data analytic models
+* Data analytics models, metrics based on tracing data
+
+### Metrics
+
+The library calculates various metrics from traces. The metrics are
+currently exposed in Prometheus format.
+
+Currently these metrics are calculated:
+
+* Trace depth - trace tree height
+* Service depth - trace tree height with aggregated spans in a services or in other words maximum service depth of the trace
+* Network latency - latency between client and server spans split by service names
+
+```
+network_latency_seconds_bucket{client="frontend",server="driver",le="0.005",} 32.0
+network_latency_seconds_bucket{client="frontend",server="driver",le="0.01",} 32.0
+network_latency_seconds_bucket{client="frontend",server="driver",le="0.025",} 32.0
+service_depth_total{quantile="0.7",} 2.0
+```
+
+#### Trace quality metrics
+
+Trace quality metrics measure the quality of tracing data reported by services.
+These metrics can indicate that further instrumentation is needed or the instrumentation
+quality is not high enough.
+
+* Minimum Jaeger client version - minimum Jaeger client version
+* Has client and server tags - span contains client or server tags.
+
+```
+trace_quality_server_tag_total{pass="false",service="mysql",} 32.0
+trace_quality_server_tag_total{pass="true",service="customer",} 26.0
+trace_quality_minimum_client_version_total{pass="false",service="route",version="Go-2.21.1",} 320.0
+```
+
+Example Prometheus queries:
+
+```
+(trace_quality_server_tag_total{pass="true",service="customer",} / trace_quality_server_tag_total{service="customer",}) * 100
+trace_quality_server_tag_total{pass="true",service="customer",} / ignoring (pass,fail) sum without(pass, fail) (trace_quality_server_tag_total)
+// if values are missing
+(trace_quality_server_tag_total{pass="true",service="mysql",}  / trace_quality_server_tag_total{service="mysql",} ) * 100 or vector(0)
+```
 
 ### Development
 

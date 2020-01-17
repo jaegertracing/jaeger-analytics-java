@@ -1,5 +1,6 @@
-package io.jaegertracing.analytics;
+package io.jaegertracing.analytics.tracequality;
 
+import io.jaegertracing.analytics.ModelRunner;
 import io.jaegertracing.analytics.gremlin.GraphCreator;
 import io.jaegertracing.analytics.gremlin.TraceTraversal;
 import io.jaegertracing.analytics.gremlin.TraceTraversalSource;
@@ -14,17 +15,17 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 public class HasClientServerSpans implements ModelRunner {
 
-    private static final Counter counterMissingClientTag = Counter.build()
-        .name("trace_quality_missing_client_tag_total")
-        .help("The service didn't emit spans with client span.kind")
-        .labelNames("service")
+    private static final Counter counterClientTag = Counter.build()
+        .name("trace_quality_client_tag_total")
+        .help("The service emits spans with client span.kind")
+        .labelNames("pass", "service")
         .create()
         .register();
 
-    private static final Counter counterMissingServerTag = Counter.build()
-        .name("trace_quality_missing_server_tag_total")
-        .help("The service didn't emit spans with server span.kind")
-        .labelNames("service")
+    private static final Counter counterServerTag = Counter.build()
+        .name("trace_quality_server_tag_total")
+        .help("The service emits spans with server span.kind")
+        .labelNames("pass", "service")
         .create()
         .register();
 
@@ -32,18 +33,24 @@ public class HasClientServerSpans implements ModelRunner {
     public void runWithMetrics(Graph graph) {
         Result result = computeScore(graph);
         for (Span span: result.missingServerTag) {
-            counterMissingServerTag.labels(span.serviceName).inc();
+            counterServerTag.labels("false", span.serviceName).inc();
         }
         for (Span span: result.missingClientTag) {
-            counterMissingClientTag.labels(span.serviceName).inc();
+            counterClientTag.labels("false", span.serviceName).inc();
+        }
+        for (Span span: result.hasClientTag) {
+            counterClientTag.labels("true", span.serviceName).inc();
+        }
+        for (Span span: result.hasServerTag) {
+            counterServerTag.labels("true", span.serviceName).inc();
         }
     }
 
     public static class Result {
-        // TODO should be use multi set/list?
-        // TODO in other words should we more penalize services reporting more spans with missing data?
         public List<Span> missingClientTag = new ArrayList<>();
         public List<Span> missingServerTag = new ArrayList<>();
+        public List<Span> hasServerTag = new ArrayList<>();
+        public List<Span> hasClientTag = new ArrayList<>();
     }
 
     public Result computeScore(Graph graph) {
@@ -70,6 +77,8 @@ public class HasClientServerSpans implements ModelRunner {
                 String spanKindTag = childSpan.tags.get(Tags.SPAN_KIND.getKey());
                 if (!Tags.SPAN_KIND_SERVER.equals(spanKindTag)) {
                     result.missingServerTag.add(childSpan);
+                } else {
+                    result.hasServerTag.add(childSpan);
                 }
             }
         }
@@ -94,6 +103,8 @@ public class HasClientServerSpans implements ModelRunner {
             String spanKindTag = parentSpan.tags.get(Tags.SPAN_KIND.getKey());
             if (!Tags.SPAN_KIND_CLIENT.equals(spanKindTag)) {
                 result.missingClientTag.add(parentSpan);
+            } else {
+                result.hasClientTag.add(parentSpan);
             }
         }
         return result;

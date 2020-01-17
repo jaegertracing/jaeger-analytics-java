@@ -1,7 +1,7 @@
 package io.jaegertracing.analytics.spark;
 
-import io.jaegertracing.analytics.HasClientServerSpans;
-import io.jaegertracing.analytics.MinimumClientVersion;
+import io.jaegertracing.analytics.tracequality.HasClientServerSpans;
+import io.jaegertracing.analytics.tracequality.MinimumClientVersion;
 import io.jaegertracing.analytics.ModelRunner;
 import io.jaegertracing.analytics.NetworkLatency;
 import io.jaegertracing.analytics.ServiceDepth;

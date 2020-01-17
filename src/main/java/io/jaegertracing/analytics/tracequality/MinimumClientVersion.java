@@ -1,5 +1,6 @@
-package io.jaegertracing.analytics;
+package io.jaegertracing.analytics.tracequality;
 
+import io.jaegertracing.analytics.ModelRunner;
 import io.jaegertracing.analytics.gremlin.GraphCreator;
 import io.jaegertracing.analytics.model.Span;
 import io.prometheus.client.Counter;
@@ -18,6 +19,7 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
 public class MinimumClientVersion implements ModelRunner {
 
     static final String VERSION_TAG = "jaeger.version";
+    static final String MISSING_VERSION = "none";
 
     public static class Builder implements Serializable {
         private String javaVersion = "1.0.0";
@@ -69,9 +71,9 @@ public class MinimumClientVersion implements ModelRunner {
     private final Map<String, String> languageToMinVersion;
 
     private static final Counter counter = Counter.build()
-        .name("trace_quality_failed_minimum_client_version_total")
-        .help("The service emitted spans with unacceptable Jaeger client version")
-        .labelNames("service", "jaegerVersion")
+        .name("trace_quality_minimum_client_version_total")
+        .help("The service emitted spans with Jaeger client version")
+        .labelNames("pass", "service", "version")
         .create()
         .register();
 
@@ -81,12 +83,13 @@ public class MinimumClientVersion implements ModelRunner {
         while (vertices.hasNext()) {
             Vertex vertex = vertices.next();
             Span span = GraphCreator.toSpan(vertex);
-            boolean result = computeScore(span);
-            if (!result) {
-                String jaegerVersion = span.tags.get(VERSION_TAG);
-                counter.labels(span.serviceName, jaegerVersion)
-                    .inc();
+            String jaegerVersion = span.tags.get(VERSION_TAG);
+            if (jaegerVersion == null || jaegerVersion.isEmpty()) {
+                jaegerVersion = MISSING_VERSION;
             }
+            boolean result = computeScore(span);
+            counter.labels(Boolean.toString(result), span.serviceName, jaegerVersion)
+                .inc();
         }
     }
 
