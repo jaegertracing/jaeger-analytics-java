@@ -13,7 +13,7 @@ docker:
 
 .PHONY: docker-run
 docker-run:
-	docker run --rm -it -p 8888:8888 -p 4040:4040 -p 9001:9001 -e JUPYTER_ENABLE_LAB=yes -v ${PWD}:/home/jovyan/work  ${DOCKER_IMAGE}:${DOCKER_TAG}
+	docker run --rm -it -p 8888:8888 -p 4041:4040 -p 9001:9001 -e JUPYTER_ENABLE_LAB=yes -v ${PWD}:/home/jovyan/work  ${DOCKER_IMAGE}:${DOCKER_TAG}
 
 .PHONY: spark-run
 spark-run:

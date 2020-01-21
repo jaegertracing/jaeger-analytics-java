@@ -69,7 +69,8 @@ public class Examples {
     // First we need to find out whether two spans are connected, then return path
     TraceTraversal<Vertex, Path> pathTraversal = graph.traversal(TraceTraversalSource.class)
         .hasName("root")
-        .repeat(__.out()).until(__.hasName("child2"))
+        .repeat(__.out())
+        .until(__.hasName("child2"))
         .path();
     System.out.println("\nWhat is the path between two spans?");
     pathTraversal.clone().forEachRemaining(path -> System.out.println(path.size()));
