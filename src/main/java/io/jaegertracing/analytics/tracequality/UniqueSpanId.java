@@ -51,7 +51,7 @@ public class UniqueSpanId implements ModelRunner {
     while (by.hasNext()) {
       Map<Object, Object> map = by.next();
       for (Map.Entry<Object, Object> entry: map.entrySet()) {
-        Collection<Vertex> vertices = (Collection<Vertex>) entry.getValue();
+          Collection<Vertex> vertices = (Collection<Vertex>) entry.getValue();
           String id = (String) entry.getKey();
           List<Span> spans = result.get(id);
           if (spans == null) {
