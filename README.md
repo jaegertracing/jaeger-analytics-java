@@ -40,7 +40,8 @@ The original design stores results in separate storage table (Cassandra). The in
 export results as metrics and link relevant traces as exemplars (once OSS metrics APIs support that).
 
 * Minimum Jaeger client version - minimum Jaeger client version
-* Has client and server tags - span contains client or server tags.
+* Has client and server tags - span contains client or server tags
+* Unique span IDs - trace contains spans with unique span IDs
 
 ```
 trace_quality_server_tag_total{pass="false",service="mysql",} 32.0
