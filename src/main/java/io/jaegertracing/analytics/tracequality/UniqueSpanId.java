@@ -4,7 +4,6 @@ import io.jaegertracing.analytics.ModelRunner;
 import io.jaegertracing.analytics.gremlin.GraphCreator;
 import io.jaegertracing.analytics.gremlin.Keys;
 import io.jaegertracing.analytics.gremlin.TraceTraversal;
-import io.jaegertracing.analytics.gremlin.TraceTraversalSource;
 import io.jaegertracing.analytics.gremlin.Util;
 import io.jaegertracing.analytics.model.Span;
 import io.prometheus.client.Counter;
