@@ -90,8 +90,13 @@ public class SparkRunner {
         .withPythonVersion(getPropOrEnv("TRACE_QUALITY_PYTHON_VERSION", "4.0.0"))
         .build();
 
-    List<ModelRunner> modelRunner = Arrays.asList(new TraceDepth(), new ServiceDepth(), new NetworkLatency(),
-        minimumClientVersion, new HasClientServerSpans());
+    List<ModelRunner> modelRunner = Arrays.asList(
+        new TraceDepth(),
+        new ServiceDepth(),
+        new NetworkLatency(),
+        // trace quality
+        minimumClientVersion,
+        new HasClientServerSpans());
 
     tracesStream.foreachRDD((traceRDD, time) -> {
       traceRDD.foreach(trace -> {

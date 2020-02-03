@@ -42,8 +42,7 @@ public class NetworkLatency implements ModelRunner {
   public static Map<Name, Set<Double>> calculate(Graph graph) {
     Map<Name, Set<Double>> results = new LinkedHashMap<>();
 
-    TraceTraversal<Vertex, Vertex> clientSpans = graph
-        .traversal(TraceTraversalSource.class).V()
+    TraceTraversal<Vertex, Vertex> clientSpans = graph.traversal(TraceTraversalSource.class)
         .hasTag(Tags.SPAN_KIND.getKey(), Tags.SPAN_KIND_CLIENT);
 
     clientSpans.forEachRemaining(client -> {

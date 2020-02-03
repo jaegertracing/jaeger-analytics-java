@@ -19,12 +19,6 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
  */
 public class ServiceDepth implements ModelRunner {
 
-  // TODO remove
-  private static final Histogram TRACE_SERVICE_DEPTH_HISTOGRAM = Histogram.build()
-      .linearBuckets(1, 1, 15)
-      .name("service_depth_total_hist")
-      .help("Service depth")
-      .register();
 
   private static final Summary TRACE_SERVICE_DEPTH_SUMMARY = Summary.build()
       .quantile(0.1, 0.01)
@@ -44,15 +38,15 @@ public class ServiceDepth implements ModelRunner {
   @Override
   public void runWithMetrics(Graph graph) {
     int maxServiceDepth = calculate(graph);
-    TRACE_SERVICE_DEPTH_HISTOGRAM.observe(maxServiceDepth);
     TRACE_SERVICE_DEPTH_SUMMARY.observe(maxServiceDepth);
   }
 
   public static int calculate(Graph graph) {
     int depth = 0;
     // get all leafs and go from them to parents
-    TraceTraversal<Vertex, Vertex> leafs = graph
-        .traversal(TraceTraversalSource.class).leafSpans();
+    TraceTraversal<Vertex, Vertex> leafs = graph.traversal(TraceTraversalSource.class)
+        .leafSpans();
+
     while (leafs.hasNext()) {
       Vertex leaf = leafs.next();
       Vertex parent = Util.parent(leaf);
