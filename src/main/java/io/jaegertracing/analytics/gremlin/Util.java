@@ -11,6 +11,7 @@ import java.util.function.Consumer;
 import org.apache.tinkerpop.gremlin.process.traversal.Path;
 import org.apache.tinkerpop.gremlin.structure.Direction;
 import org.apache.tinkerpop.gremlin.structure.Edge;
+import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 /**
@@ -19,6 +20,10 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
 public class Util {
 
   private Util() {}
+
+  public static TraceTraversalSource traceTraversal(Graph graph) {
+    return graph.traversal(TraceTraversalSource.class);
+  }
 
   // Depth first search, we could have a variant with BiConsumer and pass node and parent
   public static void dfs(Vertex node, Consumer<Vertex> vertexConsumer) {

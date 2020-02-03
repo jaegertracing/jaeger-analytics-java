@@ -10,6 +10,7 @@ import io.jaegertracing.analytics.gremlin.GraphCreator;
 import io.jaegertracing.analytics.model.Span;
 import io.jaegertracing.analytics.model.ProtoSpanDeserializer;
 import io.jaegertracing.analytics.model.Trace;
+import io.jaegertracing.analytics.tracequality.UniqueSpanId;
 import io.prometheus.client.exporter.HTTPServer;
 import java.io.IOException;
 import java.util.Arrays;
@@ -96,7 +97,8 @@ public class SparkRunner {
         new NetworkLatency(),
         // trace quality
         minimumClientVersion,
-        new HasClientServerSpans());
+        new HasClientServerSpans(),
+        new UniqueSpanId());
 
     tracesStream.foreachRDD((traceRDD, time) -> {
       traceRDD.foreach(trace -> {
