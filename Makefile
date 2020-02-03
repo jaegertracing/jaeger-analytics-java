@@ -7,12 +7,12 @@ SPARK_DOCKER_IMAGE?=quay.io/jaegertracing/jaeger-analytics-java-spark
 test:
 	./mvnw clean test
 
-.PHONY: docker
-docker:
+.PHONY: jupyter-docker
+jupyter-docker:
 	docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
 
-.PHONY: docker-run
-docker-run:
+.PHONY: jupyter-run
+jupyter-run:
 	docker run --rm -it -p 8888:8888 -p 4041:4040 -p 9001:9001 -e JUPYTER_ENABLE_LAB=yes -v ${PWD}:/home/jovyan/work  ${DOCKER_IMAGE}:${DOCKER_TAG}
 
 .PHONY: spark-run

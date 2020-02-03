@@ -134,8 +134,8 @@ The docker image should be published on Docker Hub. If you are modifying the sou
 inject it as volume `-v ${PWD}:/home/jovyan/work` or rebuild the image too see the latest changes.
 
 ```bash
-make docker
-make docker-run
+make jupyter-docker
+make jupyter-run
 ```
 
 Open browser on http://localhost:8888/lab and copy token from the command line. Then navigate to `./work/jupyter/` directory and open notebook.
