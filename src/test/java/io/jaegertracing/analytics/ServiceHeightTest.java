@@ -11,7 +11,7 @@ import org.junit.Test;
 /**
  * @author Pavol Loffay
  */
-public class ServiceDepthTest {
+public class ServiceHeightTest {
 
   @Test
   public void calculateOnlyRoot() {
@@ -20,8 +20,8 @@ public class ServiceDepthTest {
     trace.spans = Arrays.asList(root);
     Graph graph = GraphCreator.create(trace);
 
-    int serviceDepth = ServiceDepth.calculate(graph);
-    Assert.assertEquals(0, serviceDepth);
+    int serviceHeight = ServiceHeight.calculate(graph);
+    Assert.assertEquals(0, serviceHeight);
   }
 
   @Test
@@ -38,7 +38,7 @@ public class ServiceDepthTest {
     trace.spans = Arrays.asList(root, child, child2, childChild, child2Child, childChildChild, child2ChildChild);
     Graph graph = GraphCreator.create(trace);
 
-    int serviceDepth = ServiceDepth.calculate(graph);
-    Assert.assertEquals(2, serviceDepth);
+    int serviceHeight = ServiceHeight.calculate(graph);
+    Assert.assertEquals(2, serviceHeight);
   }
 }

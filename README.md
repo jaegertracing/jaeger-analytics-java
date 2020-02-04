@@ -18,15 +18,15 @@ currently exposed in Prometheus format.
 
 Currently these metrics are calculated:
 
-* Trace depth - trace tree height
-* Service depth - trace tree height with aggregated spans in a services or in other words maximum service depth of the trace
+* Trace height - trace tree height. Maximum number of spans from root to leaf
+* Service height - maximum number of service changes from root to leaf. In other words maximum service depth
 * Network latency - latency between client and server spans split by service names
 
 ```
 network_latency_seconds_bucket{client="frontend",server="driver",le="0.005",} 32.0
 network_latency_seconds_bucket{client="frontend",server="driver",le="0.01",} 32.0
 network_latency_seconds_bucket{client="frontend",server="driver",le="0.025",} 32.0
-service_depth_total{quantile="0.7",} 2.0
+service_height_total{quantile="0.7",} 2.0
 ```
 
 #### Trace quality metrics

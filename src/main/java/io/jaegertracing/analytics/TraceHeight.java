@@ -12,14 +12,13 @@ import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 /**
- * @author Pavol Loffay
+ * Maximum number of spans from root to leaf.
  *
- * {@link TraceDepth} calculates the trace depth based on number of spans.
- * The maximum distance between a leaf node and the root.
+ * @author Pavol Loffay
  */
-public class TraceDepth implements ModelRunner {
+public class TraceHeight implements ModelRunner {
 
-  private static final Summary TRACE_DEPTH_SUMMARY = Summary.build()
+  private static final Summary TRACE_HEIGHT_SUMMARY = Summary.build()
       .quantile(0.1, 0.01)
       .quantile(0.2, 0.01)
       .quantile(0.3, 0.01)
@@ -30,22 +29,21 @@ public class TraceDepth implements ModelRunner {
       .quantile(0.8, 0.01)
       .quantile(0.9, 0.01)
       .quantile(0.99, 0.01)
-      .name("trace_depth_total")
-      .help("Trace depth")
+      .name("trace_height_total")
+      .help("Trace height - maximum number of spans from root to leaf")
       .register();
 
   public void runWithMetrics(Graph graph) {
-    int depth = calculate(graph);
-    TRACE_DEPTH_SUMMARY.observe(depth);
+    int height = calculate(graph);
+    TRACE_HEIGHT_SUMMARY.observe(height);
   }
 
   public static int calculate(Graph graph) {
-    TraceTraversal<Vertex, Comparable> maxDepth = graph.traversal(TraceTraversalSource.class).V()
+    TraceTraversal<Vertex, Comparable> maxHeight = graph.traversal(TraceTraversalSource.class).V()
         .repeat(__.in()).emit().path().count(Scope.local).max();
-    List<Integer> depths = maxDepth.toStream().map(depth -> {
-      int depthInt = Integer.valueOf(depth.toString());
-      return depthInt;
-    }).collect(toList());
-    return depths.size() > 0 ? depths.get(0) - 1 : 0;
+    List<Integer> heights = maxHeight.toStream()
+        .map(height -> Integer.valueOf(height.toString()))
+        .collect(toList());
+    return heights.size() > 0 ? heights.get(0) - 1 : 0;
   }
 }
