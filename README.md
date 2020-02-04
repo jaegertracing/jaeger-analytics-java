@@ -10,6 +10,7 @@ Repository contains:
 * Loading trace from Jaeger query service
 * Jupyter notebooks to run examples with data analytic models
 * Data analytics models, metrics based on tracing data
+* Grafana [dashboards](./dashboards) 
 
 ### Metrics
 
