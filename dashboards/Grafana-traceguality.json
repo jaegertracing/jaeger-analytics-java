@@ -1,23 +1,12 @@
 {
   "annotations": {
-    "list": [
-      {
-        "builtIn": 1,
-        "datasource": "-- Grafana --",
-        "enable": true,
-        "hide": true,
-        "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations & Alerts",
-        "type": "dashboard"
-      }
-    ]
+    "list": [ ]
   },
   "description": "Measures trace instrumentation quality",
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
   "id": 2,
-  "iteration": 1580828963993,
   "links": [],
   "panels": [
     {
@@ -482,6 +471,6 @@
   },
   "timezone": "",
   "title": "Trace quality",
-  "uid": "P6DdwOUWz",
-  "version": 41
+  "uid": "",
+  "version": 0
 }
