@@ -4,23 +4,18 @@ import io.jaegertracing.analytics.gremlin.GraphCreator;
 import io.jaegertracing.analytics.gremlin.TraceTraversal;
 import io.jaegertracing.analytics.gremlin.TraceTraversalSource;
 import io.jaegertracing.analytics.gremlin.Util;
-import io.prometheus.client.Histogram;
 import io.prometheus.client.Summary;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 /**
- * The maximum service depth.
- *
- * The depth of a node is the number of edges from the node to the tree's root node.
- * A root node has a depth of 0.
+ * Maximum number of service changes from root to leaf.
  *
  * @author Pavol Loffay
  */
-public class ServiceDepth implements ModelRunner {
+public class ServiceHeight implements ModelRunner {
 
-
-  private static final Summary TRACE_SERVICE_DEPTH_SUMMARY = Summary.build()
+  private static final Summary TRACE_SERVICE_HEIGHT_SUMMARY = Summary.build()
       .quantile(0.1, 0.01)
       .quantile(0.2, 0.01)
       .quantile(0.3, 0.01)
@@ -31,18 +26,18 @@ public class ServiceDepth implements ModelRunner {
       .quantile(0.8, 0.01)
       .quantile(0.9, 0.01)
       .quantile(0.99, 0.01)
-      .name("service_depth_total")
-      .help("Service depth")
+      .name("service_height_total")
+      .help("Service height - maximum number of service changes from root to leaf")
       .register();
 
   @Override
   public void runWithMetrics(Graph graph) {
     int maxServiceDepth = calculate(graph);
-    TRACE_SERVICE_DEPTH_SUMMARY.observe(maxServiceDepth);
+    TRACE_SERVICE_HEIGHT_SUMMARY.observe(maxServiceDepth);
   }
 
   public static int calculate(Graph graph) {
-    int depth = 0;
+    int height = 0;
     // get all leafs and go from them to parents
     TraceTraversal<Vertex, Vertex> leafs = graph.traversal(TraceTraversalSource.class)
         .leafSpans();
@@ -59,11 +54,11 @@ public class ServiceDepth implements ModelRunner {
         leaf = parent;
         parent = Util.parent(parent);
       }
-      if (branchDepth > depth) {
-        depth = branchDepth;
+      if (branchDepth > height) {
+        height = branchDepth;
       }
     }
-    return depth;
+    return height;
   }
 
 }

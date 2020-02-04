@@ -4,8 +4,8 @@ import io.jaegertracing.analytics.tracequality.HasClientServerSpans;
 import io.jaegertracing.analytics.tracequality.MinimumClientVersion;
 import io.jaegertracing.analytics.ModelRunner;
 import io.jaegertracing.analytics.NetworkLatency;
-import io.jaegertracing.analytics.ServiceDepth;
-import io.jaegertracing.analytics.TraceDepth;
+import io.jaegertracing.analytics.ServiceHeight;
+import io.jaegertracing.analytics.TraceHeight;
 import io.jaegertracing.analytics.gremlin.GraphCreator;
 import io.jaegertracing.analytics.model.Span;
 import io.jaegertracing.analytics.model.ProtoSpanDeserializer;
@@ -92,8 +92,8 @@ public class SparkRunner {
         .build();
 
     List<ModelRunner> modelRunner = Arrays.asList(
-        new TraceDepth(),
-        new ServiceDepth(),
+        new TraceHeight(),
+        new ServiceHeight(),
         new NetworkLatency(),
         // trace quality
         minimumClientVersion,

@@ -14,10 +14,6 @@ import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerGraph;
 
-/**
- * Number of services in each trace? (What is the maximum/average service depth)
- * Number of operations/spans in each service?
- */
 public class Examples {
 
   public static void main(String[] args) {
@@ -78,11 +74,11 @@ public class Examples {
       printPath(path);
     });
 
-    //maximum depth
-    TraceTraversal<Vertex, Comparable> maxDepth = graph.traversal(TraceTraversalSource.class).V()
+    //maximum height
+    TraceTraversal<Vertex, Comparable> height = graph.traversal(TraceTraversalSource.class).V()
         .repeat(__.in()).emit().path().count(Scope.local).max();
-    System.out.println("\nMax graph depth");
-    maxDepth.forEachRemaining(comparable -> System.out.println(comparable));
+    System.out.println("\nMax trace height");
+    height.forEachRemaining(comparable -> System.out.println(comparable));
   }
 
 }

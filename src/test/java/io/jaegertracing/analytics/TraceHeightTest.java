@@ -11,12 +11,12 @@ import org.junit.Test;
 /**
  * @author Pavol Loffay
  */
-public class TraceDepthTest {
+public class TraceHeightTest {
 
   @Test
   public void calculateEmpty() {
-    int depth = TraceDepth.calculate(GraphCreator.create(new Trace()));
-    Assert.assertEquals(0, depth);
+    int height = TraceHeight.calculate(GraphCreator.create(new Trace()));
+    Assert.assertEquals(0, height);
   }
 
   @Test
@@ -26,8 +26,8 @@ public class TraceDepthTest {
     Trace trace = new Trace();
     trace.spans = Arrays.asList(root);
     Graph graph = GraphCreator.create(trace);
-    int depth = TraceDepth.calculate(graph);
-    Assert.assertEquals(0, depth);
+    int height = TraceHeight.calculate(graph);
+    Assert.assertEquals(0, height);
   }
 
   @Test
@@ -41,7 +41,7 @@ public class TraceDepthTest {
     Trace trace = new Trace();
     trace.spans = Arrays.asList(root, child, child2, childChild);
     Graph graph = GraphCreator.create(trace);
-    int depth = TraceDepth.calculate(graph);
-    Assert.assertEquals(2, depth);
+    int height = TraceHeight.calculate(graph);
+    Assert.assertEquals(2, height);
   }
 }
