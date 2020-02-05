@@ -195,7 +195,6 @@
     </repository>
   </distributionManagement>
 
-
   <inceptionYear>2019</inceptionYear>
   <name>${project.groupId}:${project.artifactId}</name>
   <description>Jaeger analytics, proto, tracedsl, metrics, spark</description>
