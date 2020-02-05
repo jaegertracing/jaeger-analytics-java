@@ -18,7 +18,7 @@ jupyter-run:
 .PHONY: spark-run
 spark-run:
 	echo "Do not forget to set KAFKA_BOOTSTRAP_SERVER"
-	java -jar target/jaeger-tracedsl-1.0-SNAPSHOT.jar
+	java -jar spark/target/jaeger-spark-0.1.0-SNAPSHOT.jar
 
 .PHONY: spark-docker
 spark-docker:
