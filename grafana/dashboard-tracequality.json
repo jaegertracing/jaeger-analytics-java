@@ -1,0 +1,476 @@
+{
+  "annotations": {
+    "list": [ ]
+  },
+  "description": "Measures trace instrumentation quality",
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 2,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "description": "The service emitted spans with tag span.kind=server ",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "trace_quality_server_tag_total{pass=\"true\",service=\"$service\",} / ignoring (pass,fail) sum without(pass, fail) (trace_quality_server_tag_total)\n",
+          "legendFormat": "pass rate",
+          "refId": "A"
+        },
+        {
+          "expr": "trace_quality_server_tag_total{pass=\"true\",service=\"$service\",}\n",
+          "legendFormat": "pass total",
+          "refId": "B"
+        },
+        {
+          "expr": "trace_quality_server_tag_total{pass=\"false\",service=\"$service\",}\n",
+          "legendFormat": "fail total",
+          "refId": "C"
+        },
+        {
+          "expr": "trace_quality_server_tag_total{pass=\"false\",service=\"$service\",} / ignoring (pass,fail) sum without(pass, fail) (trace_quality_server_tag_total)\n",
+          "legendFormat": "fail rate",
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Has server spans",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "description": "The service emitted spans with tag span.kind=client",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "trace_quality_client_tag_total{pass=\"true\",service=\"$service\",} / ignoring (pass,fail) sum without(pass, fail) (trace_quality_client_tag_total)\n",
+          "legendFormat": "pass rate",
+          "refId": "A"
+        },
+        {
+          "expr": "trace_quality_client_tag_total{pass=\"true\",service=\"$service\",}\n",
+          "legendFormat": "pass total",
+          "refId": "B"
+        },
+        {
+          "expr": "trace_quality_client_tag_total{pass=\"false\",service=\"$service\",}\n",
+          "legendFormat": "fail total",
+          "refId": "C"
+        },
+        {
+          "expr": "trace_quality_client_tag_total{pass=\"false\",service=\"$service\",} / ignoring (pass,fail) sum without(pass, fail) (trace_quality_client_tag_total)\n",
+          "legendFormat": "fail rate",
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Has client spans",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "description": "The service emitted spans with unique span IDs",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "trace_quality_unique_span_id_total{pass=\"true\",service=\"$service\",} / ignoring (pass,fail) sum without(pass, fail) (trace_quality_unique_span_id_total)\n",
+          "legendFormat": "pass rate",
+          "refId": "A"
+        },
+        {
+          "expr": "trace_quality_unique_span_id_total{pass=\"true\",service=\"$service\",}",
+          "legendFormat": "pass total",
+          "refId": "B"
+        },
+        {
+          "expr": "trace_quality_unique_span_id_total{pass=\"false\",service=\"$service\",}",
+          "legendFormat": "fail total",
+          "refId": "C"
+        },
+        {
+          "expr": "trace_quality_unique_span_id_total{pass=\"false\",service=\"$service\",} / ignoring (pass,fail) sum without(pass, fail) (trace_quality_unique_span_id_total)\n",
+          "legendFormat": "fail rate",
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Unique span ID",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "description": "The service emitted spans with acceptable Jaeger client version",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 8,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "trace_quality_minimum_client_version_total{pass=\"true\",service=\"$service\",} / ignoring (pass,fail) sum without(pass, fail) (trace_quality_minimum_client_version_total)\n",
+          "legendFormat": "pass rate",
+          "refId": "A"
+        },
+        {
+          "expr": "trace_quality_minimum_client_version_total{pass=\"true\",service=\"$service\",}",
+          "legendFormat": "pass total",
+          "refId": "B"
+        },
+        {
+          "expr": "trace_quality_minimum_client_version_total{pass=\"false\",service=\"$service\",}",
+          "instant": false,
+          "legendFormat": "fail total",
+          "refId": "C"
+        },
+        {
+          "expr": "trace_quality_minimum_client_version_total{pass=\"false\",service=\"$service\",} / ignoring (pass,fail) sum without(pass, fail) (trace_quality_minimum_client_version_total)\n",
+          "legendFormat": "fail rate",
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Minimum Jaeger client version",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 22,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "frontend",
+          "value": "frontend"
+        },
+        "hide": 0,
+        "label": null,
+        "name": "service",
+        "options": [
+          {
+            "selected": true,
+            "text": "frontend",
+            "value": "frontend"
+          }
+        ],
+        "query": "frontend",
+        "skipUrlSync": false,
+        "type": "textbox"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Trace quality",
+  "uid": "",
+  "version": 0
+}

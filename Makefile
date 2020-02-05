@@ -33,3 +33,8 @@ hotrod-run:
 prom-run:
 	echo "Open browser on :9090"
 	docker run --rm --net=host -v ${PWD}/manifests/prometheus-config.yml:/etc/prometheus/prometheus.yml prom/prometheus:latest
+
+.PHONY: grafana-run
+grafana-run:
+	echo "Open browser on :3000"
+	docker run --rm -it --net=host -v ${PWD}/grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml -v ${PWD}/grafana/dashboard-trace.yml:/etc/grafana/provisioning/dashboards/dashboard-trace.yml -v ${PWD}/grafana/dashboard-tracequality.json:/var/lib/grafana/dashboards/tracequality.json grafana/grafana
