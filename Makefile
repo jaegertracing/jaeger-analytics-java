@@ -37,4 +37,4 @@ prom-run:
 .PHONY: grafana-run
 grafana-run:
 	echo "Open browser on :3000"
-	docker run --rm -it --net=host grafana/grafana
+	docker run --rm -it --net=host -v ${PWD}/grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml -v ${PWD}/grafana/dashboard-trace.yml:/etc/grafana/provisioning/dashboards/dashboard-trace.yml -v ${PWD}/grafana/dashboard-tracequality.json:/var/lib/grafana/dashboards/tracequality.json grafana/grafana
