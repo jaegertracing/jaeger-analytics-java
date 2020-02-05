@@ -5,199 +5,108 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.jaegertracing</groupId>
-  <artifactId>jaeger-tracedsl</artifactId>
-  <version>1.0-SNAPSHOT</version>
-
-  <name>jaeger-tracedsl</name>
+  <artifactId>jaeger-analytics-parent</artifactId>
+  <packaging>pom</packaging>
+  <version>0.1.0-SNAPSHOT</version>
+  <modules>
+    <module>proto</module>
+    <module>tracedsl</module>
+    <module>spark</module>
+  </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
 
+    <version.tinkerpop.gremlin>3.4.3</version.tinkerpop.gremlin>
+    <version.io.opentracing>0.33.0</version.io.opentracing>
+    <!-- Align with the version used in Spark -->
+    <version.jackson>2.6.7</version.jackson>
     <version.protobuf>3.6.1</version.protobuf>
     <version.spark>2.4.4</version.spark>
     <version.scala>2.12</version.scala>
+    <version.kafka>2.3.0</version.kafka>
     <version.prometheus>0.7.0</version.prometheus>
     <version.maven-shade-plugin>3.1.0</version.maven-shade-plugin>
   </properties>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>jaeger-proto</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>jaeger-tracedsl</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>jaeger-spark</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-core_${version.scala}</artifactId>
+        <version>${version.spark}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-streaming_${version.scala}</artifactId>
+        <version>${version.spark}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-streaming-kafka-0-10_${version.scala}</artifactId>
+        <version>${version.spark}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>kafka_${version.scala}</artifactId>
+        <version>${version.kafka}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.prometheus</groupId>
+        <artifactId>simpleclient_httpserver</artifactId>
+        <version>${version.prometheus}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.opentracing</groupId>
+        <artifactId>opentracing-api</artifactId>
+        <version>${version.io.opentracing}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tinkerpop</groupId>
+        <artifactId>tinkergraph-gremlin</artifactId>
+        <version>${version.tinkerpop.gremlin}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.protobuf</groupId>
+        <artifactId>protobuf-java</artifactId>
+        <version>${version.protobuf}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.protobuf</groupId>
+        <artifactId>protobuf-java-util</artifactId>
+        <version>${version.protobuf}</version>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.11</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
-    <dependency>
-      <groupId>org.apache.spark</groupId>
-      <artifactId>spark-core_${version.scala}</artifactId>
-      <version>${version.spark}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.spark</groupId>
-      <artifactId>spark-streaming_${version.scala}</artifactId>
-      <version>${version.spark}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.spark</groupId>
-      <artifactId>spark-streaming-kafka-0-10_${version.scala}</artifactId>
-      <version>${version.spark}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.kafka</groupId>
-      <artifactId>kafka_${version.scala}</artifactId>
-      <version>2.3.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>io.prometheus</groupId>
-      <artifactId>simpleclient_httpserver</artifactId>
-      <version>${version.prometheus}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.squareup.okhttp3</groupId>
-      <artifactId>okhttp</artifactId>
-      <version>4.2.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>io.opentracing</groupId>
-      <artifactId>opentracing-api</artifactId>
-      <version>0.33.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tinkerpop</groupId>
-      <artifactId>tinkergraph-gremlin</artifactId>
-      <version>3.4.3</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.protobuf</groupId>
-      <artifactId>protobuf-java</artifactId>
-      <version>${version.protobuf}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.protobuf</groupId>
-      <artifactId>protobuf-java-util</artifactId>
-      <version>${version.protobuf}</version>
-    </dependency>
-
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>1.6.0</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>java</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <mainClass>io.jaegertracing.analytics.gremlin.Examples</mainClass>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>${version.maven-shade-plugin}</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-            <configuration>
-              <transformers>
-                <!-- Protect against http://stackoverflow.com/questions/31011243/no-configuration-setting-found-for-key-akka-version -->
-                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-                  <resource>reference.conf</resource>
-                </transformer>
-                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>io.jaegertracing.analytics.spark.SparkRunner</mainClass>
-                </transformer>
-              </transformers>
-              <!-- spark + scala + ... = lots and lots of classes! -->
-              <minimizeJar>true</minimizeJar>
-              <filters>
-                <!-- Prevent minification from excluding classes looked up by name -->
-                <filter>
-                  <artifact>org.apache.hadoop:hadoop-common</artifact>
-                  <includes>
-                    <include>**</include>
-                  </includes>
-                </filter>
-                <filter>
-                  <artifact>log4j:log4j</artifact>
-                  <includes>
-                    <include>**</include>
-                  </includes>
-                </filter>
-                <filter>
-                  <artifact>io.netty:*</artifact>
-                  <includes>
-                    <include>**</include>
-                  </includes>
-                </filter>
-                <filter>
-                  <artifact>org.slf4j:*</artifact>
-                  <includes>
-                    <include>**</include>
-                  </includes>
-                </filter>
-                <filter>
-                  <artifact>org.scala-lang:*</artifact>
-                  <includes>
-                    <include>**</include>
-                  </includes>
-                </filter>
-                <filter>
-                  <artifact>org.apache.spark:*</artifact>
-                  <includes>
-                    <include>**</include>
-                  </includes>
-                </filter>
-                <filter>
-                  <artifact>org.lz4:*</artifact>
-                  <includes>
-                    <include>**</include>
-                  </includes>
-                </filter>
-                <filter>
-                  <!-- elasticsearch -->
-                  <artifact>commons-httpclient:commons-httpclient</artifact>
-                  <includes>
-                    <include>**</include>
-                  </includes>
-                </filter>
-                <filter>
-                  <!-- org.apache.xerces.jaxp.DocumentBuilderFactoryImpl -->
-                  <artifact>xerces:xercesImpl</artifact>
-                  <includes>
-                    <include>**</include>
-                  </includes>
-                </filter>
-                <!-- Prevent Invalid signature file digest for Manifest main attributes -->
-                <filter>
-                  <artifact>*:*</artifact>
-                  <excludes>
-                    <exclude>META-INF/*.SF</exclude>
-                    <exclude>META-INF/*.DSA</exclude>
-                    <exclude>META-INF/*.RSA</exclude>
-                  </excludes>
-                </filter>
-              </filters>
-              <createDependencyReducedPom>false</createDependencyReducedPom>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-    </plugins>
-  </build>
 </project>
