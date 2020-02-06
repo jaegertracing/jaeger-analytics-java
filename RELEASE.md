@@ -20,6 +20,11 @@ Test key decryption:
 gpg --quiet --batch --yes --decrypt --passphrase="pass2" --output /tmp/hoo.asc signing-key.asc.gpg
 ```
 
+Publish key:
+```
+gpg  --send-key  E56F3940BC80201B7CBB4AD30382F3FAF1889185 
+```
+
 ## Releasing locally
 ```
 GH_TOKEN= GH_USER= PASSPHRASE_SIGING_KEY= mvn -s ./.settings.xml --batch-mode release:prepare -Prelease -nsu -DreleaseVersion="<version>"
