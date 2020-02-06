@@ -2,10 +2,10 @@
 
 prepare_signing() {
   echo "Decrypting private GPG key"
-  gpg --quiet --batch --yes --decrypt --passphrase=${PASSPHRASE_SIGNING_KEY_ENCRYPT} --output .github/signing-key.asc signing-key.asc.gpg
+  gpg --quiet --batch --yes --decrypt --passphrase=${PASSPHRASE_SIGNING_KEY_ENCRYPT} --output ./.github/signing-key.asc ./.github/signing-key.asc.gpg
   echo "Importing GPG key to system"
-  gpg --no-tty --batch --allow-secret-key-import --import ./github/signing-key.asc
-  rm -rf ./github/signing-key.asc
+  gpg --no-tty --batch --allow-secret-key-import --import ./.github/signing-key.asc
+  rm -rf ./.github/signing-key.asc
 }
 
 set -o errexit -o nounset -o pipefail

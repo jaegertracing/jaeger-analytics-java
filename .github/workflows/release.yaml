@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v1
       - name: Release
-        run: ./github/release.sh
+        run: ./.github/release.sh
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GH_USER: ${{ secrets.GH_USER }}
