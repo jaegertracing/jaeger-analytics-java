@@ -1,15 +1,24 @@
 # Release
 
 Release is automated on CI and is triggered by pushing a tag: `git tag release-0.4.0 && git push origin release-0.4.0`.
+Make sure not changes are make to 
+
+### Maintenance branches
+
+Use `release-M.N` naming convention for maintenance branches.
 
 ## Create signing-key.asc
 
+```
 gpg --full-generate-key
-passphrase: pass1
-Get public Key: gpg --armor --export E56F3940BC80201B7CBB4AD30382F3FAF1889185 
-Get private Key: gpg --armor --export-secret-keys E56F3940BC80201B7CBB4AD30382F3FAF1889185 > signing-key.asc
+# get public key
+gpg --armor --export E56F3940BC80201B7CBB4AD30382F3FAF1889185 
+# get private key
+gpg --armor --export-secret-keys E56F3940BC80201B7CBB4AD30382F3FAF1889185 > signing-key.asc
+```
+Passphrase store as secret in Github actions.
 
-Encrypt signing key. Choose new passphrase and store it as secret in Github actions
+Encrypt signing key and choose new passphrase and store it as secret in Github actions:
 ```
 gpg --symmetric --cipher-algo AES256 signing-key.asc
 # passphrase: pass2
@@ -22,11 +31,14 @@ gpg --quiet --batch --yes --decrypt --passphrase="pass2" --output /tmp/hoo.asc s
 
 Publish key:
 ```
-gpg  --send-key  E56F3940BC80201B7CBB4AD30382F3FAF1889185 
+gpg --keyserver keys.openpgp.org --send-key E56F3940BC80201B7CBB4AD30382F3FAF1889185
 ```
 
 ## Releasing locally
+
+Use local release as a backup solution:
+
 ```
-GH_TOKEN= GH_USER= PASSPHRASE_SIGING_KEY= mvn -s ./.settings.xml --batch-mode release:prepare -Prelease -nsu -DreleaseVersion="<version>"
-SONATYPE_USER= SONATYPE_PASSWORD= mvn -s ./.settings.xml release:perform
+GH_TOKEN= GH_USER= PASSPHRASE_SIGING_KEY= ./mvnw -s ./.settings.xml --batch-mode release:prepare -Prelease -nsu -DreleaseVersion="<version>" #-Dgpg.passphrase=
+SONATYPE_USER= SONATYPE_PASSWORD= ./mvnw -s ./.settings.xml release:perform
 ```
