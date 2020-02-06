@@ -123,7 +123,7 @@
               <releaseProfiles>release</releaseProfiles>
               <autoVersionSubmodules>true</autoVersionSubmodules>
               <tagNameFormat>@{project.version}</tagNameFormat>
-              <arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
+              <arguments>-Dgpg.passphrase=${env.PASSPHRASE_SIGNING_KEY}</arguments>
             </configuration>
           </plugin>
           <plugin>

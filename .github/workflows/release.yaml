@@ -1,0 +1,21 @@
+on: [push]
+name: Test
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Release
+        run: ./github/release.sh
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_USER: ${{ secrets.GH_USER }}
+          SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
+          SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+          PASSPHRASE_SIGNING_KEY_ENCRYPT: ${{ secrets.PASSPHRASE_SIGNING_KEY_ENCRYPT }}
+          PASSPHRASE_SIGNING_KEY: ${{ secrets.PASSPHRASE_SIGNING_KEY }}
