@@ -5,6 +5,7 @@ prepare_signing() {
   gpg --quiet --batch --yes --decrypt --passphrase=${PASSPHRASE_SIGNING_KEY_ENCRYPT} --output .github/signing-key.asc signing-key.asc.gpg
   echo "Importing GPG key to system"
   gpg --no-tty --batch --allow-secret-key-import --import ./github/signing-key.asc
+  rm -rf ./github/signing-key.asc
 }
 
 set -o errexit -o nounset -o pipefail
@@ -14,7 +15,7 @@ safe_checkout_master_or_release() {
   # and we want that branch to be master or release-X.Y, which has been checked before.
   # But we also want to make sure that we build and release exactly the tagged version, so we verify that the remote
   # branch is where our tag is.
-  checkoutBranch=$(echo ${GITHUB_REF} | sed 's/.[[:digit:]]\+$//')
+  checkoutBranch=$(echo ${GITHUB_REF} | sed 's/.[[:digit:]]\+$//' | sed 's/^refs\/tags\///')
   if ! git ls-remote --exit-code --heads origin "$checkoutBranch" ; then
     checkoutBranch=master
   fi
@@ -28,15 +29,17 @@ safe_checkout_master_or_release() {
   fi
 }
 
-echo "$GITHUB_REF"
-echo "$GITHUB_SHA"
+echo "${GITHUB_REF}"
+echo "${GITHUB_SHA}"
 
-if [[ "$GITHUB_REF" =~ ^release-[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+?$ ]]; then
+if [[ "$GITHUB_REF" =~ ^refs/tags/release-[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+?$ ]]; then
+    version=$(echo "${GITHUB_REF}" | sed 's/^refs\/tags\/release-//')
     echo "We are on release- tag"
-    echo "Releasing artifacts"
+    echo "Releasing artifacts $version"
     prepare_signing
     safe_checkout_master_or_release
-    version=$(echo "${GITHUB_REF}" | sed 's/^release-//')
+    git config user.email "jaeger-maintainers@googlegroups.com"
+    git config user.name "Jaeger Release"
     ./mvnw -s ./.settings.xml --batch-mode release:prepare -Prelease -nsu -DreleaseVersion=$version
     ./mvnw -s ./.settings.xml release:perform
 fi
