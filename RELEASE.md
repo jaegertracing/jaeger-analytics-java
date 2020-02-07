@@ -3,11 +3,23 @@
 Release is automated on CI and is triggered by pushing a tag: `git tag release-0.4.0 && git push origin release-0.4.0`.
 Make sure not changes are make to 
 
-### Maintenance branches
+## Maintenance branches
 
 Use `release-M.N` naming convention for maintenance branches.
 
+## Releasing locally
+
+Use local release as a backup solution:
+
+```
+GH_TOKEN= GH_USER= PASSPHRASE_SIGING_KEY= ./mvnw -s ./.settings.xml --batch-mode release:prepare -Prelease -nsu -DreleaseVersion="<version>" #-Dgpg.passphrase=
+SONATYPE_USER= SONATYPE_PASSWORD= ./mvnw -s ./.settings.xml release:perform
+```
+
 ## Create signing-key.asc
+
+This section describes how to create private GPG key and encrypt it so it can be
+checked into source code and used by public CI.
 
 ```
 gpg --full-generate-key
@@ -32,13 +44,4 @@ gpg --quiet --batch --yes --decrypt --passphrase="pass2" --output /tmp/hoo.asc s
 Publish key:
 ```
 gpg --keyserver keys.openpgp.org --send-key E56F3940BC80201B7CBB4AD30382F3FAF1889185
-```
-
-## Releasing locally
-
-Use local release as a backup solution:
-
-```
-GH_TOKEN= GH_USER= PASSPHRASE_SIGING_KEY= ./mvnw -s ./.settings.xml --batch-mode release:prepare -Prelease -nsu -DreleaseVersion="<version>" #-Dgpg.passphrase=
-SONATYPE_USER= SONATYPE_PASSWORD= ./mvnw -s ./.settings.xml release:perform
 ```
