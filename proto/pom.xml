@@ -23,5 +23,10 @@
       <artifactId>gogoproto-java</artifactId>
       <version>1.0.0</version>
     </dependency>
+    <dependency>
+      <groupId>com.google.api.grpc</groupId>
+      <artifactId>googleapis-common-protos</artifactId>
+      <version>0.0.3</version>
+    </dependency>
   </dependencies>
 </project>
