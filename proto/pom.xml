@@ -19,14 +19,22 @@
       <artifactId>protobuf-java-util</artifactId>
     </dependency>
     <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-protobuf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-netty</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-stub</artifactId>
+    </dependency>
+    <!-- fix cannot find symbol class GoGoProtos -->
+    <dependency>
       <groupId>com.github.QubitProducts</groupId>
       <artifactId>gogoproto-java</artifactId>
       <version>1.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.api.grpc</groupId>
-      <artifactId>googleapis-common-protos</artifactId>
-      <version>0.0.3</version>
     </dependency>
   </dependencies>
 </project>

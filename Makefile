@@ -40,18 +40,10 @@ grafana-run:
 	docker run --rm -it --net=host -v ${PWD}/grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml -v ${PWD}/grafana/dashboard-trace.yml:/etc/grafana/provisioning/dashboards/dashboard-trace.yml -v ${PWD}/grafana/dashboard-tracequality.json:/var/lib/grafana/dashboards/tracequality.json grafana/grafana
 
 JAEGER_DOCKER_PROTOBUF=jaegertracing/protobuf:0.1.0
-PROTOC := docker run --rm -v${PWD}:${PWD} -w${PWD} ${JAEGER_DOCKER_PROTOBUF} --proto_path=${PWD}
+PROTOC := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${JAEGER_DOCKER_PROTOBUF} --proto_path=${PWD}
 PROTO_INCLUDES := \
 	-Iprotodef \
 	-I/usr/include/github.com/gogo/protobuf
-PROTO_GOGO_MAPPINGS := $(shell echo \
-		Mgoogle/protobuf/descriptor.proto=github.com/gogo/protobuf/types, \
-		Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types, \
-		Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types, \
-		Mgoogle/protobuf/empty.proto=github.com/gogo/protobuf/types, \
-		Mgoogle/api/annotations.proto=github.com/gogo/googleapis/google/api, \
-		Mmodel.proto=github.com/jaegertracing/jaeger/model \
-	| sed 's/ //g')
 
 .PHONY: proto
 proto:
@@ -80,6 +72,11 @@ proto:
 		$(PROTO_INCLUDES) \
 		--java_out=$(PWD)/proto/src/main/java protodef/model.proto
 
-#	$(PROTOC) \
-#		$(PROTO_INCLUDES) \
-#		--java_out=plugins=grpc,$(PROTO_GOGO_MAPPINGS):$(PWD)/proto/src/main/java protodef/model.proto
+	$(PROTOC) \
+		$(PROTO_INCLUDES) \
+		--java_out=$(PWD)/proto/src/main/java protodef/api_v2/query.proto
+
+	$(PROTOC) \
+		$(PROTO_INCLUDES) \
+		--grpc-java_out=$(PWD)/proto/src/main/java protodef/api_v2/query.proto
+
