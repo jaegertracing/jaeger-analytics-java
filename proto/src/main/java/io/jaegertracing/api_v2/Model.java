@@ -66,7 +66,7 @@ public final class Model {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -75,7 +75,7 @@ public final class Model {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static ValueType valueOf(int value) {
       return forNumber(value);
     }
@@ -121,7 +121,7 @@ public final class Model {
     public static ValueType valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -167,7 +167,7 @@ public final class Model {
 
     public final int getNumber() {
       if (this == UNRECOGNIZED) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
             "Can't get the number of an unknown enum value.");
       }
       return value;
@@ -176,7 +176,7 @@ public final class Model {
     /**
      * @deprecated Use {@link #forNumber(int)} instead.
      */
-    @Deprecated
+    @java.lang.Deprecated
     public static SpanRefType valueOf(int value) {
       return forNumber(value);
     }
@@ -219,7 +219,7 @@ public final class Model {
     public static SpanRefType valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
-        throw new IllegalArgumentException(
+        throw new java.lang.IllegalArgumentException(
           "EnumValueDescriptor is not for this type.");
       }
       if (desc.getIndex() == -1) {
@@ -244,7 +244,7 @@ public final class Model {
     /**
      * <code>string key = 1;</code>
      */
-    String getKey();
+    java.lang.String getKey();
     /**
      * <code>string key = 1;</code>
      */
@@ -263,7 +263,7 @@ public final class Model {
     /**
      * <code>string v_str = 3;</code>
      */
-    String getVStr();
+    java.lang.String getVStr();
     /**
      * <code>string v_str = 3;</code>
      */
@@ -306,13 +306,17 @@ public final class Model {
       key_ = "";
       vType_ = 0;
       vStr_ = "";
-      vBool_ = false;
-      vInt64_ = 0L;
-      vFloat64_ = 0D;
       vBinary_ = com.google.protobuf.ByteString.EMPTY;
     }
 
-    @Override
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new KeyValue();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -323,9 +327,8 @@ public final class Model {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -337,7 +340,7 @@ public final class Model {
               done = true;
               break;
             case 10: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               key_ = s;
               break;
@@ -349,7 +352,7 @@ public final class Model {
               break;
             }
             case 26: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               vStr_ = s;
               break;
@@ -375,7 +378,7 @@ public final class Model {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -395,30 +398,30 @@ public final class Model {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return internal_static_jaeger_api_v2_KeyValue_descriptor;
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_KeyValue_descriptor;
     }
 
-    @Override
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return internal_static_jaeger_api_v2_KeyValue_fieldAccessorTable
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_KeyValue_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               io.jaegertracing.api_v2.Model.KeyValue.class, io.jaegertracing.api_v2.Model.KeyValue.Builder.class);
     }
 
     public static final int KEY_FIELD_NUMBER = 1;
-    private volatile Object key_;
+    private volatile java.lang.Object key_;
     /**
      * <code>string key = 1;</code>
      */
-    public String getKey() {
-      Object ref = key_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getKey() {
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         key_ = s;
         return s;
       }
@@ -428,11 +431,11 @@ public final class Model {
      */
     public com.google.protobuf.ByteString
         getKeyBytes() {
-      Object ref = key_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = key_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         key_ = b;
         return b;
       } else {
@@ -458,18 +461,18 @@ public final class Model {
     }
 
     public static final int V_STR_FIELD_NUMBER = 3;
-    private volatile Object vStr_;
+    private volatile java.lang.Object vStr_;
     /**
      * <code>string v_str = 3;</code>
      */
-    public String getVStr() {
-      Object ref = vStr_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getVStr() {
+      java.lang.Object ref = vStr_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         vStr_ = s;
         return s;
       }
@@ -479,11 +482,11 @@ public final class Model {
      */
     public com.google.protobuf.ByteString
         getVStrBytes() {
-      Object ref = vStr_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = vStr_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         vStr_ = b;
         return b;
       } else {
@@ -528,7 +531,7 @@ public final class Model {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -538,7 +541,7 @@ public final class Model {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getKeyBytes().isEmpty()) {
@@ -565,7 +568,7 @@ public final class Model {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -602,8 +605,8 @@ public final class Model {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
@@ -612,27 +615,25 @@ public final class Model {
       }
       io.jaegertracing.api_v2.Model.KeyValue other = (io.jaegertracing.api_v2.Model.KeyValue) obj;
 
-      boolean result = true;
-      result = result && getKey()
-          .equals(other.getKey());
-      result = result && vType_ == other.vType_;
-      result = result && getVStr()
-          .equals(other.getVStr());
-      result = result && (getVBool()
-          == other.getVBool());
-      result = result && (getVInt64()
-          == other.getVInt64());
-      result = result && (
-          Double.doubleToLongBits(getVFloat64())
-          == Double.doubleToLongBits(
-              other.getVFloat64()));
-      result = result && getVBinary()
-          .equals(other.getVBinary());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getKey()
+          .equals(other.getKey())) return false;
+      if (vType_ != other.vType_) return false;
+      if (!getVStr()
+          .equals(other.getVStr())) return false;
+      if (getVBool()
+          != other.getVBool()) return false;
+      if (getVInt64()
+          != other.getVInt64()) return false;
+      if (java.lang.Double.doubleToLongBits(getVFloat64())
+          != java.lang.Double.doubleToLongBits(
+              other.getVFloat64())) return false;
+      if (!getVBinary()
+          .equals(other.getVBinary())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -653,7 +654,7 @@ public final class Model {
           getVInt64());
       hash = (37 * hash) + V_FLOAT64_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          Double.doubleToLongBits(getVFloat64()));
+          java.lang.Double.doubleToLongBits(getVFloat64()));
       hash = (37 * hash) + V_BINARY_FIELD_NUMBER;
       hash = (53 * hash) + getVBinary().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -731,7 +732,7 @@ public final class Model {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -739,13 +740,13 @@ public final class Model {
     public static Builder newBuilder(io.jaegertracing.api_v2.Model.KeyValue prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -760,13 +761,13 @@ public final class Model {
         io.jaegertracing.api_v2.Model.KeyValueOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return internal_static_jaeger_api_v2_KeyValue_descriptor;
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_KeyValue_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return internal_static_jaeger_api_v2_KeyValue_fieldAccessorTable
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_KeyValue_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 io.jaegertracing.api_v2.Model.KeyValue.class, io.jaegertracing.api_v2.Model.KeyValue.Builder.class);
       }
@@ -786,7 +787,7 @@ public final class Model {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         key_ = "";
@@ -806,18 +807,18 @@ public final class Model {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return internal_static_jaeger_api_v2_KeyValue_descriptor;
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_KeyValue_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.KeyValue getDefaultInstanceForType() {
-        return getDefaultInstance();
+        return io.jaegertracing.api_v2.Model.KeyValue.getDefaultInstance();
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.KeyValue build() {
         io.jaegertracing.api_v2.Model.KeyValue result = buildPartial();
         if (!result.isInitialized()) {
@@ -826,7 +827,7 @@ public final class Model {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.KeyValue buildPartial() {
         io.jaegertracing.api_v2.Model.KeyValue result = new io.jaegertracing.api_v2.Model.KeyValue(this);
         result.key_ = key_;
@@ -840,39 +841,39 @@ public final class Model {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
+          java.lang.Object value) {
+        return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof io.jaegertracing.api_v2.Model.KeyValue) {
           return mergeFrom((io.jaegertracing.api_v2.Model.KeyValue)other);
@@ -883,7 +884,7 @@ public final class Model {
       }
 
       public Builder mergeFrom(io.jaegertracing.api_v2.Model.KeyValue other) {
-        if (other == getDefaultInstance()) return this;
+        if (other == io.jaegertracing.api_v2.Model.KeyValue.getDefaultInstance()) return this;
         if (!other.getKey().isEmpty()) {
           key_ = other.key_;
           onChanged();
@@ -912,12 +913,12 @@ public final class Model {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -936,20 +937,20 @@ public final class Model {
         return this;
       }
 
-      private Object key_ = "";
+      private java.lang.Object key_ = "";
       /**
        * <code>string key = 1;</code>
        */
-      public String getKey() {
-        Object ref = key_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getKey() {
+        java.lang.Object ref = key_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           key_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -957,11 +958,11 @@ public final class Model {
        */
       public com.google.protobuf.ByteString
           getKeyBytes() {
-        Object ref = key_;
+        java.lang.Object ref = key_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           key_ = b;
           return b;
         } else {
@@ -972,11 +973,11 @@ public final class Model {
        * <code>string key = 1;</code>
        */
       public Builder setKey(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         key_ = value;
         onChanged();
         return this;
@@ -985,7 +986,7 @@ public final class Model {
        * <code>string key = 1;</code>
        */
       public Builder clearKey() {
-
+        
         key_ = getDefaultInstance().getKey();
         onChanged();
         return this;
@@ -999,7 +1000,7 @@ public final class Model {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         key_ = value;
         onChanged();
         return this;
@@ -1035,7 +1036,7 @@ public final class Model {
         if (value == null) {
           throw new NullPointerException();
         }
-
+        
         vType_ = value.getNumber();
         onChanged();
         return this;
@@ -1044,26 +1045,26 @@ public final class Model {
        * <code>.jaeger.api_v2.ValueType v_type = 2;</code>
        */
       public Builder clearVType() {
-
+        
         vType_ = 0;
         onChanged();
         return this;
       }
 
-      private Object vStr_ = "";
+      private java.lang.Object vStr_ = "";
       /**
        * <code>string v_str = 3;</code>
        */
-      public String getVStr() {
-        Object ref = vStr_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getVStr() {
+        java.lang.Object ref = vStr_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           vStr_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1071,11 +1072,11 @@ public final class Model {
        */
       public com.google.protobuf.ByteString
           getVStrBytes() {
-        Object ref = vStr_;
+        java.lang.Object ref = vStr_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           vStr_ = b;
           return b;
         } else {
@@ -1086,11 +1087,11 @@ public final class Model {
        * <code>string v_str = 3;</code>
        */
       public Builder setVStr(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         vStr_ = value;
         onChanged();
         return this;
@@ -1099,7 +1100,7 @@ public final class Model {
        * <code>string v_str = 3;</code>
        */
       public Builder clearVStr() {
-
+        
         vStr_ = getDefaultInstance().getVStr();
         onChanged();
         return this;
@@ -1113,7 +1114,7 @@ public final class Model {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         vStr_ = value;
         onChanged();
         return this;
@@ -1130,7 +1131,7 @@ public final class Model {
        * <code>bool v_bool = 4;</code>
        */
       public Builder setVBool(boolean value) {
-
+        
         vBool_ = value;
         onChanged();
         return this;
@@ -1139,7 +1140,7 @@ public final class Model {
        * <code>bool v_bool = 4;</code>
        */
       public Builder clearVBool() {
-
+        
         vBool_ = false;
         onChanged();
         return this;
@@ -1156,7 +1157,7 @@ public final class Model {
        * <code>int64 v_int64 = 5;</code>
        */
       public Builder setVInt64(long value) {
-
+        
         vInt64_ = value;
         onChanged();
         return this;
@@ -1165,7 +1166,7 @@ public final class Model {
        * <code>int64 v_int64 = 5;</code>
        */
       public Builder clearVInt64() {
-
+        
         vInt64_ = 0L;
         onChanged();
         return this;
@@ -1182,7 +1183,7 @@ public final class Model {
        * <code>double v_float64 = 6;</code>
        */
       public Builder setVFloat64(double value) {
-
+        
         vFloat64_ = value;
         onChanged();
         return this;
@@ -1191,7 +1192,7 @@ public final class Model {
        * <code>double v_float64 = 6;</code>
        */
       public Builder clearVFloat64() {
-
+        
         vFloat64_ = 0D;
         onChanged();
         return this;
@@ -1211,7 +1212,7 @@ public final class Model {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         vBinary_ = value;
         onChanged();
         return this;
@@ -1220,18 +1221,18 @@ public final class Model {
        * <code>bytes v_binary = 7;</code>
        */
       public Builder clearVBinary() {
-
+        
         vBinary_ = getDefaultInstance().getVBinary();
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1253,7 +1254,7 @@ public final class Model {
 
     private static final com.google.protobuf.Parser<KeyValue>
         PARSER = new com.google.protobuf.AbstractParser<KeyValue>() {
-      @Override
+      @java.lang.Override
       public KeyValue parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1266,12 +1267,12 @@ public final class Model {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<KeyValue> getParserForType() {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public io.jaegertracing.api_v2.Model.KeyValue getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -1298,7 +1299,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.KeyValue fields = 2 [(.gogoproto.nullable) = false];</code>
      */
-    java.util.List<io.jaegertracing.api_v2.Model.KeyValue>
+    java.util.List<io.jaegertracing.api_v2.Model.KeyValue> 
         getFieldsList();
     /**
      * <code>repeated .jaeger.api_v2.KeyValue fields = 2 [(.gogoproto.nullable) = false];</code>
@@ -1311,7 +1312,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.KeyValue fields = 2 [(.gogoproto.nullable) = false];</code>
      */
-    java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder>
+    java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder> 
         getFieldsOrBuilderList();
     /**
      * <code>repeated .jaeger.api_v2.KeyValue fields = 2 [(.gogoproto.nullable) = false];</code>
@@ -1335,7 +1336,14 @@ public final class Model {
       fields_ = java.util.Collections.emptyList();
     }
 
-    @Override
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Log();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -1346,7 +1354,7 @@ public final class Model {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -1373,16 +1381,16 @@ public final class Model {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 fields_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.KeyValue>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               fields_.add(
                   input.readMessage(io.jaegertracing.api_v2.Model.KeyValue.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -1396,7 +1404,7 @@ public final class Model {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           fields_ = java.util.Collections.unmodifiableList(fields_);
         }
         this.unknownFields = unknownFields.build();
@@ -1405,18 +1413,17 @@ public final class Model {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return internal_static_jaeger_api_v2_Log_descriptor;
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Log_descriptor;
     }
 
-    @Override
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return internal_static_jaeger_api_v2_Log_fieldAccessorTable
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Log_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               io.jaegertracing.api_v2.Model.Log.class, io.jaegertracing.api_v2.Model.Log.Builder.class);
     }
 
-    private int bitField0_;
     public static final int TIMESTAMP_FIELD_NUMBER = 1;
     private com.google.protobuf.Timestamp timestamp_;
     /**
@@ -1449,7 +1456,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.KeyValue fields = 2 [(.gogoproto.nullable) = false];</code>
      */
-    public java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder>
+    public java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder> 
         getFieldsOrBuilderList() {
       return fields_;
     }
@@ -1474,7 +1481,7 @@ public final class Model {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -1484,7 +1491,7 @@ public final class Model {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (timestamp_ != null) {
@@ -1496,7 +1503,7 @@ public final class Model {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -1515,8 +1522,8 @@ public final class Model {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
@@ -1525,19 +1532,18 @@ public final class Model {
       }
       io.jaegertracing.api_v2.Model.Log other = (io.jaegertracing.api_v2.Model.Log) obj;
 
-      boolean result = true;
-      result = result && (hasTimestamp() == other.hasTimestamp());
+      if (hasTimestamp() != other.hasTimestamp()) return false;
       if (hasTimestamp()) {
-        result = result && getTimestamp()
-            .equals(other.getTimestamp());
+        if (!getTimestamp()
+            .equals(other.getTimestamp())) return false;
       }
-      result = result && getFieldsList()
-          .equals(other.getFieldsList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getFieldsList()
+          .equals(other.getFieldsList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -1627,7 +1633,7 @@ public final class Model {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -1635,13 +1641,13 @@ public final class Model {
     public static Builder newBuilder(io.jaegertracing.api_v2.Model.Log prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -1656,13 +1662,13 @@ public final class Model {
         io.jaegertracing.api_v2.Model.LogOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return internal_static_jaeger_api_v2_Log_descriptor;
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Log_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return internal_static_jaeger_api_v2_Log_fieldAccessorTable
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Log_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 io.jaegertracing.api_v2.Model.Log.class, io.jaegertracing.api_v2.Model.Log.Builder.class);
       }
@@ -1683,7 +1689,7 @@ public final class Model {
           getFieldsFieldBuilder();
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         if (timestampBuilder_ == null) {
@@ -1694,25 +1700,25 @@ public final class Model {
         }
         if (fieldsBuilder_ == null) {
           fields_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           fieldsBuilder_.clear();
         }
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return internal_static_jaeger_api_v2_Log_descriptor;
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Log_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Log getDefaultInstanceForType() {
-        return getDefaultInstance();
+        return io.jaegertracing.api_v2.Model.Log.getDefaultInstance();
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Log build() {
         io.jaegertracing.api_v2.Model.Log result = buildPartial();
         if (!result.isInitialized()) {
@@ -1721,63 +1727,61 @@ public final class Model {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Log buildPartial() {
         io.jaegertracing.api_v2.Model.Log result = new io.jaegertracing.api_v2.Model.Log(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (timestampBuilder_ == null) {
           result.timestamp_ = timestamp_;
         } else {
           result.timestamp_ = timestampBuilder_.build();
         }
         if (fieldsBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             fields_ = java.util.Collections.unmodifiableList(fields_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.fields_ = fields_;
         } else {
           result.fields_ = fieldsBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
+          java.lang.Object value) {
+        return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof io.jaegertracing.api_v2.Model.Log) {
           return mergeFrom((io.jaegertracing.api_v2.Model.Log)other);
@@ -1788,7 +1792,7 @@ public final class Model {
       }
 
       public Builder mergeFrom(io.jaegertracing.api_v2.Model.Log other) {
-        if (other == getDefaultInstance()) return this;
+        if (other == io.jaegertracing.api_v2.Model.Log.getDefaultInstance()) return this;
         if (other.hasTimestamp()) {
           mergeTimestamp(other.getTimestamp());
         }
@@ -1796,7 +1800,7 @@ public final class Model {
           if (!other.fields_.isEmpty()) {
             if (fields_.isEmpty()) {
               fields_ = other.fields_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureFieldsIsMutable();
               fields_.addAll(other.fields_);
@@ -1809,8 +1813,8 @@ public final class Model {
               fieldsBuilder_.dispose();
               fieldsBuilder_ = null;
               fields_ = other.fields_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-              fieldsBuilder_ =
+              bitField0_ = (bitField0_ & ~0x00000001);
+              fieldsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getFieldsFieldBuilder() : null;
             } else {
@@ -1823,12 +1827,12 @@ public final class Model {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1848,7 +1852,7 @@ public final class Model {
       }
       private int bitField0_;
 
-      private com.google.protobuf.Timestamp timestamp_ = null;
+      private com.google.protobuf.Timestamp timestamp_;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> timestampBuilder_;
       /**
@@ -1933,7 +1937,7 @@ public final class Model {
        * <code>.google.protobuf.Timestamp timestamp = 1 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
        */
       public com.google.protobuf.Timestamp.Builder getTimestampBuilder() {
-
+        
         onChanged();
         return getTimestampFieldBuilder().getBuilder();
       }
@@ -1952,7 +1956,7 @@ public final class Model {
        * <code>.google.protobuf.Timestamp timestamp = 1 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
           getTimestampFieldBuilder() {
         if (timestampBuilder_ == null) {
           timestampBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -1968,9 +1972,9 @@ public final class Model {
       private java.util.List<io.jaegertracing.api_v2.Model.KeyValue> fields_ =
         java.util.Collections.emptyList();
       private void ensureFieldsIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           fields_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.KeyValue>(fields_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -2103,10 +2107,10 @@ public final class Model {
        * <code>repeated .jaeger.api_v2.KeyValue fields = 2 [(.gogoproto.nullable) = false];</code>
        */
       public Builder addAllFields(
-          Iterable<? extends io.jaegertracing.api_v2.Model.KeyValue> values) {
+          java.lang.Iterable<? extends io.jaegertracing.api_v2.Model.KeyValue> values) {
         if (fieldsBuilder_ == null) {
           ensureFieldsIsMutable();
-          addAll(
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
               values, fields_);
           onChanged();
         } else {
@@ -2120,7 +2124,7 @@ public final class Model {
       public Builder clearFields() {
         if (fieldsBuilder_ == null) {
           fields_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           fieldsBuilder_.clear();
@@ -2160,7 +2164,7 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.KeyValue fields = 2 [(.gogoproto.nullable) = false];</code>
        */
-      public java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder>
+      public java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder> 
            getFieldsOrBuilderList() {
         if (fieldsBuilder_ != null) {
           return fieldsBuilder_.getMessageOrBuilderList();
@@ -2186,31 +2190,31 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.KeyValue fields = 2 [(.gogoproto.nullable) = false];</code>
        */
-      public java.util.List<io.jaegertracing.api_v2.Model.KeyValue.Builder>
+      public java.util.List<io.jaegertracing.api_v2.Model.KeyValue.Builder> 
            getFieldsBuilderList() {
         return getFieldsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          io.jaegertracing.api_v2.Model.KeyValue, io.jaegertracing.api_v2.Model.KeyValue.Builder, io.jaegertracing.api_v2.Model.KeyValueOrBuilder>
+          io.jaegertracing.api_v2.Model.KeyValue, io.jaegertracing.api_v2.Model.KeyValue.Builder, io.jaegertracing.api_v2.Model.KeyValueOrBuilder> 
           getFieldsFieldBuilder() {
         if (fieldsBuilder_ == null) {
           fieldsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               io.jaegertracing.api_v2.Model.KeyValue, io.jaegertracing.api_v2.Model.KeyValue.Builder, io.jaegertracing.api_v2.Model.KeyValueOrBuilder>(
                   fields_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           fields_ = null;
         }
         return fieldsBuilder_;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -2232,7 +2236,7 @@ public final class Model {
 
     private static final com.google.protobuf.Parser<Log>
         PARSER = new com.google.protobuf.AbstractParser<Log>() {
-      @Override
+      @java.lang.Override
       public Log parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2245,12 +2249,12 @@ public final class Model {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Log> getParserForType() {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public io.jaegertracing.api_v2.Model.Log getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -2298,7 +2302,14 @@ public final class Model {
       refType_ = 0;
     }
 
-    @Override
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new SpanRef();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -2309,9 +2320,8 @@ public final class Model {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -2339,7 +2349,7 @@ public final class Model {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -2359,13 +2369,13 @@ public final class Model {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return internal_static_jaeger_api_v2_SpanRef_descriptor;
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_SpanRef_descriptor;
     }
 
-    @Override
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return internal_static_jaeger_api_v2_SpanRef_fieldAccessorTable
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_SpanRef_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               io.jaegertracing.api_v2.Model.SpanRef.class, io.jaegertracing.api_v2.Model.SpanRef.Builder.class);
     }
@@ -2406,7 +2416,7 @@ public final class Model {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -2416,7 +2426,7 @@ public final class Model {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!traceId_.isEmpty()) {
@@ -2431,7 +2441,7 @@ public final class Model {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -2454,8 +2464,8 @@ public final class Model {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
@@ -2464,17 +2474,16 @@ public final class Model {
       }
       io.jaegertracing.api_v2.Model.SpanRef other = (io.jaegertracing.api_v2.Model.SpanRef) obj;
 
-      boolean result = true;
-      result = result && getTraceId()
-          .equals(other.getTraceId());
-      result = result && getSpanId()
-          .equals(other.getSpanId());
-      result = result && refType_ == other.refType_;
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getTraceId()
+          .equals(other.getTraceId())) return false;
+      if (!getSpanId()
+          .equals(other.getSpanId())) return false;
+      if (refType_ != other.refType_) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -2562,7 +2571,7 @@ public final class Model {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -2570,13 +2579,13 @@ public final class Model {
     public static Builder newBuilder(io.jaegertracing.api_v2.Model.SpanRef prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -2591,13 +2600,13 @@ public final class Model {
         io.jaegertracing.api_v2.Model.SpanRefOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return internal_static_jaeger_api_v2_SpanRef_descriptor;
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_SpanRef_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return internal_static_jaeger_api_v2_SpanRef_fieldAccessorTable
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_SpanRef_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 io.jaegertracing.api_v2.Model.SpanRef.class, io.jaegertracing.api_v2.Model.SpanRef.Builder.class);
       }
@@ -2617,7 +2626,7 @@ public final class Model {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         traceId_ = com.google.protobuf.ByteString.EMPTY;
@@ -2629,18 +2638,18 @@ public final class Model {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return internal_static_jaeger_api_v2_SpanRef_descriptor;
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_SpanRef_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.SpanRef getDefaultInstanceForType() {
-        return getDefaultInstance();
+        return io.jaegertracing.api_v2.Model.SpanRef.getDefaultInstance();
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.SpanRef build() {
         io.jaegertracing.api_v2.Model.SpanRef result = buildPartial();
         if (!result.isInitialized()) {
@@ -2649,7 +2658,7 @@ public final class Model {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.SpanRef buildPartial() {
         io.jaegertracing.api_v2.Model.SpanRef result = new io.jaegertracing.api_v2.Model.SpanRef(this);
         result.traceId_ = traceId_;
@@ -2659,39 +2668,39 @@ public final class Model {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
+          java.lang.Object value) {
+        return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof io.jaegertracing.api_v2.Model.SpanRef) {
           return mergeFrom((io.jaegertracing.api_v2.Model.SpanRef)other);
@@ -2702,7 +2711,7 @@ public final class Model {
       }
 
       public Builder mergeFrom(io.jaegertracing.api_v2.Model.SpanRef other) {
-        if (other == getDefaultInstance()) return this;
+        if (other == io.jaegertracing.api_v2.Model.SpanRef.getDefaultInstance()) return this;
         if (other.getTraceId() != com.google.protobuf.ByteString.EMPTY) {
           setTraceId(other.getTraceId());
         }
@@ -2717,12 +2726,12 @@ public final class Model {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2755,7 +2764,7 @@ public final class Model {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         traceId_ = value;
         onChanged();
         return this;
@@ -2764,7 +2773,7 @@ public final class Model {
        * <code>bytes trace_id = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "TraceID", (.gogoproto.customname) = "TraceID"];</code>
        */
       public Builder clearTraceId() {
-
+        
         traceId_ = getDefaultInstance().getTraceId();
         onChanged();
         return this;
@@ -2784,7 +2793,7 @@ public final class Model {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         spanId_ = value;
         onChanged();
         return this;
@@ -2793,7 +2802,7 @@ public final class Model {
        * <code>bytes span_id = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "SpanID", (.gogoproto.customname) = "SpanID"];</code>
        */
       public Builder clearSpanId() {
-
+        
         spanId_ = getDefaultInstance().getSpanId();
         onChanged();
         return this;
@@ -2829,7 +2838,7 @@ public final class Model {
         if (value == null) {
           throw new NullPointerException();
         }
-
+        
         refType_ = value.getNumber();
         onChanged();
         return this;
@@ -2838,18 +2847,18 @@ public final class Model {
        * <code>.jaeger.api_v2.SpanRefType ref_type = 3;</code>
        */
       public Builder clearRefType() {
-
+        
         refType_ = 0;
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -2871,7 +2880,7 @@ public final class Model {
 
     private static final com.google.protobuf.Parser<SpanRef>
         PARSER = new com.google.protobuf.AbstractParser<SpanRef>() {
-      @Override
+      @java.lang.Override
       public SpanRef parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -2884,12 +2893,12 @@ public final class Model {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<SpanRef> getParserForType() {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public io.jaegertracing.api_v2.Model.SpanRef getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -2903,7 +2912,7 @@ public final class Model {
     /**
      * <code>string service_name = 1;</code>
      */
-    String getServiceName();
+    java.lang.String getServiceName();
     /**
      * <code>string service_name = 1;</code>
      */
@@ -2913,7 +2922,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.KeyValue tags = 2 [(.gogoproto.nullable) = false];</code>
      */
-    java.util.List<io.jaegertracing.api_v2.Model.KeyValue>
+    java.util.List<io.jaegertracing.api_v2.Model.KeyValue> 
         getTagsList();
     /**
      * <code>repeated .jaeger.api_v2.KeyValue tags = 2 [(.gogoproto.nullable) = false];</code>
@@ -2926,7 +2935,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.KeyValue tags = 2 [(.gogoproto.nullable) = false];</code>
      */
-    java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder>
+    java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder> 
         getTagsOrBuilderList();
     /**
      * <code>repeated .jaeger.api_v2.KeyValue tags = 2 [(.gogoproto.nullable) = false];</code>
@@ -2951,7 +2960,14 @@ public final class Model {
       tags_ = java.util.Collections.emptyList();
     }
 
-    @Override
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Process();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -2962,7 +2978,7 @@ public final class Model {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -2976,22 +2992,22 @@ public final class Model {
               done = true;
               break;
             case 10: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               serviceName_ = s;
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 tags_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.KeyValue>();
-                mutable_bitField0_ |= 0x00000002;
+                mutable_bitField0_ |= 0x00000001;
               }
               tags_.add(
                   input.readMessage(io.jaegertracing.api_v2.Model.KeyValue.parser(), extensionRegistry));
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -3005,7 +3021,7 @@ public final class Model {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           tags_ = java.util.Collections.unmodifiableList(tags_);
         }
         this.unknownFields = unknownFields.build();
@@ -3014,31 +3030,30 @@ public final class Model {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return internal_static_jaeger_api_v2_Process_descriptor;
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Process_descriptor;
     }
 
-    @Override
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return internal_static_jaeger_api_v2_Process_fieldAccessorTable
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Process_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               io.jaegertracing.api_v2.Model.Process.class, io.jaegertracing.api_v2.Model.Process.Builder.class);
     }
 
-    private int bitField0_;
     public static final int SERVICE_NAME_FIELD_NUMBER = 1;
-    private volatile Object serviceName_;
+    private volatile java.lang.Object serviceName_;
     /**
      * <code>string service_name = 1;</code>
      */
-    public String getServiceName() {
-      Object ref = serviceName_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getServiceName() {
+      java.lang.Object ref = serviceName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         serviceName_ = s;
         return s;
       }
@@ -3048,11 +3063,11 @@ public final class Model {
      */
     public com.google.protobuf.ByteString
         getServiceNameBytes() {
-      Object ref = serviceName_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = serviceName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         serviceName_ = b;
         return b;
       } else {
@@ -3071,7 +3086,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.KeyValue tags = 2 [(.gogoproto.nullable) = false];</code>
      */
-    public java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder>
+    public java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder> 
         getTagsOrBuilderList() {
       return tags_;
     }
@@ -3096,7 +3111,7 @@ public final class Model {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -3106,7 +3121,7 @@ public final class Model {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getServiceNameBytes().isEmpty()) {
@@ -3118,7 +3133,7 @@ public final class Model {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -3136,8 +3151,8 @@ public final class Model {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
@@ -3146,16 +3161,15 @@ public final class Model {
       }
       io.jaegertracing.api_v2.Model.Process other = (io.jaegertracing.api_v2.Model.Process) obj;
 
-      boolean result = true;
-      result = result && getServiceName()
-          .equals(other.getServiceName());
-      result = result && getTagsList()
-          .equals(other.getTagsList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getServiceName()
+          .equals(other.getServiceName())) return false;
+      if (!getTagsList()
+          .equals(other.getTagsList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -3243,7 +3257,7 @@ public final class Model {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -3251,13 +3265,13 @@ public final class Model {
     public static Builder newBuilder(io.jaegertracing.api_v2.Model.Process prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -3272,13 +3286,13 @@ public final class Model {
         io.jaegertracing.api_v2.Model.ProcessOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return internal_static_jaeger_api_v2_Process_descriptor;
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Process_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return internal_static_jaeger_api_v2_Process_fieldAccessorTable
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Process_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 io.jaegertracing.api_v2.Model.Process.class, io.jaegertracing.api_v2.Model.Process.Builder.class);
       }
@@ -3299,32 +3313,32 @@ public final class Model {
           getTagsFieldBuilder();
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         serviceName_ = "";
 
         if (tagsBuilder_ == null) {
           tags_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           tagsBuilder_.clear();
         }
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return internal_static_jaeger_api_v2_Process_descriptor;
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Process_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Process getDefaultInstanceForType() {
-        return getDefaultInstance();
+        return io.jaegertracing.api_v2.Model.Process.getDefaultInstance();
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Process build() {
         io.jaegertracing.api_v2.Model.Process result = buildPartial();
         if (!result.isInitialized()) {
@@ -3333,59 +3347,57 @@ public final class Model {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Process buildPartial() {
         io.jaegertracing.api_v2.Model.Process result = new io.jaegertracing.api_v2.Model.Process(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         result.serviceName_ = serviceName_;
         if (tagsBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             tags_ = java.util.Collections.unmodifiableList(tags_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.tags_ = tags_;
         } else {
           result.tags_ = tagsBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
+          java.lang.Object value) {
+        return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof io.jaegertracing.api_v2.Model.Process) {
           return mergeFrom((io.jaegertracing.api_v2.Model.Process)other);
@@ -3396,7 +3408,7 @@ public final class Model {
       }
 
       public Builder mergeFrom(io.jaegertracing.api_v2.Model.Process other) {
-        if (other == getDefaultInstance()) return this;
+        if (other == io.jaegertracing.api_v2.Model.Process.getDefaultInstance()) return this;
         if (!other.getServiceName().isEmpty()) {
           serviceName_ = other.serviceName_;
           onChanged();
@@ -3405,7 +3417,7 @@ public final class Model {
           if (!other.tags_.isEmpty()) {
             if (tags_.isEmpty()) {
               tags_ = other.tags_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureTagsIsMutable();
               tags_.addAll(other.tags_);
@@ -3418,8 +3430,8 @@ public final class Model {
               tagsBuilder_.dispose();
               tagsBuilder_ = null;
               tags_ = other.tags_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-              tagsBuilder_ =
+              bitField0_ = (bitField0_ & ~0x00000001);
+              tagsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getTagsFieldBuilder() : null;
             } else {
@@ -3432,12 +3444,12 @@ public final class Model {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3457,20 +3469,20 @@ public final class Model {
       }
       private int bitField0_;
 
-      private Object serviceName_ = "";
+      private java.lang.Object serviceName_ = "";
       /**
        * <code>string service_name = 1;</code>
        */
-      public String getServiceName() {
-        Object ref = serviceName_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getServiceName() {
+        java.lang.Object ref = serviceName_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           serviceName_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -3478,11 +3490,11 @@ public final class Model {
        */
       public com.google.protobuf.ByteString
           getServiceNameBytes() {
-        Object ref = serviceName_;
+        java.lang.Object ref = serviceName_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           serviceName_ = b;
           return b;
         } else {
@@ -3493,11 +3505,11 @@ public final class Model {
        * <code>string service_name = 1;</code>
        */
       public Builder setServiceName(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         serviceName_ = value;
         onChanged();
         return this;
@@ -3506,7 +3518,7 @@ public final class Model {
        * <code>string service_name = 1;</code>
        */
       public Builder clearServiceName() {
-
+        
         serviceName_ = getDefaultInstance().getServiceName();
         onChanged();
         return this;
@@ -3520,7 +3532,7 @@ public final class Model {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         serviceName_ = value;
         onChanged();
         return this;
@@ -3529,9 +3541,9 @@ public final class Model {
       private java.util.List<io.jaegertracing.api_v2.Model.KeyValue> tags_ =
         java.util.Collections.emptyList();
       private void ensureTagsIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           tags_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.KeyValue>(tags_);
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -3664,10 +3676,10 @@ public final class Model {
        * <code>repeated .jaeger.api_v2.KeyValue tags = 2 [(.gogoproto.nullable) = false];</code>
        */
       public Builder addAllTags(
-          Iterable<? extends io.jaegertracing.api_v2.Model.KeyValue> values) {
+          java.lang.Iterable<? extends io.jaegertracing.api_v2.Model.KeyValue> values) {
         if (tagsBuilder_ == null) {
           ensureTagsIsMutable();
-          addAll(
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
               values, tags_);
           onChanged();
         } else {
@@ -3681,7 +3693,7 @@ public final class Model {
       public Builder clearTags() {
         if (tagsBuilder_ == null) {
           tags_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           tagsBuilder_.clear();
@@ -3721,7 +3733,7 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.KeyValue tags = 2 [(.gogoproto.nullable) = false];</code>
        */
-      public java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder>
+      public java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder> 
            getTagsOrBuilderList() {
         if (tagsBuilder_ != null) {
           return tagsBuilder_.getMessageOrBuilderList();
@@ -3747,31 +3759,31 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.KeyValue tags = 2 [(.gogoproto.nullable) = false];</code>
        */
-      public java.util.List<io.jaegertracing.api_v2.Model.KeyValue.Builder>
+      public java.util.List<io.jaegertracing.api_v2.Model.KeyValue.Builder> 
            getTagsBuilderList() {
         return getTagsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          io.jaegertracing.api_v2.Model.KeyValue, io.jaegertracing.api_v2.Model.KeyValue.Builder, io.jaegertracing.api_v2.Model.KeyValueOrBuilder>
+          io.jaegertracing.api_v2.Model.KeyValue, io.jaegertracing.api_v2.Model.KeyValue.Builder, io.jaegertracing.api_v2.Model.KeyValueOrBuilder> 
           getTagsFieldBuilder() {
         if (tagsBuilder_ == null) {
           tagsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               io.jaegertracing.api_v2.Model.KeyValue, io.jaegertracing.api_v2.Model.KeyValue.Builder, io.jaegertracing.api_v2.Model.KeyValueOrBuilder>(
                   tags_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           tags_ = null;
         }
         return tagsBuilder_;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -3793,7 +3805,7 @@ public final class Model {
 
     private static final com.google.protobuf.Parser<Process>
         PARSER = new com.google.protobuf.AbstractParser<Process>() {
-      @Override
+      @java.lang.Override
       public Process parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -3806,12 +3818,12 @@ public final class Model {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Process> getParserForType() {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public io.jaegertracing.api_v2.Model.Process getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -3835,7 +3847,7 @@ public final class Model {
     /**
      * <code>string operation_name = 3;</code>
      */
-    String getOperationName();
+    java.lang.String getOperationName();
     /**
      * <code>string operation_name = 3;</code>
      */
@@ -3845,7 +3857,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.SpanRef references = 4 [(.gogoproto.nullable) = false];</code>
      */
-    java.util.List<io.jaegertracing.api_v2.Model.SpanRef>
+    java.util.List<io.jaegertracing.api_v2.Model.SpanRef> 
         getReferencesList();
     /**
      * <code>repeated .jaeger.api_v2.SpanRef references = 4 [(.gogoproto.nullable) = false];</code>
@@ -3858,7 +3870,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.SpanRef references = 4 [(.gogoproto.nullable) = false];</code>
      */
-    java.util.List<? extends io.jaegertracing.api_v2.Model.SpanRefOrBuilder>
+    java.util.List<? extends io.jaegertracing.api_v2.Model.SpanRefOrBuilder> 
         getReferencesOrBuilderList();
     /**
      * <code>repeated .jaeger.api_v2.SpanRef references = 4 [(.gogoproto.nullable) = false];</code>
@@ -3900,7 +3912,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.KeyValue tags = 8 [(.gogoproto.nullable) = false];</code>
      */
-    java.util.List<io.jaegertracing.api_v2.Model.KeyValue>
+    java.util.List<io.jaegertracing.api_v2.Model.KeyValue> 
         getTagsList();
     /**
      * <code>repeated .jaeger.api_v2.KeyValue tags = 8 [(.gogoproto.nullable) = false];</code>
@@ -3913,7 +3925,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.KeyValue tags = 8 [(.gogoproto.nullable) = false];</code>
      */
-    java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder>
+    java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder> 
         getTagsOrBuilderList();
     /**
      * <code>repeated .jaeger.api_v2.KeyValue tags = 8 [(.gogoproto.nullable) = false];</code>
@@ -3924,7 +3936,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.Log logs = 9 [(.gogoproto.nullable) = false];</code>
      */
-    java.util.List<io.jaegertracing.api_v2.Model.Log>
+    java.util.List<io.jaegertracing.api_v2.Model.Log> 
         getLogsList();
     /**
      * <code>repeated .jaeger.api_v2.Log logs = 9 [(.gogoproto.nullable) = false];</code>
@@ -3937,7 +3949,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.Log logs = 9 [(.gogoproto.nullable) = false];</code>
      */
-    java.util.List<? extends io.jaegertracing.api_v2.Model.LogOrBuilder>
+    java.util.List<? extends io.jaegertracing.api_v2.Model.LogOrBuilder> 
         getLogsOrBuilderList();
     /**
      * <code>repeated .jaeger.api_v2.Log logs = 9 [(.gogoproto.nullable) = false];</code>
@@ -3961,7 +3973,7 @@ public final class Model {
     /**
      * <code>string process_id = 11 [(.gogoproto.customname) = "ProcessID"];</code>
      */
-    String getProcessId();
+    java.lang.String getProcessId();
     /**
      * <code>string process_id = 11 [(.gogoproto.customname) = "ProcessID"];</code>
      */
@@ -3971,7 +3983,7 @@ public final class Model {
     /**
      * <code>repeated string warnings = 12;</code>
      */
-    java.util.List<String>
+    java.util.List<java.lang.String>
         getWarningsList();
     /**
      * <code>repeated string warnings = 12;</code>
@@ -3980,7 +3992,7 @@ public final class Model {
     /**
      * <code>repeated string warnings = 12;</code>
      */
-    String getWarnings(int index);
+    java.lang.String getWarnings(int index);
     /**
      * <code>repeated string warnings = 12;</code>
      */
@@ -4004,14 +4016,20 @@ public final class Model {
       spanId_ = com.google.protobuf.ByteString.EMPTY;
       operationName_ = "";
       references_ = java.util.Collections.emptyList();
-      flags_ = 0;
       tags_ = java.util.Collections.emptyList();
       logs_ = java.util.Collections.emptyList();
       processId_ = "";
       warnings_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     }
 
-    @Override
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Span();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -4022,7 +4040,7 @@ public final class Model {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -4046,15 +4064,15 @@ public final class Model {
               break;
             }
             case 26: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               operationName_ = s;
               break;
             }
             case 34: {
-              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 references_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.SpanRef>();
-                mutable_bitField0_ |= 0x00000008;
+                mutable_bitField0_ |= 0x00000001;
               }
               references_.add(
                   input.readMessage(io.jaegertracing.api_v2.Model.SpanRef.parser(), extensionRegistry));
@@ -4092,18 +4110,18 @@ public final class Model {
               break;
             }
             case 66: {
-              if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
                 tags_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.KeyValue>();
-                mutable_bitField0_ |= 0x00000080;
+                mutable_bitField0_ |= 0x00000002;
               }
               tags_.add(
                   input.readMessage(io.jaegertracing.api_v2.Model.KeyValue.parser(), extensionRegistry));
               break;
             }
             case 74: {
-              if (!((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
+              if (!((mutable_bitField0_ & 0x00000004) != 0)) {
                 logs_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.Log>();
-                mutable_bitField0_ |= 0x00000100;
+                mutable_bitField0_ |= 0x00000004;
               }
               logs_.add(
                   input.readMessage(io.jaegertracing.api_v2.Model.Log.parser(), extensionRegistry));
@@ -4123,22 +4141,22 @@ public final class Model {
               break;
             }
             case 90: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               processId_ = s;
               break;
             }
             case 98: {
-              String s = input.readStringRequireUtf8();
-              if (!((mutable_bitField0_ & 0x00000800) == 0x00000800)) {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000008) != 0)) {
                 warnings_ = new com.google.protobuf.LazyStringArrayList();
-                mutable_bitField0_ |= 0x00000800;
+                mutable_bitField0_ |= 0x00000008;
               }
               warnings_.add(s);
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -4152,16 +4170,16 @@ public final class Model {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           references_ = java.util.Collections.unmodifiableList(references_);
         }
-        if (((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
+        if (((mutable_bitField0_ & 0x00000002) != 0)) {
           tags_ = java.util.Collections.unmodifiableList(tags_);
         }
-        if (((mutable_bitField0_ & 0x00000100) == 0x00000100)) {
+        if (((mutable_bitField0_ & 0x00000004) != 0)) {
           logs_ = java.util.Collections.unmodifiableList(logs_);
         }
-        if (((mutable_bitField0_ & 0x00000800) == 0x00000800)) {
+        if (((mutable_bitField0_ & 0x00000008) != 0)) {
           warnings_ = warnings_.getUnmodifiableView();
         }
         this.unknownFields = unknownFields.build();
@@ -4170,18 +4188,17 @@ public final class Model {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return internal_static_jaeger_api_v2_Span_descriptor;
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Span_descriptor;
     }
 
-    @Override
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return internal_static_jaeger_api_v2_Span_fieldAccessorTable
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Span_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               io.jaegertracing.api_v2.Model.Span.class, io.jaegertracing.api_v2.Model.Span.Builder.class);
     }
 
-    private int bitField0_;
     public static final int TRACE_ID_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString traceId_;
     /**
@@ -4201,18 +4218,18 @@ public final class Model {
     }
 
     public static final int OPERATION_NAME_FIELD_NUMBER = 3;
-    private volatile Object operationName_;
+    private volatile java.lang.Object operationName_;
     /**
      * <code>string operation_name = 3;</code>
      */
-    public String getOperationName() {
-      Object ref = operationName_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getOperationName() {
+      java.lang.Object ref = operationName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         operationName_ = s;
         return s;
       }
@@ -4222,11 +4239,11 @@ public final class Model {
      */
     public com.google.protobuf.ByteString
         getOperationNameBytes() {
-      Object ref = operationName_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = operationName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         operationName_ = b;
         return b;
       } else {
@@ -4245,7 +4262,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.SpanRef references = 4 [(.gogoproto.nullable) = false];</code>
      */
-    public java.util.List<? extends io.jaegertracing.api_v2.Model.SpanRefOrBuilder>
+    public java.util.List<? extends io.jaegertracing.api_v2.Model.SpanRefOrBuilder> 
         getReferencesOrBuilderList() {
       return references_;
     }
@@ -4331,7 +4348,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.KeyValue tags = 8 [(.gogoproto.nullable) = false];</code>
      */
-    public java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder>
+    public java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder> 
         getTagsOrBuilderList() {
       return tags_;
     }
@@ -4366,7 +4383,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.Log logs = 9 [(.gogoproto.nullable) = false];</code>
      */
-    public java.util.List<? extends io.jaegertracing.api_v2.Model.LogOrBuilder>
+    public java.util.List<? extends io.jaegertracing.api_v2.Model.LogOrBuilder> 
         getLogsOrBuilderList() {
       return logs_;
     }
@@ -4412,18 +4429,18 @@ public final class Model {
     }
 
     public static final int PROCESS_ID_FIELD_NUMBER = 11;
-    private volatile Object processId_;
+    private volatile java.lang.Object processId_;
     /**
      * <code>string process_id = 11 [(.gogoproto.customname) = "ProcessID"];</code>
      */
-    public String getProcessId() {
-      Object ref = processId_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getProcessId() {
+      java.lang.Object ref = processId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         processId_ = s;
         return s;
       }
@@ -4433,11 +4450,11 @@ public final class Model {
      */
     public com.google.protobuf.ByteString
         getProcessIdBytes() {
-      Object ref = processId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = processId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         processId_ = b;
         return b;
       } else {
@@ -4463,7 +4480,7 @@ public final class Model {
     /**
      * <code>repeated string warnings = 12;</code>
      */
-    public String getWarnings(int index) {
+    public java.lang.String getWarnings(int index) {
       return warnings_.get(index);
     }
     /**
@@ -4475,7 +4492,7 @@ public final class Model {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -4485,7 +4502,7 @@ public final class Model {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!traceId_.isEmpty()) {
@@ -4527,7 +4544,7 @@ public final class Model {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -4588,8 +4605,8 @@ public final class Model {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
@@ -4598,45 +4615,44 @@ public final class Model {
       }
       io.jaegertracing.api_v2.Model.Span other = (io.jaegertracing.api_v2.Model.Span) obj;
 
-      boolean result = true;
-      result = result && getTraceId()
-          .equals(other.getTraceId());
-      result = result && getSpanId()
-          .equals(other.getSpanId());
-      result = result && getOperationName()
-          .equals(other.getOperationName());
-      result = result && getReferencesList()
-          .equals(other.getReferencesList());
-      result = result && (getFlags()
-          == other.getFlags());
-      result = result && (hasStartTime() == other.hasStartTime());
+      if (!getTraceId()
+          .equals(other.getTraceId())) return false;
+      if (!getSpanId()
+          .equals(other.getSpanId())) return false;
+      if (!getOperationName()
+          .equals(other.getOperationName())) return false;
+      if (!getReferencesList()
+          .equals(other.getReferencesList())) return false;
+      if (getFlags()
+          != other.getFlags()) return false;
+      if (hasStartTime() != other.hasStartTime()) return false;
       if (hasStartTime()) {
-        result = result && getStartTime()
-            .equals(other.getStartTime());
+        if (!getStartTime()
+            .equals(other.getStartTime())) return false;
       }
-      result = result && (hasDuration() == other.hasDuration());
+      if (hasDuration() != other.hasDuration()) return false;
       if (hasDuration()) {
-        result = result && getDuration()
-            .equals(other.getDuration());
+        if (!getDuration()
+            .equals(other.getDuration())) return false;
       }
-      result = result && getTagsList()
-          .equals(other.getTagsList());
-      result = result && getLogsList()
-          .equals(other.getLogsList());
-      result = result && (hasProcess() == other.hasProcess());
+      if (!getTagsList()
+          .equals(other.getTagsList())) return false;
+      if (!getLogsList()
+          .equals(other.getLogsList())) return false;
+      if (hasProcess() != other.hasProcess()) return false;
       if (hasProcess()) {
-        result = result && getProcess()
-            .equals(other.getProcess());
+        if (!getProcess()
+            .equals(other.getProcess())) return false;
       }
-      result = result && getProcessId()
-          .equals(other.getProcessId());
-      result = result && getWarningsList()
-          .equals(other.getWarningsList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getProcessId()
+          .equals(other.getProcessId())) return false;
+      if (!getWarningsList()
+          .equals(other.getWarningsList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -4756,7 +4772,7 @@ public final class Model {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -4764,13 +4780,13 @@ public final class Model {
     public static Builder newBuilder(io.jaegertracing.api_v2.Model.Span prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -4785,13 +4801,13 @@ public final class Model {
         io.jaegertracing.api_v2.Model.SpanOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return internal_static_jaeger_api_v2_Span_descriptor;
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Span_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return internal_static_jaeger_api_v2_Span_fieldAccessorTable
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Span_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 io.jaegertracing.api_v2.Model.Span.class, io.jaegertracing.api_v2.Model.Span.Builder.class);
       }
@@ -4814,7 +4830,7 @@ public final class Model {
           getLogsFieldBuilder();
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         traceId_ = com.google.protobuf.ByteString.EMPTY;
@@ -4825,7 +4841,7 @@ public final class Model {
 
         if (referencesBuilder_ == null) {
           references_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
           referencesBuilder_.clear();
         }
@@ -4845,13 +4861,13 @@ public final class Model {
         }
         if (tagsBuilder_ == null) {
           tags_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000080);
+          bitField0_ = (bitField0_ & ~0x00000002);
         } else {
           tagsBuilder_.clear();
         }
         if (logsBuilder_ == null) {
           logs_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000100);
+          bitField0_ = (bitField0_ & ~0x00000004);
         } else {
           logsBuilder_.clear();
         }
@@ -4864,22 +4880,22 @@ public final class Model {
         processId_ = "";
 
         warnings_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000800);
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return internal_static_jaeger_api_v2_Span_descriptor;
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Span_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Span getDefaultInstanceForType() {
-        return getDefaultInstance();
+        return io.jaegertracing.api_v2.Model.Span.getDefaultInstance();
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Span build() {
         io.jaegertracing.api_v2.Model.Span result = buildPartial();
         if (!result.isInitialized()) {
@@ -4888,18 +4904,17 @@ public final class Model {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Span buildPartial() {
         io.jaegertracing.api_v2.Model.Span result = new io.jaegertracing.api_v2.Model.Span(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         result.traceId_ = traceId_;
         result.spanId_ = spanId_;
         result.operationName_ = operationName_;
         if (referencesBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             references_ = java.util.Collections.unmodifiableList(references_);
-            bitField0_ = (bitField0_ & ~0x00000008);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
           result.references_ = references_;
         } else {
@@ -4917,18 +4932,18 @@ public final class Model {
           result.duration_ = durationBuilder_.build();
         }
         if (tagsBuilder_ == null) {
-          if (((bitField0_ & 0x00000080) == 0x00000080)) {
+          if (((bitField0_ & 0x00000002) != 0)) {
             tags_ = java.util.Collections.unmodifiableList(tags_);
-            bitField0_ = (bitField0_ & ~0x00000080);
+            bitField0_ = (bitField0_ & ~0x00000002);
           }
           result.tags_ = tags_;
         } else {
           result.tags_ = tagsBuilder_.build();
         }
         if (logsBuilder_ == null) {
-          if (((bitField0_ & 0x00000100) == 0x00000100)) {
+          if (((bitField0_ & 0x00000004) != 0)) {
             logs_ = java.util.Collections.unmodifiableList(logs_);
-            bitField0_ = (bitField0_ & ~0x00000100);
+            bitField0_ = (bitField0_ & ~0x00000004);
           }
           result.logs_ = logs_;
         } else {
@@ -4940,49 +4955,48 @@ public final class Model {
           result.process_ = processBuilder_.build();
         }
         result.processId_ = processId_;
-        if (((bitField0_ & 0x00000800) == 0x00000800)) {
+        if (((bitField0_ & 0x00000008) != 0)) {
           warnings_ = warnings_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000800);
+          bitField0_ = (bitField0_ & ~0x00000008);
         }
         result.warnings_ = warnings_;
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
+          java.lang.Object value) {
+        return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof io.jaegertracing.api_v2.Model.Span) {
           return mergeFrom((io.jaegertracing.api_v2.Model.Span)other);
@@ -4993,7 +5007,7 @@ public final class Model {
       }
 
       public Builder mergeFrom(io.jaegertracing.api_v2.Model.Span other) {
-        if (other == getDefaultInstance()) return this;
+        if (other == io.jaegertracing.api_v2.Model.Span.getDefaultInstance()) return this;
         if (other.getTraceId() != com.google.protobuf.ByteString.EMPTY) {
           setTraceId(other.getTraceId());
         }
@@ -5008,7 +5022,7 @@ public final class Model {
           if (!other.references_.isEmpty()) {
             if (references_.isEmpty()) {
               references_ = other.references_;
-              bitField0_ = (bitField0_ & ~0x00000008);
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
               ensureReferencesIsMutable();
               references_.addAll(other.references_);
@@ -5021,8 +5035,8 @@ public final class Model {
               referencesBuilder_.dispose();
               referencesBuilder_ = null;
               references_ = other.references_;
-              bitField0_ = (bitField0_ & ~0x00000008);
-              referencesBuilder_ =
+              bitField0_ = (bitField0_ & ~0x00000001);
+              referencesBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getReferencesFieldBuilder() : null;
             } else {
@@ -5043,7 +5057,7 @@ public final class Model {
           if (!other.tags_.isEmpty()) {
             if (tags_.isEmpty()) {
               tags_ = other.tags_;
-              bitField0_ = (bitField0_ & ~0x00000080);
+              bitField0_ = (bitField0_ & ~0x00000002);
             } else {
               ensureTagsIsMutable();
               tags_.addAll(other.tags_);
@@ -5056,8 +5070,8 @@ public final class Model {
               tagsBuilder_.dispose();
               tagsBuilder_ = null;
               tags_ = other.tags_;
-              bitField0_ = (bitField0_ & ~0x00000080);
-              tagsBuilder_ =
+              bitField0_ = (bitField0_ & ~0x00000002);
+              tagsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getTagsFieldBuilder() : null;
             } else {
@@ -5069,7 +5083,7 @@ public final class Model {
           if (!other.logs_.isEmpty()) {
             if (logs_.isEmpty()) {
               logs_ = other.logs_;
-              bitField0_ = (bitField0_ & ~0x00000100);
+              bitField0_ = (bitField0_ & ~0x00000004);
             } else {
               ensureLogsIsMutable();
               logs_.addAll(other.logs_);
@@ -5082,8 +5096,8 @@ public final class Model {
               logsBuilder_.dispose();
               logsBuilder_ = null;
               logs_ = other.logs_;
-              bitField0_ = (bitField0_ & ~0x00000100);
-              logsBuilder_ =
+              bitField0_ = (bitField0_ & ~0x00000004);
+              logsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getLogsFieldBuilder() : null;
             } else {
@@ -5101,7 +5115,7 @@ public final class Model {
         if (!other.warnings_.isEmpty()) {
           if (warnings_.isEmpty()) {
             warnings_ = other.warnings_;
-            bitField0_ = (bitField0_ & ~0x00000800);
+            bitField0_ = (bitField0_ & ~0x00000008);
           } else {
             ensureWarningsIsMutable();
             warnings_.addAll(other.warnings_);
@@ -5113,12 +5127,12 @@ public final class Model {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -5152,7 +5166,7 @@ public final class Model {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         traceId_ = value;
         onChanged();
         return this;
@@ -5161,7 +5175,7 @@ public final class Model {
        * <code>bytes trace_id = 1 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "TraceID", (.gogoproto.customname) = "TraceID"];</code>
        */
       public Builder clearTraceId() {
-
+        
         traceId_ = getDefaultInstance().getTraceId();
         onChanged();
         return this;
@@ -5181,7 +5195,7 @@ public final class Model {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         spanId_ = value;
         onChanged();
         return this;
@@ -5190,26 +5204,26 @@ public final class Model {
        * <code>bytes span_id = 2 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "SpanID", (.gogoproto.customname) = "SpanID"];</code>
        */
       public Builder clearSpanId() {
-
+        
         spanId_ = getDefaultInstance().getSpanId();
         onChanged();
         return this;
       }
 
-      private Object operationName_ = "";
+      private java.lang.Object operationName_ = "";
       /**
        * <code>string operation_name = 3;</code>
        */
-      public String getOperationName() {
-        Object ref = operationName_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getOperationName() {
+        java.lang.Object ref = operationName_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           operationName_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -5217,11 +5231,11 @@ public final class Model {
        */
       public com.google.protobuf.ByteString
           getOperationNameBytes() {
-        Object ref = operationName_;
+        java.lang.Object ref = operationName_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           operationName_ = b;
           return b;
         } else {
@@ -5232,11 +5246,11 @@ public final class Model {
        * <code>string operation_name = 3;</code>
        */
       public Builder setOperationName(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         operationName_ = value;
         onChanged();
         return this;
@@ -5245,7 +5259,7 @@ public final class Model {
        * <code>string operation_name = 3;</code>
        */
       public Builder clearOperationName() {
-
+        
         operationName_ = getDefaultInstance().getOperationName();
         onChanged();
         return this;
@@ -5259,7 +5273,7 @@ public final class Model {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         operationName_ = value;
         onChanged();
         return this;
@@ -5268,9 +5282,9 @@ public final class Model {
       private java.util.List<io.jaegertracing.api_v2.Model.SpanRef> references_ =
         java.util.Collections.emptyList();
       private void ensureReferencesIsMutable() {
-        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           references_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.SpanRef>(references_);
-          bitField0_ |= 0x00000008;
+          bitField0_ |= 0x00000001;
          }
       }
 
@@ -5403,10 +5417,10 @@ public final class Model {
        * <code>repeated .jaeger.api_v2.SpanRef references = 4 [(.gogoproto.nullable) = false];</code>
        */
       public Builder addAllReferences(
-          Iterable<? extends io.jaegertracing.api_v2.Model.SpanRef> values) {
+          java.lang.Iterable<? extends io.jaegertracing.api_v2.Model.SpanRef> values) {
         if (referencesBuilder_ == null) {
           ensureReferencesIsMutable();
-          addAll(
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
               values, references_);
           onChanged();
         } else {
@@ -5420,7 +5434,7 @@ public final class Model {
       public Builder clearReferences() {
         if (referencesBuilder_ == null) {
           references_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
           referencesBuilder_.clear();
@@ -5460,7 +5474,7 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.SpanRef references = 4 [(.gogoproto.nullable) = false];</code>
        */
-      public java.util.List<? extends io.jaegertracing.api_v2.Model.SpanRefOrBuilder>
+      public java.util.List<? extends io.jaegertracing.api_v2.Model.SpanRefOrBuilder> 
            getReferencesOrBuilderList() {
         if (referencesBuilder_ != null) {
           return referencesBuilder_.getMessageOrBuilderList();
@@ -5486,18 +5500,18 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.SpanRef references = 4 [(.gogoproto.nullable) = false];</code>
        */
-      public java.util.List<io.jaegertracing.api_v2.Model.SpanRef.Builder>
+      public java.util.List<io.jaegertracing.api_v2.Model.SpanRef.Builder> 
            getReferencesBuilderList() {
         return getReferencesFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          io.jaegertracing.api_v2.Model.SpanRef, io.jaegertracing.api_v2.Model.SpanRef.Builder, io.jaegertracing.api_v2.Model.SpanRefOrBuilder>
+          io.jaegertracing.api_v2.Model.SpanRef, io.jaegertracing.api_v2.Model.SpanRef.Builder, io.jaegertracing.api_v2.Model.SpanRefOrBuilder> 
           getReferencesFieldBuilder() {
         if (referencesBuilder_ == null) {
           referencesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               io.jaegertracing.api_v2.Model.SpanRef, io.jaegertracing.api_v2.Model.SpanRef.Builder, io.jaegertracing.api_v2.Model.SpanRefOrBuilder>(
                   references_,
-                  ((bitField0_ & 0x00000008) == 0x00000008),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           references_ = null;
@@ -5516,7 +5530,7 @@ public final class Model {
        * <code>uint32 flags = 5 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "Flags"];</code>
        */
       public Builder setFlags(int value) {
-
+        
         flags_ = value;
         onChanged();
         return this;
@@ -5525,13 +5539,13 @@ public final class Model {
        * <code>uint32 flags = 5 [(.gogoproto.nullable) = false, (.gogoproto.customtype) = "Flags"];</code>
        */
       public Builder clearFlags() {
-
+        
         flags_ = 0;
         onChanged();
         return this;
       }
 
-      private com.google.protobuf.Timestamp startTime_ = null;
+      private com.google.protobuf.Timestamp startTime_;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> startTimeBuilder_;
       /**
@@ -5616,7 +5630,7 @@ public final class Model {
        * <code>.google.protobuf.Timestamp start_time = 6 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
        */
       public com.google.protobuf.Timestamp.Builder getStartTimeBuilder() {
-
+        
         onChanged();
         return getStartTimeFieldBuilder().getBuilder();
       }
@@ -5635,7 +5649,7 @@ public final class Model {
        * <code>.google.protobuf.Timestamp start_time = 6 [(.gogoproto.nullable) = false, (.gogoproto.stdtime) = true];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
           getStartTimeFieldBuilder() {
         if (startTimeBuilder_ == null) {
           startTimeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -5648,7 +5662,7 @@ public final class Model {
         return startTimeBuilder_;
       }
 
-      private com.google.protobuf.Duration duration_ = null;
+      private com.google.protobuf.Duration duration_;
       private com.google.protobuf.SingleFieldBuilderV3<
           com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> durationBuilder_;
       /**
@@ -5733,7 +5747,7 @@ public final class Model {
        * <code>.google.protobuf.Duration duration = 7 [(.gogoproto.nullable) = false, (.gogoproto.stdduration) = true];</code>
        */
       public com.google.protobuf.Duration.Builder getDurationBuilder() {
-
+        
         onChanged();
         return getDurationFieldBuilder().getBuilder();
       }
@@ -5752,7 +5766,7 @@ public final class Model {
        * <code>.google.protobuf.Duration duration = 7 [(.gogoproto.nullable) = false, (.gogoproto.stdduration) = true];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder>
+          com.google.protobuf.Duration, com.google.protobuf.Duration.Builder, com.google.protobuf.DurationOrBuilder> 
           getDurationFieldBuilder() {
         if (durationBuilder_ == null) {
           durationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -5768,9 +5782,9 @@ public final class Model {
       private java.util.List<io.jaegertracing.api_v2.Model.KeyValue> tags_ =
         java.util.Collections.emptyList();
       private void ensureTagsIsMutable() {
-        if (!((bitField0_ & 0x00000080) == 0x00000080)) {
+        if (!((bitField0_ & 0x00000002) != 0)) {
           tags_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.KeyValue>(tags_);
-          bitField0_ |= 0x00000080;
+          bitField0_ |= 0x00000002;
          }
       }
 
@@ -5903,10 +5917,10 @@ public final class Model {
        * <code>repeated .jaeger.api_v2.KeyValue tags = 8 [(.gogoproto.nullable) = false];</code>
        */
       public Builder addAllTags(
-          Iterable<? extends io.jaegertracing.api_v2.Model.KeyValue> values) {
+          java.lang.Iterable<? extends io.jaegertracing.api_v2.Model.KeyValue> values) {
         if (tagsBuilder_ == null) {
           ensureTagsIsMutable();
-          addAll(
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
               values, tags_);
           onChanged();
         } else {
@@ -5920,7 +5934,7 @@ public final class Model {
       public Builder clearTags() {
         if (tagsBuilder_ == null) {
           tags_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000080);
+          bitField0_ = (bitField0_ & ~0x00000002);
           onChanged();
         } else {
           tagsBuilder_.clear();
@@ -5960,7 +5974,7 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.KeyValue tags = 8 [(.gogoproto.nullable) = false];</code>
        */
-      public java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder>
+      public java.util.List<? extends io.jaegertracing.api_v2.Model.KeyValueOrBuilder> 
            getTagsOrBuilderList() {
         if (tagsBuilder_ != null) {
           return tagsBuilder_.getMessageOrBuilderList();
@@ -5986,18 +6000,18 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.KeyValue tags = 8 [(.gogoproto.nullable) = false];</code>
        */
-      public java.util.List<io.jaegertracing.api_v2.Model.KeyValue.Builder>
+      public java.util.List<io.jaegertracing.api_v2.Model.KeyValue.Builder> 
            getTagsBuilderList() {
         return getTagsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          io.jaegertracing.api_v2.Model.KeyValue, io.jaegertracing.api_v2.Model.KeyValue.Builder, io.jaegertracing.api_v2.Model.KeyValueOrBuilder>
+          io.jaegertracing.api_v2.Model.KeyValue, io.jaegertracing.api_v2.Model.KeyValue.Builder, io.jaegertracing.api_v2.Model.KeyValueOrBuilder> 
           getTagsFieldBuilder() {
         if (tagsBuilder_ == null) {
           tagsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               io.jaegertracing.api_v2.Model.KeyValue, io.jaegertracing.api_v2.Model.KeyValue.Builder, io.jaegertracing.api_v2.Model.KeyValueOrBuilder>(
                   tags_,
-                  ((bitField0_ & 0x00000080) == 0x00000080),
+                  ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
                   isClean());
           tags_ = null;
@@ -6008,9 +6022,9 @@ public final class Model {
       private java.util.List<io.jaegertracing.api_v2.Model.Log> logs_ =
         java.util.Collections.emptyList();
       private void ensureLogsIsMutable() {
-        if (!((bitField0_ & 0x00000100) == 0x00000100)) {
+        if (!((bitField0_ & 0x00000004) != 0)) {
           logs_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.Log>(logs_);
-          bitField0_ |= 0x00000100;
+          bitField0_ |= 0x00000004;
          }
       }
 
@@ -6143,10 +6157,10 @@ public final class Model {
        * <code>repeated .jaeger.api_v2.Log logs = 9 [(.gogoproto.nullable) = false];</code>
        */
       public Builder addAllLogs(
-          Iterable<? extends io.jaegertracing.api_v2.Model.Log> values) {
+          java.lang.Iterable<? extends io.jaegertracing.api_v2.Model.Log> values) {
         if (logsBuilder_ == null) {
           ensureLogsIsMutable();
-          addAll(
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
               values, logs_);
           onChanged();
         } else {
@@ -6160,7 +6174,7 @@ public final class Model {
       public Builder clearLogs() {
         if (logsBuilder_ == null) {
           logs_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000100);
+          bitField0_ = (bitField0_ & ~0x00000004);
           onChanged();
         } else {
           logsBuilder_.clear();
@@ -6200,7 +6214,7 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.Log logs = 9 [(.gogoproto.nullable) = false];</code>
        */
-      public java.util.List<? extends io.jaegertracing.api_v2.Model.LogOrBuilder>
+      public java.util.List<? extends io.jaegertracing.api_v2.Model.LogOrBuilder> 
            getLogsOrBuilderList() {
         if (logsBuilder_ != null) {
           return logsBuilder_.getMessageOrBuilderList();
@@ -6226,18 +6240,18 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.Log logs = 9 [(.gogoproto.nullable) = false];</code>
        */
-      public java.util.List<io.jaegertracing.api_v2.Model.Log.Builder>
+      public java.util.List<io.jaegertracing.api_v2.Model.Log.Builder> 
            getLogsBuilderList() {
         return getLogsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          io.jaegertracing.api_v2.Model.Log, io.jaegertracing.api_v2.Model.Log.Builder, io.jaegertracing.api_v2.Model.LogOrBuilder>
+          io.jaegertracing.api_v2.Model.Log, io.jaegertracing.api_v2.Model.Log.Builder, io.jaegertracing.api_v2.Model.LogOrBuilder> 
           getLogsFieldBuilder() {
         if (logsBuilder_ == null) {
           logsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               io.jaegertracing.api_v2.Model.Log, io.jaegertracing.api_v2.Model.Log.Builder, io.jaegertracing.api_v2.Model.LogOrBuilder>(
                   logs_,
-                  ((bitField0_ & 0x00000100) == 0x00000100),
+                  ((bitField0_ & 0x00000004) != 0),
                   getParentForChildren(),
                   isClean());
           logs_ = null;
@@ -6245,7 +6259,7 @@ public final class Model {
         return logsBuilder_;
       }
 
-      private io.jaegertracing.api_v2.Model.Process process_ = null;
+      private io.jaegertracing.api_v2.Model.Process process_;
       private com.google.protobuf.SingleFieldBuilderV3<
           io.jaegertracing.api_v2.Model.Process, io.jaegertracing.api_v2.Model.Process.Builder, io.jaegertracing.api_v2.Model.ProcessOrBuilder> processBuilder_;
       /**
@@ -6330,7 +6344,7 @@ public final class Model {
        * <code>.jaeger.api_v2.Process process = 10;</code>
        */
       public io.jaegertracing.api_v2.Model.Process.Builder getProcessBuilder() {
-
+        
         onChanged();
         return getProcessFieldBuilder().getBuilder();
       }
@@ -6349,7 +6363,7 @@ public final class Model {
        * <code>.jaeger.api_v2.Process process = 10;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          io.jaegertracing.api_v2.Model.Process, io.jaegertracing.api_v2.Model.Process.Builder, io.jaegertracing.api_v2.Model.ProcessOrBuilder>
+          io.jaegertracing.api_v2.Model.Process, io.jaegertracing.api_v2.Model.Process.Builder, io.jaegertracing.api_v2.Model.ProcessOrBuilder> 
           getProcessFieldBuilder() {
         if (processBuilder_ == null) {
           processBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -6362,20 +6376,20 @@ public final class Model {
         return processBuilder_;
       }
 
-      private Object processId_ = "";
+      private java.lang.Object processId_ = "";
       /**
        * <code>string process_id = 11 [(.gogoproto.customname) = "ProcessID"];</code>
        */
-      public String getProcessId() {
-        Object ref = processId_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getProcessId() {
+        java.lang.Object ref = processId_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           processId_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -6383,11 +6397,11 @@ public final class Model {
        */
       public com.google.protobuf.ByteString
           getProcessIdBytes() {
-        Object ref = processId_;
+        java.lang.Object ref = processId_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           processId_ = b;
           return b;
         } else {
@@ -6398,11 +6412,11 @@ public final class Model {
        * <code>string process_id = 11 [(.gogoproto.customname) = "ProcessID"];</code>
        */
       public Builder setProcessId(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         processId_ = value;
         onChanged();
         return this;
@@ -6411,7 +6425,7 @@ public final class Model {
        * <code>string process_id = 11 [(.gogoproto.customname) = "ProcessID"];</code>
        */
       public Builder clearProcessId() {
-
+        
         processId_ = getDefaultInstance().getProcessId();
         onChanged();
         return this;
@@ -6425,7 +6439,7 @@ public final class Model {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         processId_ = value;
         onChanged();
         return this;
@@ -6433,9 +6447,9 @@ public final class Model {
 
       private com.google.protobuf.LazyStringList warnings_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureWarningsIsMutable() {
-        if (!((bitField0_ & 0x00000800) == 0x00000800)) {
+        if (!((bitField0_ & 0x00000008) != 0)) {
           warnings_ = new com.google.protobuf.LazyStringArrayList(warnings_);
-          bitField0_ |= 0x00000800;
+          bitField0_ |= 0x00000008;
          }
       }
       /**
@@ -6454,7 +6468,7 @@ public final class Model {
       /**
        * <code>repeated string warnings = 12;</code>
        */
-      public String getWarnings(int index) {
+      public java.lang.String getWarnings(int index) {
         return warnings_.get(index);
       }
       /**
@@ -6468,7 +6482,7 @@ public final class Model {
        * <code>repeated string warnings = 12;</code>
        */
       public Builder setWarnings(
-          int index, String value) {
+          int index, java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -6481,7 +6495,7 @@ public final class Model {
        * <code>repeated string warnings = 12;</code>
        */
       public Builder addWarnings(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -6494,7 +6508,7 @@ public final class Model {
        * <code>repeated string warnings = 12;</code>
        */
       public Builder addAllWarnings(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         ensureWarningsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, warnings_);
@@ -6506,7 +6520,7 @@ public final class Model {
        */
       public Builder clearWarnings() {
         warnings_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000800);
+        bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
       }
@@ -6524,13 +6538,13 @@ public final class Model {
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -6552,7 +6566,7 @@ public final class Model {
 
     private static final com.google.protobuf.Parser<Span>
         PARSER = new com.google.protobuf.AbstractParser<Span>() {
-      @Override
+      @java.lang.Override
       public Span parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -6565,12 +6579,12 @@ public final class Model {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Span> getParserForType() {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public io.jaegertracing.api_v2.Model.Span getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -6584,7 +6598,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
      */
-    java.util.List<io.jaegertracing.api_v2.Model.Span>
+    java.util.List<io.jaegertracing.api_v2.Model.Span> 
         getSpansList();
     /**
      * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
@@ -6597,7 +6611,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
      */
-    java.util.List<? extends io.jaegertracing.api_v2.Model.SpanOrBuilder>
+    java.util.List<? extends io.jaegertracing.api_v2.Model.SpanOrBuilder> 
         getSpansOrBuilderList();
     /**
      * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
@@ -6608,7 +6622,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.Trace.ProcessMapping process_map = 2 [(.gogoproto.nullable) = false];</code>
      */
-    java.util.List<io.jaegertracing.api_v2.Model.Trace.ProcessMapping>
+    java.util.List<io.jaegertracing.api_v2.Model.Trace.ProcessMapping> 
         getProcessMapList();
     /**
      * <code>repeated .jaeger.api_v2.Trace.ProcessMapping process_map = 2 [(.gogoproto.nullable) = false];</code>
@@ -6621,7 +6635,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.Trace.ProcessMapping process_map = 2 [(.gogoproto.nullable) = false];</code>
      */
-    java.util.List<? extends io.jaegertracing.api_v2.Model.Trace.ProcessMappingOrBuilder>
+    java.util.List<? extends io.jaegertracing.api_v2.Model.Trace.ProcessMappingOrBuilder> 
         getProcessMapOrBuilderList();
     /**
      * <code>repeated .jaeger.api_v2.Trace.ProcessMapping process_map = 2 [(.gogoproto.nullable) = false];</code>
@@ -6632,7 +6646,7 @@ public final class Model {
     /**
      * <code>repeated string warnings = 3;</code>
      */
-    java.util.List<String>
+    java.util.List<java.lang.String>
         getWarningsList();
     /**
      * <code>repeated string warnings = 3;</code>
@@ -6641,7 +6655,7 @@ public final class Model {
     /**
      * <code>repeated string warnings = 3;</code>
      */
-    String getWarnings(int index);
+    java.lang.String getWarnings(int index);
     /**
      * <code>repeated string warnings = 3;</code>
      */
@@ -6666,7 +6680,14 @@ public final class Model {
       warnings_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     }
 
-    @Override
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Trace();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -6677,7 +6698,7 @@ public final class Model {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -6691,7 +6712,7 @@ public final class Model {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 spans_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.Span>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -6700,7 +6721,7 @@ public final class Model {
               break;
             }
             case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
                 processMap_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.Trace.ProcessMapping>();
                 mutable_bitField0_ |= 0x00000002;
               }
@@ -6709,8 +6730,8 @@ public final class Model {
               break;
             }
             case 26: {
-              String s = input.readStringRequireUtf8();
-              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+              java.lang.String s = input.readStringRequireUtf8();
+              if (!((mutable_bitField0_ & 0x00000004) != 0)) {
                 warnings_ = new com.google.protobuf.LazyStringArrayList();
                 mutable_bitField0_ |= 0x00000004;
               }
@@ -6718,7 +6739,7 @@ public final class Model {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -6732,13 +6753,13 @@ public final class Model {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           spans_ = java.util.Collections.unmodifiableList(spans_);
         }
-        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (((mutable_bitField0_ & 0x00000002) != 0)) {
           processMap_ = java.util.Collections.unmodifiableList(processMap_);
         }
-        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+        if (((mutable_bitField0_ & 0x00000004) != 0)) {
           warnings_ = warnings_.getUnmodifiableView();
         }
         this.unknownFields = unknownFields.build();
@@ -6747,13 +6768,13 @@ public final class Model {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return internal_static_jaeger_api_v2_Trace_descriptor;
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Trace_descriptor;
     }
 
-    @Override
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return internal_static_jaeger_api_v2_Trace_fieldAccessorTable
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Trace_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               io.jaegertracing.api_v2.Model.Trace.class, io.jaegertracing.api_v2.Model.Trace.Builder.class);
     }
@@ -6765,7 +6786,7 @@ public final class Model {
       /**
        * <code>string process_id = 1 [(.gogoproto.customname) = "ProcessID"];</code>
        */
-      String getProcessId();
+      java.lang.String getProcessId();
       /**
        * <code>string process_id = 1 [(.gogoproto.customname) = "ProcessID"];</code>
        */
@@ -6801,7 +6822,14 @@ public final class Model {
         processId_ = "";
       }
 
-      @Override
+      @java.lang.Override
+      @SuppressWarnings({"unused"})
+      protected java.lang.Object newInstance(
+          UnusedPrivateParameter unused) {
+        return new ProcessMapping();
+      }
+
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
       getUnknownFields() {
         return this.unknownFields;
@@ -6812,9 +6840,8 @@ public final class Model {
           throws com.google.protobuf.InvalidProtocolBufferException {
         this();
         if (extensionRegistry == null) {
-          throw new NullPointerException();
+          throw new java.lang.NullPointerException();
         }
-        int mutable_bitField0_ = 0;
         com.google.protobuf.UnknownFieldSet.Builder unknownFields =
             com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
@@ -6826,7 +6853,7 @@ public final class Model {
                 done = true;
                 break;
               case 10: {
-                String s = input.readStringRequireUtf8();
+                java.lang.String s = input.readStringRequireUtf8();
 
                 processId_ = s;
                 break;
@@ -6845,7 +6872,7 @@ public final class Model {
                 break;
               }
               default: {
-                if (!parseUnknownFieldProto3(
+                if (!parseUnknownField(
                     input, unknownFields, extensionRegistry, tag)) {
                   done = true;
                 }
@@ -6865,30 +6892,30 @@ public final class Model {
       }
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return internal_static_jaeger_api_v2_Trace_ProcessMapping_descriptor;
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Trace_ProcessMapping_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return internal_static_jaeger_api_v2_Trace_ProcessMapping_fieldAccessorTable
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Trace_ProcessMapping_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 io.jaegertracing.api_v2.Model.Trace.ProcessMapping.class, io.jaegertracing.api_v2.Model.Trace.ProcessMapping.Builder.class);
       }
 
       public static final int PROCESS_ID_FIELD_NUMBER = 1;
-      private volatile Object processId_;
+      private volatile java.lang.Object processId_;
       /**
        * <code>string process_id = 1 [(.gogoproto.customname) = "ProcessID"];</code>
        */
-      public String getProcessId() {
-        Object ref = processId_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getProcessId() {
+        java.lang.Object ref = processId_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
-          com.google.protobuf.ByteString bs =
+          com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           processId_ = s;
           return s;
         }
@@ -6898,11 +6925,11 @@ public final class Model {
        */
       public com.google.protobuf.ByteString
           getProcessIdBytes() {
-        Object ref = processId_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+        java.lang.Object ref = processId_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           processId_ = b;
           return b;
         } else {
@@ -6932,7 +6959,7 @@ public final class Model {
       }
 
       private byte memoizedIsInitialized = -1;
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
         if (isInitialized == 1) return true;
@@ -6942,7 +6969,7 @@ public final class Model {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
         if (!getProcessIdBytes().isEmpty()) {
@@ -6954,7 +6981,7 @@ public final class Model {
         unknownFields.writeTo(output);
       }
 
-      @Override
+      @java.lang.Override
       public int getSerializedSize() {
         int size = memoizedSize;
         if (size != -1) return size;
@@ -6972,8 +6999,8 @@ public final class Model {
         return size;
       }
 
-      @Override
-      public boolean equals(final Object obj) {
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
         if (obj == this) {
          return true;
         }
@@ -6982,19 +7009,18 @@ public final class Model {
         }
         io.jaegertracing.api_v2.Model.Trace.ProcessMapping other = (io.jaegertracing.api_v2.Model.Trace.ProcessMapping) obj;
 
-        boolean result = true;
-        result = result && getProcessId()
-            .equals(other.getProcessId());
-        result = result && (hasProcess() == other.hasProcess());
+        if (!getProcessId()
+            .equals(other.getProcessId())) return false;
+        if (hasProcess() != other.hasProcess()) return false;
         if (hasProcess()) {
-          result = result && getProcess()
-              .equals(other.getProcess());
+          if (!getProcess()
+              .equals(other.getProcess())) return false;
         }
-        result = result && unknownFields.equals(other.unknownFields);
-        return result;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
       }
 
-      @Override
+      @java.lang.Override
       public int hashCode() {
         if (memoizedHashCode != 0) {
           return memoizedHashCode;
@@ -7082,7 +7108,7 @@ public final class Model {
             .parseWithIOException(PARSER, input, extensionRegistry);
       }
 
-      @Override
+      @java.lang.Override
       public Builder newBuilderForType() { return newBuilder(); }
       public static Builder newBuilder() {
         return DEFAULT_INSTANCE.toBuilder();
@@ -7090,13 +7116,13 @@ public final class Model {
       public static Builder newBuilder(io.jaegertracing.api_v2.Model.Trace.ProcessMapping prototype) {
         return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
       }
-      @Override
+      @java.lang.Override
       public Builder toBuilder() {
         return this == DEFAULT_INSTANCE
             ? new Builder() : new Builder().mergeFrom(this);
       }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -7111,13 +7137,13 @@ public final class Model {
           io.jaegertracing.api_v2.Model.Trace.ProcessMappingOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
-          return internal_static_jaeger_api_v2_Trace_ProcessMapping_descriptor;
+          return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Trace_ProcessMapping_descriptor;
         }
 
-        @Override
+        @java.lang.Override
         protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internalGetFieldAccessorTable() {
-          return internal_static_jaeger_api_v2_Trace_ProcessMapping_fieldAccessorTable
+          return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Trace_ProcessMapping_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
                   io.jaegertracing.api_v2.Model.Trace.ProcessMapping.class, io.jaegertracing.api_v2.Model.Trace.ProcessMapping.Builder.class);
         }
@@ -7137,7 +7163,7 @@ public final class Model {
                   .alwaysUseFieldBuilders) {
           }
         }
-        @Override
+        @java.lang.Override
         public Builder clear() {
           super.clear();
           processId_ = "";
@@ -7151,18 +7177,18 @@ public final class Model {
           return this;
         }
 
-        @Override
+        @java.lang.Override
         public com.google.protobuf.Descriptors.Descriptor
             getDescriptorForType() {
-          return internal_static_jaeger_api_v2_Trace_ProcessMapping_descriptor;
+          return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Trace_ProcessMapping_descriptor;
         }
 
-        @Override
+        @java.lang.Override
         public io.jaegertracing.api_v2.Model.Trace.ProcessMapping getDefaultInstanceForType() {
-          return getDefaultInstance();
+          return io.jaegertracing.api_v2.Model.Trace.ProcessMapping.getDefaultInstance();
         }
 
-        @Override
+        @java.lang.Override
         public io.jaegertracing.api_v2.Model.Trace.ProcessMapping build() {
           io.jaegertracing.api_v2.Model.Trace.ProcessMapping result = buildPartial();
           if (!result.isInitialized()) {
@@ -7171,7 +7197,7 @@ public final class Model {
           return result;
         }
 
-        @Override
+        @java.lang.Override
         public io.jaegertracing.api_v2.Model.Trace.ProcessMapping buildPartial() {
           io.jaegertracing.api_v2.Model.Trace.ProcessMapping result = new io.jaegertracing.api_v2.Model.Trace.ProcessMapping(this);
           result.processId_ = processId_;
@@ -7184,39 +7210,39 @@ public final class Model {
           return result;
         }
 
-        @Override
+        @java.lang.Override
         public Builder clone() {
-          return (Builder) super.clone();
+          return super.clone();
         }
-        @Override
+        @java.lang.Override
         public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.setField(field, value);
+            java.lang.Object value) {
+          return super.setField(field, value);
         }
-        @Override
+        @java.lang.Override
         public Builder clearField(
             com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return (Builder) super.clearField(field);
+          return super.clearField(field);
         }
-        @Override
+        @java.lang.Override
         public Builder clearOneof(
             com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return (Builder) super.clearOneof(oneof);
+          return super.clearOneof(oneof);
         }
-        @Override
+        @java.lang.Override
         public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, Object value) {
-          return (Builder) super.setRepeatedField(field, index, value);
+            int index, java.lang.Object value) {
+          return super.setRepeatedField(field, index, value);
         }
-        @Override
+        @java.lang.Override
         public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            Object value) {
-          return (Builder) super.addRepeatedField(field, value);
+            java.lang.Object value) {
+          return super.addRepeatedField(field, value);
         }
-        @Override
+        @java.lang.Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
           if (other instanceof io.jaegertracing.api_v2.Model.Trace.ProcessMapping) {
             return mergeFrom((io.jaegertracing.api_v2.Model.Trace.ProcessMapping)other);
@@ -7227,7 +7253,7 @@ public final class Model {
         }
 
         public Builder mergeFrom(io.jaegertracing.api_v2.Model.Trace.ProcessMapping other) {
-          if (other == getDefaultInstance()) return this;
+          if (other == io.jaegertracing.api_v2.Model.Trace.ProcessMapping.getDefaultInstance()) return this;
           if (!other.getProcessId().isEmpty()) {
             processId_ = other.processId_;
             onChanged();
@@ -7240,12 +7266,12 @@ public final class Model {
           return this;
         }
 
-        @Override
+        @java.lang.Override
         public final boolean isInitialized() {
           return true;
         }
 
-        @Override
+        @java.lang.Override
         public Builder mergeFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7264,20 +7290,20 @@ public final class Model {
           return this;
         }
 
-        private Object processId_ = "";
+        private java.lang.Object processId_ = "";
         /**
          * <code>string process_id = 1 [(.gogoproto.customname) = "ProcessID"];</code>
          */
-        public String getProcessId() {
-          Object ref = processId_;
-          if (!(ref instanceof String)) {
+        public java.lang.String getProcessId() {
+          java.lang.Object ref = processId_;
+          if (!(ref instanceof java.lang.String)) {
             com.google.protobuf.ByteString bs =
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             processId_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -7285,11 +7311,11 @@ public final class Model {
          */
         public com.google.protobuf.ByteString
             getProcessIdBytes() {
-          Object ref = processId_;
+          java.lang.Object ref = processId_;
           if (ref instanceof String) {
-            com.google.protobuf.ByteString b =
+            com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             processId_ = b;
             return b;
           } else {
@@ -7300,11 +7326,11 @@ public final class Model {
          * <code>string process_id = 1 [(.gogoproto.customname) = "ProcessID"];</code>
          */
         public Builder setProcessId(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
-
+  
           processId_ = value;
           onChanged();
           return this;
@@ -7313,7 +7339,7 @@ public final class Model {
          * <code>string process_id = 1 [(.gogoproto.customname) = "ProcessID"];</code>
          */
         public Builder clearProcessId() {
-
+          
           processId_ = getDefaultInstance().getProcessId();
           onChanged();
           return this;
@@ -7327,13 +7353,13 @@ public final class Model {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+          
           processId_ = value;
           onChanged();
           return this;
         }
 
-        private io.jaegertracing.api_v2.Model.Process process_ = null;
+        private io.jaegertracing.api_v2.Model.Process process_;
         private com.google.protobuf.SingleFieldBuilderV3<
             io.jaegertracing.api_v2.Model.Process, io.jaegertracing.api_v2.Model.Process.Builder, io.jaegertracing.api_v2.Model.ProcessOrBuilder> processBuilder_;
         /**
@@ -7418,7 +7444,7 @@ public final class Model {
          * <code>.jaeger.api_v2.Process process = 2 [(.gogoproto.nullable) = false];</code>
          */
         public io.jaegertracing.api_v2.Model.Process.Builder getProcessBuilder() {
-
+          
           onChanged();
           return getProcessFieldBuilder().getBuilder();
         }
@@ -7437,7 +7463,7 @@ public final class Model {
          * <code>.jaeger.api_v2.Process process = 2 [(.gogoproto.nullable) = false];</code>
          */
         private com.google.protobuf.SingleFieldBuilderV3<
-            io.jaegertracing.api_v2.Model.Process, io.jaegertracing.api_v2.Model.Process.Builder, io.jaegertracing.api_v2.Model.ProcessOrBuilder>
+            io.jaegertracing.api_v2.Model.Process, io.jaegertracing.api_v2.Model.Process.Builder, io.jaegertracing.api_v2.Model.ProcessOrBuilder> 
             getProcessFieldBuilder() {
           if (processBuilder_ == null) {
             processBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -7449,13 +7475,13 @@ public final class Model {
           }
           return processBuilder_;
         }
-        @Override
+        @java.lang.Override
         public final Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFieldsProto3(unknownFields);
+          return super.setUnknownFields(unknownFields);
         }
 
-        @Override
+        @java.lang.Override
         public final Builder mergeUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
           return super.mergeUnknownFields(unknownFields);
@@ -7477,7 +7503,7 @@ public final class Model {
 
       private static final com.google.protobuf.Parser<ProcessMapping>
           PARSER = new com.google.protobuf.AbstractParser<ProcessMapping>() {
-        @Override
+        @java.lang.Override
         public ProcessMapping parsePartialFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -7490,12 +7516,12 @@ public final class Model {
         return PARSER;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<ProcessMapping> getParserForType() {
         return PARSER;
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Trace.ProcessMapping getDefaultInstanceForType() {
         return DEFAULT_INSTANCE;
       }
@@ -7513,7 +7539,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
      */
-    public java.util.List<? extends io.jaegertracing.api_v2.Model.SpanOrBuilder>
+    public java.util.List<? extends io.jaegertracing.api_v2.Model.SpanOrBuilder> 
         getSpansOrBuilderList() {
       return spans_;
     }
@@ -7548,7 +7574,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.Trace.ProcessMapping process_map = 2 [(.gogoproto.nullable) = false];</code>
      */
-    public java.util.List<? extends io.jaegertracing.api_v2.Model.Trace.ProcessMappingOrBuilder>
+    public java.util.List<? extends io.jaegertracing.api_v2.Model.Trace.ProcessMappingOrBuilder> 
         getProcessMapOrBuilderList() {
       return processMap_;
     }
@@ -7590,7 +7616,7 @@ public final class Model {
     /**
      * <code>repeated string warnings = 3;</code>
      */
-    public String getWarnings(int index) {
+    public java.lang.String getWarnings(int index) {
       return warnings_.get(index);
     }
     /**
@@ -7602,7 +7628,7 @@ public final class Model {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -7612,7 +7638,7 @@ public final class Model {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < spans_.size(); i++) {
@@ -7627,7 +7653,7 @@ public final class Model {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -7654,8 +7680,8 @@ public final class Model {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
@@ -7664,18 +7690,17 @@ public final class Model {
       }
       io.jaegertracing.api_v2.Model.Trace other = (io.jaegertracing.api_v2.Model.Trace) obj;
 
-      boolean result = true;
-      result = result && getSpansList()
-          .equals(other.getSpansList());
-      result = result && getProcessMapList()
-          .equals(other.getProcessMapList());
-      result = result && getWarningsList()
-          .equals(other.getWarningsList());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!getSpansList()
+          .equals(other.getSpansList())) return false;
+      if (!getProcessMapList()
+          .equals(other.getProcessMapList())) return false;
+      if (!getWarningsList()
+          .equals(other.getWarningsList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -7769,7 +7794,7 @@ public final class Model {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -7777,13 +7802,13 @@ public final class Model {
     public static Builder newBuilder(io.jaegertracing.api_v2.Model.Trace prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -7798,13 +7823,13 @@ public final class Model {
         io.jaegertracing.api_v2.Model.TraceOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return internal_static_jaeger_api_v2_Trace_descriptor;
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Trace_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return internal_static_jaeger_api_v2_Trace_fieldAccessorTable
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Trace_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 io.jaegertracing.api_v2.Model.Trace.class, io.jaegertracing.api_v2.Model.Trace.Builder.class);
       }
@@ -7826,7 +7851,7 @@ public final class Model {
           getProcessMapFieldBuilder();
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         if (spansBuilder_ == null) {
@@ -7846,18 +7871,18 @@ public final class Model {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return internal_static_jaeger_api_v2_Trace_descriptor;
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Trace_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Trace getDefaultInstanceForType() {
-        return getDefaultInstance();
+        return io.jaegertracing.api_v2.Model.Trace.getDefaultInstance();
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Trace build() {
         io.jaegertracing.api_v2.Model.Trace result = buildPartial();
         if (!result.isInitialized()) {
@@ -7866,12 +7891,12 @@ public final class Model {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Trace buildPartial() {
         io.jaegertracing.api_v2.Model.Trace result = new io.jaegertracing.api_v2.Model.Trace(this);
         int from_bitField0_ = bitField0_;
         if (spansBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             spans_ = java.util.Collections.unmodifiableList(spans_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -7880,7 +7905,7 @@ public final class Model {
           result.spans_ = spansBuilder_.build();
         }
         if (processMapBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((bitField0_ & 0x00000002) != 0)) {
             processMap_ = java.util.Collections.unmodifiableList(processMap_);
             bitField0_ = (bitField0_ & ~0x00000002);
           }
@@ -7888,7 +7913,7 @@ public final class Model {
         } else {
           result.processMap_ = processMapBuilder_.build();
         }
-        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        if (((bitField0_ & 0x00000004) != 0)) {
           warnings_ = warnings_.getUnmodifiableView();
           bitField0_ = (bitField0_ & ~0x00000004);
         }
@@ -7897,39 +7922,39 @@ public final class Model {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
+          java.lang.Object value) {
+        return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof io.jaegertracing.api_v2.Model.Trace) {
           return mergeFrom((io.jaegertracing.api_v2.Model.Trace)other);
@@ -7940,7 +7965,7 @@ public final class Model {
       }
 
       public Builder mergeFrom(io.jaegertracing.api_v2.Model.Trace other) {
-        if (other == getDefaultInstance()) return this;
+        if (other == io.jaegertracing.api_v2.Model.Trace.getDefaultInstance()) return this;
         if (spansBuilder_ == null) {
           if (!other.spans_.isEmpty()) {
             if (spans_.isEmpty()) {
@@ -7959,7 +7984,7 @@ public final class Model {
               spansBuilder_ = null;
               spans_ = other.spans_;
               bitField0_ = (bitField0_ & ~0x00000001);
-              spansBuilder_ =
+              spansBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getSpansFieldBuilder() : null;
             } else {
@@ -7985,7 +8010,7 @@ public final class Model {
               processMapBuilder_ = null;
               processMap_ = other.processMap_;
               bitField0_ = (bitField0_ & ~0x00000002);
-              processMapBuilder_ =
+              processMapBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getProcessMapFieldBuilder() : null;
             } else {
@@ -8008,12 +8033,12 @@ public final class Model {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8036,7 +8061,7 @@ public final class Model {
       private java.util.List<io.jaegertracing.api_v2.Model.Span> spans_ =
         java.util.Collections.emptyList();
       private void ensureSpansIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           spans_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.Span>(spans_);
           bitField0_ |= 0x00000001;
          }
@@ -8171,10 +8196,10 @@ public final class Model {
        * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
        */
       public Builder addAllSpans(
-          Iterable<? extends io.jaegertracing.api_v2.Model.Span> values) {
+          java.lang.Iterable<? extends io.jaegertracing.api_v2.Model.Span> values) {
         if (spansBuilder_ == null) {
           ensureSpansIsMutable();
-          addAll(
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
               values, spans_);
           onChanged();
         } else {
@@ -8228,7 +8253,7 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
        */
-      public java.util.List<? extends io.jaegertracing.api_v2.Model.SpanOrBuilder>
+      public java.util.List<? extends io.jaegertracing.api_v2.Model.SpanOrBuilder> 
            getSpansOrBuilderList() {
         if (spansBuilder_ != null) {
           return spansBuilder_.getMessageOrBuilderList();
@@ -8254,18 +8279,18 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
        */
-      public java.util.List<io.jaegertracing.api_v2.Model.Span.Builder>
+      public java.util.List<io.jaegertracing.api_v2.Model.Span.Builder> 
            getSpansBuilderList() {
         return getSpansFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          io.jaegertracing.api_v2.Model.Span, io.jaegertracing.api_v2.Model.Span.Builder, io.jaegertracing.api_v2.Model.SpanOrBuilder>
+          io.jaegertracing.api_v2.Model.Span, io.jaegertracing.api_v2.Model.Span.Builder, io.jaegertracing.api_v2.Model.SpanOrBuilder> 
           getSpansFieldBuilder() {
         if (spansBuilder_ == null) {
           spansBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               io.jaegertracing.api_v2.Model.Span, io.jaegertracing.api_v2.Model.Span.Builder, io.jaegertracing.api_v2.Model.SpanOrBuilder>(
                   spans_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           spans_ = null;
@@ -8276,7 +8301,7 @@ public final class Model {
       private java.util.List<io.jaegertracing.api_v2.Model.Trace.ProcessMapping> processMap_ =
         java.util.Collections.emptyList();
       private void ensureProcessMapIsMutable() {
-        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+        if (!((bitField0_ & 0x00000002) != 0)) {
           processMap_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.Trace.ProcessMapping>(processMap_);
           bitField0_ |= 0x00000002;
          }
@@ -8411,10 +8436,10 @@ public final class Model {
        * <code>repeated .jaeger.api_v2.Trace.ProcessMapping process_map = 2 [(.gogoproto.nullable) = false];</code>
        */
       public Builder addAllProcessMap(
-          Iterable<? extends io.jaegertracing.api_v2.Model.Trace.ProcessMapping> values) {
+          java.lang.Iterable<? extends io.jaegertracing.api_v2.Model.Trace.ProcessMapping> values) {
         if (processMapBuilder_ == null) {
           ensureProcessMapIsMutable();
-          addAll(
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
               values, processMap_);
           onChanged();
         } else {
@@ -8468,7 +8493,7 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.Trace.ProcessMapping process_map = 2 [(.gogoproto.nullable) = false];</code>
        */
-      public java.util.List<? extends io.jaegertracing.api_v2.Model.Trace.ProcessMappingOrBuilder>
+      public java.util.List<? extends io.jaegertracing.api_v2.Model.Trace.ProcessMappingOrBuilder> 
            getProcessMapOrBuilderList() {
         if (processMapBuilder_ != null) {
           return processMapBuilder_.getMessageOrBuilderList();
@@ -8494,18 +8519,18 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.Trace.ProcessMapping process_map = 2 [(.gogoproto.nullable) = false];</code>
        */
-      public java.util.List<io.jaegertracing.api_v2.Model.Trace.ProcessMapping.Builder>
+      public java.util.List<io.jaegertracing.api_v2.Model.Trace.ProcessMapping.Builder> 
            getProcessMapBuilderList() {
         return getProcessMapFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          io.jaegertracing.api_v2.Model.Trace.ProcessMapping, io.jaegertracing.api_v2.Model.Trace.ProcessMapping.Builder, io.jaegertracing.api_v2.Model.Trace.ProcessMappingOrBuilder>
+          io.jaegertracing.api_v2.Model.Trace.ProcessMapping, io.jaegertracing.api_v2.Model.Trace.ProcessMapping.Builder, io.jaegertracing.api_v2.Model.Trace.ProcessMappingOrBuilder> 
           getProcessMapFieldBuilder() {
         if (processMapBuilder_ == null) {
           processMapBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               io.jaegertracing.api_v2.Model.Trace.ProcessMapping, io.jaegertracing.api_v2.Model.Trace.ProcessMapping.Builder, io.jaegertracing.api_v2.Model.Trace.ProcessMappingOrBuilder>(
                   processMap_,
-                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
                   isClean());
           processMap_ = null;
@@ -8515,7 +8540,7 @@ public final class Model {
 
       private com.google.protobuf.LazyStringList warnings_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       private void ensureWarningsIsMutable() {
-        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+        if (!((bitField0_ & 0x00000004) != 0)) {
           warnings_ = new com.google.protobuf.LazyStringArrayList(warnings_);
           bitField0_ |= 0x00000004;
          }
@@ -8536,7 +8561,7 @@ public final class Model {
       /**
        * <code>repeated string warnings = 3;</code>
        */
-      public String getWarnings(int index) {
+      public java.lang.String getWarnings(int index) {
         return warnings_.get(index);
       }
       /**
@@ -8550,7 +8575,7 @@ public final class Model {
        * <code>repeated string warnings = 3;</code>
        */
       public Builder setWarnings(
-          int index, String value) {
+          int index, java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -8563,7 +8588,7 @@ public final class Model {
        * <code>repeated string warnings = 3;</code>
        */
       public Builder addWarnings(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -8576,7 +8601,7 @@ public final class Model {
        * <code>repeated string warnings = 3;</code>
        */
       public Builder addAllWarnings(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         ensureWarningsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, warnings_);
@@ -8606,13 +8631,13 @@ public final class Model {
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -8634,7 +8659,7 @@ public final class Model {
 
     private static final com.google.protobuf.Parser<Trace>
         PARSER = new com.google.protobuf.AbstractParser<Trace>() {
-      @Override
+      @java.lang.Override
       public Trace parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -8647,12 +8672,12 @@ public final class Model {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Trace> getParserForType() {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public io.jaegertracing.api_v2.Model.Trace getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -8666,7 +8691,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
      */
-    java.util.List<io.jaegertracing.api_v2.Model.Span>
+    java.util.List<io.jaegertracing.api_v2.Model.Span> 
         getSpansList();
     /**
      * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
@@ -8679,7 +8704,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
      */
-    java.util.List<? extends io.jaegertracing.api_v2.Model.SpanOrBuilder>
+    java.util.List<? extends io.jaegertracing.api_v2.Model.SpanOrBuilder> 
         getSpansOrBuilderList();
     /**
      * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
@@ -8716,7 +8741,14 @@ public final class Model {
       spans_ = java.util.Collections.emptyList();
     }
 
-    @Override
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new Batch();
+    }
+
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -8727,7 +8759,7 @@ public final class Model {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -8741,7 +8773,7 @@ public final class Model {
               done = true;
               break;
             case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 spans_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.Span>();
                 mutable_bitField0_ |= 0x00000001;
               }
@@ -8763,7 +8795,7 @@ public final class Model {
               break;
             }
             default: {
-              if (!parseUnknownFieldProto3(
+              if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
@@ -8777,7 +8809,7 @@ public final class Model {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
           spans_ = java.util.Collections.unmodifiableList(spans_);
         }
         this.unknownFields = unknownFields.build();
@@ -8786,18 +8818,17 @@ public final class Model {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return internal_static_jaeger_api_v2_Batch_descriptor;
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Batch_descriptor;
     }
 
-    @Override
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return internal_static_jaeger_api_v2_Batch_fieldAccessorTable
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Batch_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               io.jaegertracing.api_v2.Model.Batch.class, io.jaegertracing.api_v2.Model.Batch.Builder.class);
     }
 
-    private int bitField0_;
     public static final int SPANS_FIELD_NUMBER = 1;
     private java.util.List<io.jaegertracing.api_v2.Model.Span> spans_;
     /**
@@ -8809,7 +8840,7 @@ public final class Model {
     /**
      * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
      */
-    public java.util.List<? extends io.jaegertracing.api_v2.Model.SpanOrBuilder>
+    public java.util.List<? extends io.jaegertracing.api_v2.Model.SpanOrBuilder> 
         getSpansOrBuilderList() {
       return spans_;
     }
@@ -8855,7 +8886,7 @@ public final class Model {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -8865,7 +8896,7 @@ public final class Model {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       for (int i = 0; i < spans_.size(); i++) {
@@ -8877,7 +8908,7 @@ public final class Model {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -8896,8 +8927,8 @@ public final class Model {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
@@ -8906,19 +8937,18 @@ public final class Model {
       }
       io.jaegertracing.api_v2.Model.Batch other = (io.jaegertracing.api_v2.Model.Batch) obj;
 
-      boolean result = true;
-      result = result && getSpansList()
-          .equals(other.getSpansList());
-      result = result && (hasProcess() == other.hasProcess());
+      if (!getSpansList()
+          .equals(other.getSpansList())) return false;
+      if (hasProcess() != other.hasProcess()) return false;
       if (hasProcess()) {
-        result = result && getProcess()
-            .equals(other.getProcess());
+        if (!getProcess()
+            .equals(other.getProcess())) return false;
       }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -9008,7 +9038,7 @@ public final class Model {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -9016,13 +9046,13 @@ public final class Model {
     public static Builder newBuilder(io.jaegertracing.api_v2.Model.Batch prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -9037,13 +9067,13 @@ public final class Model {
         io.jaegertracing.api_v2.Model.BatchOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return internal_static_jaeger_api_v2_Batch_descriptor;
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Batch_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return internal_static_jaeger_api_v2_Batch_fieldAccessorTable
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Batch_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 io.jaegertracing.api_v2.Model.Batch.class, io.jaegertracing.api_v2.Model.Batch.Builder.class);
       }
@@ -9064,7 +9094,7 @@ public final class Model {
           getSpansFieldBuilder();
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         if (spansBuilder_ == null) {
@@ -9082,18 +9112,18 @@ public final class Model {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return internal_static_jaeger_api_v2_Batch_descriptor;
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_Batch_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Batch getDefaultInstanceForType() {
-        return getDefaultInstance();
+        return io.jaegertracing.api_v2.Model.Batch.getDefaultInstance();
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Batch build() {
         io.jaegertracing.api_v2.Model.Batch result = buildPartial();
         if (!result.isInitialized()) {
@@ -9102,13 +9132,12 @@ public final class Model {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public io.jaegertracing.api_v2.Model.Batch buildPartial() {
         io.jaegertracing.api_v2.Model.Batch result = new io.jaegertracing.api_v2.Model.Batch(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
         if (spansBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          if (((bitField0_ & 0x00000001) != 0)) {
             spans_ = java.util.Collections.unmodifiableList(spans_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
@@ -9121,44 +9150,43 @@ public final class Model {
         } else {
           result.process_ = processBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
-        return (Builder) super.clone();
+        return super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
+          java.lang.Object value) {
+        return super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
+        return super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
+        return super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof io.jaegertracing.api_v2.Model.Batch) {
           return mergeFrom((io.jaegertracing.api_v2.Model.Batch)other);
@@ -9169,7 +9197,7 @@ public final class Model {
       }
 
       public Builder mergeFrom(io.jaegertracing.api_v2.Model.Batch other) {
-        if (other == getDefaultInstance()) return this;
+        if (other == io.jaegertracing.api_v2.Model.Batch.getDefaultInstance()) return this;
         if (spansBuilder_ == null) {
           if (!other.spans_.isEmpty()) {
             if (spans_.isEmpty()) {
@@ -9188,7 +9216,7 @@ public final class Model {
               spansBuilder_ = null;
               spans_ = other.spans_;
               bitField0_ = (bitField0_ & ~0x00000001);
-              spansBuilder_ =
+              spansBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getSpansFieldBuilder() : null;
             } else {
@@ -9204,12 +9232,12 @@ public final class Model {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9232,7 +9260,7 @@ public final class Model {
       private java.util.List<io.jaegertracing.api_v2.Model.Span> spans_ =
         java.util.Collections.emptyList();
       private void ensureSpansIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+        if (!((bitField0_ & 0x00000001) != 0)) {
           spans_ = new java.util.ArrayList<io.jaegertracing.api_v2.Model.Span>(spans_);
           bitField0_ |= 0x00000001;
          }
@@ -9367,10 +9395,10 @@ public final class Model {
        * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
        */
       public Builder addAllSpans(
-          Iterable<? extends io.jaegertracing.api_v2.Model.Span> values) {
+          java.lang.Iterable<? extends io.jaegertracing.api_v2.Model.Span> values) {
         if (spansBuilder_ == null) {
           ensureSpansIsMutable();
-          addAll(
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
               values, spans_);
           onChanged();
         } else {
@@ -9424,7 +9452,7 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
        */
-      public java.util.List<? extends io.jaegertracing.api_v2.Model.SpanOrBuilder>
+      public java.util.List<? extends io.jaegertracing.api_v2.Model.SpanOrBuilder> 
            getSpansOrBuilderList() {
         if (spansBuilder_ != null) {
           return spansBuilder_.getMessageOrBuilderList();
@@ -9450,18 +9478,18 @@ public final class Model {
       /**
        * <code>repeated .jaeger.api_v2.Span spans = 1;</code>
        */
-      public java.util.List<io.jaegertracing.api_v2.Model.Span.Builder>
+      public java.util.List<io.jaegertracing.api_v2.Model.Span.Builder> 
            getSpansBuilderList() {
         return getSpansFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          io.jaegertracing.api_v2.Model.Span, io.jaegertracing.api_v2.Model.Span.Builder, io.jaegertracing.api_v2.Model.SpanOrBuilder>
+          io.jaegertracing.api_v2.Model.Span, io.jaegertracing.api_v2.Model.Span.Builder, io.jaegertracing.api_v2.Model.SpanOrBuilder> 
           getSpansFieldBuilder() {
         if (spansBuilder_ == null) {
           spansBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               io.jaegertracing.api_v2.Model.Span, io.jaegertracing.api_v2.Model.Span.Builder, io.jaegertracing.api_v2.Model.SpanOrBuilder>(
                   spans_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
           spans_ = null;
@@ -9469,7 +9497,7 @@ public final class Model {
         return spansBuilder_;
       }
 
-      private io.jaegertracing.api_v2.Model.Process process_ = null;
+      private io.jaegertracing.api_v2.Model.Process process_;
       private com.google.protobuf.SingleFieldBuilderV3<
           io.jaegertracing.api_v2.Model.Process, io.jaegertracing.api_v2.Model.Process.Builder, io.jaegertracing.api_v2.Model.ProcessOrBuilder> processBuilder_;
       /**
@@ -9554,7 +9582,7 @@ public final class Model {
        * <code>.jaeger.api_v2.Process process = 2 [(.gogoproto.nullable) = true];</code>
        */
       public io.jaegertracing.api_v2.Model.Process.Builder getProcessBuilder() {
-
+        
         onChanged();
         return getProcessFieldBuilder().getBuilder();
       }
@@ -9573,7 +9601,7 @@ public final class Model {
        * <code>.jaeger.api_v2.Process process = 2 [(.gogoproto.nullable) = true];</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          io.jaegertracing.api_v2.Model.Process, io.jaegertracing.api_v2.Model.Process.Builder, io.jaegertracing.api_v2.Model.ProcessOrBuilder>
+          io.jaegertracing.api_v2.Model.Process, io.jaegertracing.api_v2.Model.Process.Builder, io.jaegertracing.api_v2.Model.ProcessOrBuilder> 
           getProcessFieldBuilder() {
         if (processBuilder_ == null) {
           processBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -9585,13 +9613,13 @@ public final class Model {
         }
         return processBuilder_;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
+        return super.setUnknownFields(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -9613,7 +9641,7 @@ public final class Model {
 
     private static final com.google.protobuf.Parser<Batch>
         PARSER = new com.google.protobuf.AbstractParser<Batch>() {
-      @Override
+      @java.lang.Override
       public Batch parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -9626,13 +9654,905 @@ public final class Model {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Batch> getParserForType() {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public io.jaegertracing.api_v2.Model.Batch getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface DependencyLinkOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:jaeger.api_v2.DependencyLink)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string parent = 1;</code>
+     */
+    java.lang.String getParent();
+    /**
+     * <code>string parent = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getParentBytes();
+
+    /**
+     * <code>string child = 2;</code>
+     */
+    java.lang.String getChild();
+    /**
+     * <code>string child = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getChildBytes();
+
+    /**
+     * <code>uint64 call_count = 3;</code>
+     */
+    long getCallCount();
+
+    /**
+     * <code>string source = 4;</code>
+     */
+    java.lang.String getSource();
+    /**
+     * <code>string source = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getSourceBytes();
+  }
+  /**
+   * Protobuf type {@code jaeger.api_v2.DependencyLink}
+   */
+  public  static final class DependencyLink extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:jaeger.api_v2.DependencyLink)
+      DependencyLinkOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use DependencyLink.newBuilder() to construct.
+    private DependencyLink(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private DependencyLink() {
+      parent_ = "";
+      child_ = "";
+      source_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DependencyLink();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private DependencyLink(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              parent_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              child_ = s;
+              break;
+            }
+            case 24: {
+
+              callCount_ = input.readUInt64();
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              source_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_DependencyLink_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_DependencyLink_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              io.jaegertracing.api_v2.Model.DependencyLink.class, io.jaegertracing.api_v2.Model.DependencyLink.Builder.class);
+    }
+
+    public static final int PARENT_FIELD_NUMBER = 1;
+    private volatile java.lang.Object parent_;
+    /**
+     * <code>string parent = 1;</code>
+     */
+    public java.lang.String getParent() {
+      java.lang.Object ref = parent_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        parent_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string parent = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getParentBytes() {
+      java.lang.Object ref = parent_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        parent_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CHILD_FIELD_NUMBER = 2;
+    private volatile java.lang.Object child_;
+    /**
+     * <code>string child = 2;</code>
+     */
+    public java.lang.String getChild() {
+      java.lang.Object ref = child_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        child_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string child = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getChildBytes() {
+      java.lang.Object ref = child_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        child_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CALL_COUNT_FIELD_NUMBER = 3;
+    private long callCount_;
+    /**
+     * <code>uint64 call_count = 3;</code>
+     */
+    public long getCallCount() {
+      return callCount_;
+    }
+
+    public static final int SOURCE_FIELD_NUMBER = 4;
+    private volatile java.lang.Object source_;
+    /**
+     * <code>string source = 4;</code>
+     */
+    public java.lang.String getSource() {
+      java.lang.Object ref = source_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        source_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string source = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSourceBytes() {
+      java.lang.Object ref = source_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        source_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getParentBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, parent_);
+      }
+      if (!getChildBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, child_);
+      }
+      if (callCount_ != 0L) {
+        output.writeUInt64(3, callCount_);
+      }
+      if (!getSourceBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, source_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getParentBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, parent_);
+      }
+      if (!getChildBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, child_);
+      }
+      if (callCount_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(3, callCount_);
+      }
+      if (!getSourceBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, source_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof io.jaegertracing.api_v2.Model.DependencyLink)) {
+        return super.equals(obj);
+      }
+      io.jaegertracing.api_v2.Model.DependencyLink other = (io.jaegertracing.api_v2.Model.DependencyLink) obj;
+
+      if (!getParent()
+          .equals(other.getParent())) return false;
+      if (!getChild()
+          .equals(other.getChild())) return false;
+      if (getCallCount()
+          != other.getCallCount()) return false;
+      if (!getSource()
+          .equals(other.getSource())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + PARENT_FIELD_NUMBER;
+      hash = (53 * hash) + getParent().hashCode();
+      hash = (37 * hash) + CHILD_FIELD_NUMBER;
+      hash = (53 * hash) + getChild().hashCode();
+      hash = (37 * hash) + CALL_COUNT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getCallCount());
+      hash = (37 * hash) + SOURCE_FIELD_NUMBER;
+      hash = (53 * hash) + getSource().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static io.jaegertracing.api_v2.Model.DependencyLink parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.jaegertracing.api_v2.Model.DependencyLink parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.jaegertracing.api_v2.Model.DependencyLink parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.jaegertracing.api_v2.Model.DependencyLink parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.jaegertracing.api_v2.Model.DependencyLink parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static io.jaegertracing.api_v2.Model.DependencyLink parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static io.jaegertracing.api_v2.Model.DependencyLink parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.jaegertracing.api_v2.Model.DependencyLink parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.jaegertracing.api_v2.Model.DependencyLink parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static io.jaegertracing.api_v2.Model.DependencyLink parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static io.jaegertracing.api_v2.Model.DependencyLink parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static io.jaegertracing.api_v2.Model.DependencyLink parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(io.jaegertracing.api_v2.Model.DependencyLink prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code jaeger.api_v2.DependencyLink}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:jaeger.api_v2.DependencyLink)
+        io.jaegertracing.api_v2.Model.DependencyLinkOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_DependencyLink_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_DependencyLink_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                io.jaegertracing.api_v2.Model.DependencyLink.class, io.jaegertracing.api_v2.Model.DependencyLink.Builder.class);
+      }
+
+      // Construct using io.jaegertracing.api_v2.Model.DependencyLink.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        parent_ = "";
+
+        child_ = "";
+
+        callCount_ = 0L;
+
+        source_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return io.jaegertracing.api_v2.Model.internal_static_jaeger_api_v2_DependencyLink_descriptor;
+      }
+
+      @java.lang.Override
+      public io.jaegertracing.api_v2.Model.DependencyLink getDefaultInstanceForType() {
+        return io.jaegertracing.api_v2.Model.DependencyLink.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public io.jaegertracing.api_v2.Model.DependencyLink build() {
+        io.jaegertracing.api_v2.Model.DependencyLink result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public io.jaegertracing.api_v2.Model.DependencyLink buildPartial() {
+        io.jaegertracing.api_v2.Model.DependencyLink result = new io.jaegertracing.api_v2.Model.DependencyLink(this);
+        result.parent_ = parent_;
+        result.child_ = child_;
+        result.callCount_ = callCount_;
+        result.source_ = source_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof io.jaegertracing.api_v2.Model.DependencyLink) {
+          return mergeFrom((io.jaegertracing.api_v2.Model.DependencyLink)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(io.jaegertracing.api_v2.Model.DependencyLink other) {
+        if (other == io.jaegertracing.api_v2.Model.DependencyLink.getDefaultInstance()) return this;
+        if (!other.getParent().isEmpty()) {
+          parent_ = other.parent_;
+          onChanged();
+        }
+        if (!other.getChild().isEmpty()) {
+          child_ = other.child_;
+          onChanged();
+        }
+        if (other.getCallCount() != 0L) {
+          setCallCount(other.getCallCount());
+        }
+        if (!other.getSource().isEmpty()) {
+          source_ = other.source_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        io.jaegertracing.api_v2.Model.DependencyLink parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (io.jaegertracing.api_v2.Model.DependencyLink) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object parent_ = "";
+      /**
+       * <code>string parent = 1;</code>
+       */
+      public java.lang.String getParent() {
+        java.lang.Object ref = parent_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          parent_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string parent = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getParentBytes() {
+        java.lang.Object ref = parent_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          parent_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string parent = 1;</code>
+       */
+      public Builder setParent(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        parent_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string parent = 1;</code>
+       */
+      public Builder clearParent() {
+        
+        parent_ = getDefaultInstance().getParent();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string parent = 1;</code>
+       */
+      public Builder setParentBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        parent_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object child_ = "";
+      /**
+       * <code>string child = 2;</code>
+       */
+      public java.lang.String getChild() {
+        java.lang.Object ref = child_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          child_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string child = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getChildBytes() {
+        java.lang.Object ref = child_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          child_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string child = 2;</code>
+       */
+      public Builder setChild(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        child_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string child = 2;</code>
+       */
+      public Builder clearChild() {
+        
+        child_ = getDefaultInstance().getChild();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string child = 2;</code>
+       */
+      public Builder setChildBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        child_ = value;
+        onChanged();
+        return this;
+      }
+
+      private long callCount_ ;
+      /**
+       * <code>uint64 call_count = 3;</code>
+       */
+      public long getCallCount() {
+        return callCount_;
+      }
+      /**
+       * <code>uint64 call_count = 3;</code>
+       */
+      public Builder setCallCount(long value) {
+        
+        callCount_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 call_count = 3;</code>
+       */
+      public Builder clearCallCount() {
+        
+        callCount_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object source_ = "";
+      /**
+       * <code>string source = 4;</code>
+       */
+      public java.lang.String getSource() {
+        java.lang.Object ref = source_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          source_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string source = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSourceBytes() {
+        java.lang.Object ref = source_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          source_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string source = 4;</code>
+       */
+      public Builder setSource(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        source_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string source = 4;</code>
+       */
+      public Builder clearSource() {
+        
+        source_ = getDefaultInstance().getSource();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string source = 4;</code>
+       */
+      public Builder setSourceBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        source_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:jaeger.api_v2.DependencyLink)
+    }
+
+    // @@protoc_insertion_point(class_scope:jaeger.api_v2.DependencyLink)
+    private static final io.jaegertracing.api_v2.Model.DependencyLink DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new io.jaegertracing.api_v2.Model.DependencyLink();
+    }
+
+    public static io.jaegertracing.api_v2.Model.DependencyLink getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<DependencyLink>
+        PARSER = new com.google.protobuf.AbstractParser<DependencyLink>() {
+      @java.lang.Override
+      public DependencyLink parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new DependencyLink(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<DependencyLink> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DependencyLink> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public io.jaegertracing.api_v2.Model.DependencyLink getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -9640,44 +10560,49 @@ public final class Model {
 
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_jaeger_api_v2_KeyValue_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_jaeger_api_v2_KeyValue_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_jaeger_api_v2_Log_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_jaeger_api_v2_Log_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_jaeger_api_v2_SpanRef_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_jaeger_api_v2_SpanRef_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_jaeger_api_v2_Process_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_jaeger_api_v2_Process_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_jaeger_api_v2_Span_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_jaeger_api_v2_Span_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_jaeger_api_v2_Trace_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_jaeger_api_v2_Trace_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_jaeger_api_v2_Trace_ProcessMapping_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_jaeger_api_v2_Trace_ProcessMapping_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_jaeger_api_v2_Batch_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_jaeger_api_v2_Batch_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_jaeger_api_v2_DependencyLink_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_jaeger_api_v2_DependencyLink_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -9686,7 +10611,7 @@ public final class Model {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\013model.proto\022\rjaeger.api_v2\032\024gogoproto/" +
       "gogo.proto\032\034google/api/annotations.proto" +
       "\032\037google/protobuf/timestamp.proto\032\036googl" +
@@ -9723,93 +10648,93 @@ public final class Model {
       "-\n\007process\030\002 \001(\0132\026.jaeger.api_v2.Process" +
       "B\004\310\336\037\000\"Z\n\005Batch\022\"\n\005spans\030\001 \003(\0132\023.jaeger." +
       "api_v2.Span\022-\n\007process\030\002 \001(\0132\026.jaeger.ap" +
-      "i_v2.ProcessB\004\310\336\037\001*E\n\tValueType\022\n\n\006STRIN" +
-      "G\020\000\022\010\n\004BOOL\020\001\022\t\n\005INT64\020\002\022\013\n\007FLOAT64\020\003\022\n\n" +
-      "\006BINARY\020\004*-\n\013SpanRefType\022\014\n\010CHILD_OF\020\000\022\020" +
-      "\n\014FOLLOWS_FROM\020\001B0\n\027io.jaegertracing.api" +
-      "_v2Z\005model\310\342\036\001\320\342\036\001\340\342\036\001\300\343\036\001b\006proto3"
+      "i_v2.ProcessB\004\310\336\037\001\"S\n\016DependencyLink\022\016\n\006" +
+      "parent\030\001 \001(\t\022\r\n\005child\030\002 \001(\t\022\022\n\ncall_coun" +
+      "t\030\003 \001(\004\022\016\n\006source\030\004 \001(\t*E\n\tValueType\022\n\n\006" +
+      "STRING\020\000\022\010\n\004BOOL\020\001\022\t\n\005INT64\020\002\022\013\n\007FLOAT64" +
+      "\020\003\022\n\n\006BINARY\020\004*-\n\013SpanRefType\022\014\n\010CHILD_O" +
+      "F\020\000\022\020\n\014FOLLOWS_FROM\020\001B0\n\027io.jaegertracin" +
+      "g.api_v2Z\005model\310\342\036\001\320\342\036\001\340\342\036\001\300\343\036\001b\006proto3"
     };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
-    com.google.protobuf.Descriptors.FileDescriptor
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          // com.google.protobuf.GoGoProtos.getDescriptor(),
-          // com.google.api.AnnotationsProto.getDescriptor(),
+          com.google.protobuf.GoGoProtos.getDescriptor(),
+          com.google.api.AnnotationsProto.getDescriptor(),
           com.google.protobuf.TimestampProto.getDescriptor(),
           com.google.protobuf.DurationProto.getDescriptor(),
-        }, assigner);
+        });
     internal_static_jaeger_api_v2_KeyValue_descriptor =
       getDescriptor().getMessageTypes().get(0);
     internal_static_jaeger_api_v2_KeyValue_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_jaeger_api_v2_KeyValue_descriptor,
-        new String[] { "Key", "VType", "VStr", "VBool", "VInt64", "VFloat64", "VBinary", });
+        new java.lang.String[] { "Key", "VType", "VStr", "VBool", "VInt64", "VFloat64", "VBinary", });
     internal_static_jaeger_api_v2_Log_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_jaeger_api_v2_Log_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_jaeger_api_v2_Log_descriptor,
-        new String[] { "Timestamp", "Fields", });
+        new java.lang.String[] { "Timestamp", "Fields", });
     internal_static_jaeger_api_v2_SpanRef_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_jaeger_api_v2_SpanRef_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_jaeger_api_v2_SpanRef_descriptor,
-        new String[] { "TraceId", "SpanId", "RefType", });
+        new java.lang.String[] { "TraceId", "SpanId", "RefType", });
     internal_static_jaeger_api_v2_Process_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_jaeger_api_v2_Process_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_jaeger_api_v2_Process_descriptor,
-        new String[] { "ServiceName", "Tags", });
+        new java.lang.String[] { "ServiceName", "Tags", });
     internal_static_jaeger_api_v2_Span_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_jaeger_api_v2_Span_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_jaeger_api_v2_Span_descriptor,
-        new String[] { "TraceId", "SpanId", "OperationName", "References", "Flags", "StartTime", "Duration", "Tags", "Logs", "Process", "ProcessId", "Warnings", });
+        new java.lang.String[] { "TraceId", "SpanId", "OperationName", "References", "Flags", "StartTime", "Duration", "Tags", "Logs", "Process", "ProcessId", "Warnings", });
     internal_static_jaeger_api_v2_Trace_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_jaeger_api_v2_Trace_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_jaeger_api_v2_Trace_descriptor,
-        new String[] { "Spans", "ProcessMap", "Warnings", });
+        new java.lang.String[] { "Spans", "ProcessMap", "Warnings", });
     internal_static_jaeger_api_v2_Trace_ProcessMapping_descriptor =
       internal_static_jaeger_api_v2_Trace_descriptor.getNestedTypes().get(0);
     internal_static_jaeger_api_v2_Trace_ProcessMapping_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_jaeger_api_v2_Trace_ProcessMapping_descriptor,
-        new String[] { "ProcessId", "Process", });
+        new java.lang.String[] { "ProcessId", "Process", });
     internal_static_jaeger_api_v2_Batch_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_jaeger_api_v2_Batch_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_jaeger_api_v2_Batch_descriptor,
-        new String[] { "Spans", "Process", });
+        new java.lang.String[] { "Spans", "Process", });
+    internal_static_jaeger_api_v2_DependencyLink_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_jaeger_api_v2_DependencyLink_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_jaeger_api_v2_DependencyLink_descriptor,
+        new java.lang.String[] { "Parent", "Child", "CallCount", "Source", });
     com.google.protobuf.ExtensionRegistry registry =
         com.google.protobuf.ExtensionRegistry.newInstance();
-    // registry.add(com.google.protobuf.GoGoProtos.compare);
-    // registry.add(com.google.protobuf.GoGoProtos.customname);
-    // registry.add(com.google.protobuf.GoGoProtos.customtype);
-    // registry.add(com.google.protobuf.GoGoProtos.equal);
-    // registry.add(com.google.protobuf.GoGoProtos.goprotoRegistration);
-    // registry.add(com.google.protobuf.GoGoProtos.marshalerAll);
-    // registry.add(com.google.protobuf.GoGoProtos.nullable);
-    // registry.add(com.google.protobuf.GoGoProtos.sizerAll);
-    // registry.add(com.google.protobuf.GoGoProtos.stdduration);
-    // registry.add(com.google.protobuf.GoGoProtos.stdtime);
-    // registry.add(com.google.protobuf.GoGoProtos.unmarshalerAll);
+    registry.add(com.google.protobuf.GoGoProtos.compare);
+    registry.add(com.google.protobuf.GoGoProtos.customname);
+    registry.add(com.google.protobuf.GoGoProtos.customtype);
+    registry.add(com.google.protobuf.GoGoProtos.equal);
+    registry.add(com.google.protobuf.GoGoProtos.goprotoRegistration);
+    registry.add(com.google.protobuf.GoGoProtos.marshalerAll);
+    registry.add(com.google.protobuf.GoGoProtos.nullable);
+    registry.add(com.google.protobuf.GoGoProtos.sizerAll);
+    registry.add(com.google.protobuf.GoGoProtos.stdduration);
+    registry.add(com.google.protobuf.GoGoProtos.stdtime);
+    registry.add(com.google.protobuf.GoGoProtos.unmarshalerAll);
     com.google.protobuf.Descriptors.FileDescriptor
         .internalUpdateFileDescriptor(descriptor, registry);
-    // com.google.protobuf.GoGoProtos.getDescriptor();
-    // com.google.api.AnnotationsProto.getDescriptor();
+    com.google.protobuf.GoGoProtos.getDescriptor();
+    com.google.api.AnnotationsProto.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();
     com.google.protobuf.DurationProto.getDescriptor();
   }

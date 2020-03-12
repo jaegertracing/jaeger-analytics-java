@@ -3,6 +3,12 @@ DOCKER_IMAGE?=quay.io/jaegertracing/jaeger-analytics-java
 DOCKER_TAG?=latest
 SPARK_DOCKER_IMAGE?=quay.io/jaegertracing/jaeger-analytics-java-spark
 
+JAEGER_DOCKER_PROTOBUF ?= jaegertracing/protobuf:0.1.0
+PROTOC := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${JAEGER_DOCKER_PROTOBUF} --proto_path=${PWD}
+PROTO_INCLUDES ?= \
+	-Iprotodef \
+	-I/usr/include/github.com/gogo/protobuf
+
 .PHONY: test
 test:
 	./mvnw clean test
@@ -38,3 +44,42 @@ prom-run:
 grafana-run:
 	echo "Open browser on :3000"
 	docker run --rm -it --net=host -v ${PWD}/grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml -v ${PWD}/grafana/dashboard-trace.yml:/etc/grafana/provisioning/dashboards/dashboard-trace.yml -v ${PWD}/grafana/dashboard-tracequality.json:/var/lib/grafana/dashboards/tracequality.json grafana/grafana
+
+
+.PHONY: proto
+proto:
+	# Generate gogo, gRPC-Gateway, swagger, go-validators, gRPC-storage-plugin output.
+	#
+	# -I declares import folders, in order of importance
+	# This is how proto resolves the protofile imports.
+	# It will check for the protofile relative to each of these
+	# folders and use the first one it finds.
+	#
+	# --gogo_out generates GoGo Protobuf output with gRPC plugin enabled.
+	# --grpc-gateway_out generates gRPC-Gateway output.
+	# --swagger_out generates an OpenAPI 2.0 specification for our gRPC-Gateway endpoints.
+	# --govalidators_out generates Go validation files for our messages types, if specified.
+	#
+	# The lines starting with Mgoogle/... are proto import replacements,
+	# which cause the generated file to import the specified packages
+	# instead of the go_package's declared by the imported protof files.
+	$(PROTOC) \
+		$(PROTO_INCLUDES) \
+		--java_out=$(PWD)/proto/src/main/java protodef/model.proto
+
+	$(PROTOC) \
+		$(PROTO_INCLUDES) \
+		--java_out=$(PWD)/proto/src/main/java protodef/api_v2/query.proto
+
+	$(PROTOC) \
+		$(PROTO_INCLUDES) \
+		--grpc-java_out=$(PWD)/proto/src/main/java protodef/api_v2/query.proto
+
+	$(PROTOC) \
+		$(PROTO_INCLUDES) \
+		--java_out=$(PWD)/proto/src/main/java /usr/include/protoc-gen-swagger/options/openapiv2.proto
+
+	$(PROTOC) \
+		$(PROTO_INCLUDES) \
+		--java_out=$(PWD)/proto/src/main/java /usr/include/github.com/gogo/protobuf/gogoproto/gogo.proto
+

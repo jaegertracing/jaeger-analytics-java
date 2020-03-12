@@ -18,15 +18,20 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
 
+    <version.jaeger.client>1.2.0</version.jaeger.client>
     <version.tinkerpop.gremlin>3.4.3</version.tinkerpop.gremlin>
     <version.io.opentracing>0.33.0</version.io.opentracing>
     <!-- Align with the version used in Spark -->
     <version.jackson>2.6.7</version.jackson>
-    <version.protobuf>3.6.1</version.protobuf>
+    <version.protobuf>3.11.4</version.protobuf>
+    <version.grpc>1.28.0</version.grpc>
     <version.spark>2.4.4</version.spark>
     <version.scala>2.12</version.scala>
     <version.kafka>2.3.0</version.kafka>
     <version.prometheus>0.7.0</version.prometheus>
+    <version.testcontainers>1.13.0</version.testcontainers>
+    <version.junit>4.11</version.junit>
+    <version.awaitility>4.0.2</version.awaitility>
     <version.maven-shade-plugin>3.1.0</version.maven-shade-plugin>
     <version.maven-release-plugin>2.5.3</version.maven-release-plugin>
   </properties>
@@ -47,6 +52,20 @@
         <groupId>${project.groupId}</groupId>
         <artifactId>jaeger-spark</artifactId>
         <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.jaegertracing</groupId>
+        <artifactId>jaeger-client</artifactId>
+        <version>${version.jaeger.client}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.grpc</groupId>
+        <artifactId>grpc-bom</artifactId>
+        <version>${version.grpc}</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
 
       <dependency>
@@ -97,7 +116,12 @@
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.11</version>
+        <version>${version.junit}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.awaitility</groupId>
+        <artifactId>awaitility</artifactId>
+        <version>${version.awaitility}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -109,6 +133,13 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
 
   <profiles>
     <profile>
