@@ -30,23 +30,5 @@
       <groupId>io.grpc</groupId>
       <artifactId>grpc-stub</artifactId>
     </dependency>
-    <!-- fix missing symbols GoGoProtos -->
-    <dependency>
-      <groupId>com.github.QubitProducts</groupId>
-      <artifactId>gogoproto-java</artifactId>
-      <version>1.0.0</version>
-    </dependency>
-    <!--  fix missing class grpc.gateway.protoc_gen_swagger.options.Annotations  -->
-    <dependency>
-      <groupId>org.apache.skywalking</groupId>
-      <artifactId>receiver-proto</artifactId>
-      <version>6.6.0</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>*</artifactId>
-          <groupId>*</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
   </dependencies>
 </project>

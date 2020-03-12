@@ -80,3 +80,11 @@ proto:
 		$(PROTO_INCLUDES) \
 		--grpc-java_out=$(PWD)/proto/src/main/java protodef/api_v2/query.proto
 
+	$(PROTOC) \
+		$(PROTO_INCLUDES) \
+		--java_out=$(PWD)/proto/src/main/java /usr/include/protoc-gen-swagger/options/openapiv2.proto
+
+	$(PROTOC) \
+		$(PROTO_INCLUDES) \
+		--java_out=$(PWD)/proto/src/main/java /usr/include/github.com/gogo/protobuf/gogoproto/gogo.proto
+
