@@ -30,6 +30,14 @@
       <groupId>io.grpc</groupId>
       <artifactId>grpc-stub</artifactId>
     </dependency>
+    <!-- fix building jupyter docker image
+    /home/jovyan/proto/src/main/java/io/jaegertracing/api_v2/QueryServiceGrpc.java:[20,18] cannot find symbol
+    -->
+    <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>javax.annotation-api</artifactId>
+      <version>1.3.2</version>
+    </dependency>
 
     <dependency>
       <groupId>org.testcontainers</groupId>

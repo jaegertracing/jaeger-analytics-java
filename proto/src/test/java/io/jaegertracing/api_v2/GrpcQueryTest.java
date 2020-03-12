@@ -1,7 +1,5 @@
 package io.jaegertracing.api_v2;
 
-import static org.awaitility.Awaitility.await;
-
 import io.jaegertracing.api_v2.Query.GetOperationsRequest;
 import io.jaegertracing.api_v2.Query.GetOperationsResponse;
 import io.jaegertracing.api_v2.QueryServiceGrpc.QueryServiceBlockingStub;
@@ -18,9 +16,6 @@ public class GrpcQueryTest {
 
   private static final String SERVICE_NAME = "query-test";
   private static final String OPERATION_NAME = "someoperation";
-
-  private static final int JAEGER_QUERY_PORT = 16686;
-  private static final int JAEGER_COLLECTOR_THRIFT = 14268;
 
   private JaegerAllInOne jaeger = new JaegerAllInOne("jaegertracing/all-in-one:latest");
   private Tracer tracer;
@@ -43,7 +38,6 @@ public class GrpcQueryTest {
         .withTag("foo", "bar")
         .start()
         .finish();
-    tracer.close();
 
     QueryServiceBlockingStub queryService = jaeger.createBlockingQueryService();
     WaitUtils.untilQueryHasTag(queryService, SERVICE_NAME, "foo", "bar");
@@ -52,6 +46,5 @@ public class GrpcQueryTest {
         .getOperations(GetOperationsRequest.newBuilder().setService(SERVICE_NAME).build());
     Assert.assertEquals(1, operations.getOperationNamesList().size());
     Assert.assertEquals(OPERATION_NAME, operations.getOperationNamesList().get(0));
-    jaeger.close();
   }
 }
