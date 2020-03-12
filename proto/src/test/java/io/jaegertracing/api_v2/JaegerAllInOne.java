@@ -1,5 +1,8 @@
 package io.jaegertracing.api_v2;
 
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+import io.jaegertracing.api_v2.QueryServiceGrpc.QueryServiceBlockingStub;
 import io.jaegertracing.internal.JaegerTracer;
 import io.jaegertracing.internal.JaegerTracer.Builder;
 import io.jaegertracing.internal.reporters.RemoteReporter;
@@ -21,7 +24,7 @@ public class JaegerAllInOne extends GenericContainer<JaegerAllInOne> {
   public static final int JAEGER_COLLECTOR_THRIFT_PORT = 14268;
   public static final int JAEGER_COLLECTOR_GRPC_PORT = 14250;
   public static final int JAEGER_ADMIN_PORT = 14269;
-  public static final int JAEGER_ZIPKIN_PORT = 9411;
+  public static final int ZIPKIN_PORT = 9411;
 
   public JaegerAllInOne(String dockerImageName) {
     super(dockerImageName);
@@ -30,8 +33,9 @@ public class JaegerAllInOne extends GenericContainer<JaegerAllInOne> {
 
   protected void init() {
     waitingFor(new BoundPortHttpWaitStrategy(JAEGER_ADMIN_PORT));
-    withEnv("COLLECTOR_ZIPKIN_HTTP_PORT", "9411");
-    withExposedPorts(JAEGER_ADMIN_PORT, JAEGER_COLLECTOR_THRIFT_PORT, JAEGER_COLLECTOR_GRPC_PORT, JAEGER_QUERY_PORT, JAEGER_ZIPKIN_PORT);
+    withEnv("COLLECTOR_ZIPKIN_HTTP_PORT", String.valueOf(ZIPKIN_PORT));
+    withExposedPorts(JAEGER_ADMIN_PORT, JAEGER_COLLECTOR_THRIFT_PORT, JAEGER_COLLECTOR_GRPC_PORT, JAEGER_QUERY_PORT,
+        ZIPKIN_PORT);
   }
 
   public int getCollectorThriftPort() {
@@ -42,7 +46,7 @@ public class JaegerAllInOne extends GenericContainer<JaegerAllInOne> {
     return getMappedPort(JAEGER_QUERY_PORT);
   }
 
-  public JaegerTracer getTracer(String serviceName) {
+  public JaegerTracer createTracer(String serviceName) {
     String endpoint = String.format("http://localhost:%d/api/traces", getCollectorThriftPort());
     Sender sender = new HttpSender.Builder(endpoint)
         .build();
@@ -53,6 +57,11 @@ public class JaegerAllInOne extends GenericContainer<JaegerAllInOne> {
         .withSampler(new ConstSampler(true))
         .withReporter(reporter);
     return tracerBuilder.build();
+  }
+
+  public QueryServiceBlockingStub createBlockingQueryService() {
+    ManagedChannel channel = ManagedChannelBuilder.forTarget(String.format("localhost:%d", getQueryPort())).usePlaintext().build();
+    return QueryServiceGrpc.newBlockingStub(channel);
   }
 
   public static class BoundPortHttpWaitStrategy extends HttpWaitStrategy {
