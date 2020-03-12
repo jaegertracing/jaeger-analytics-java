@@ -43,7 +43,7 @@ public class JaegerAllInOne extends GenericContainer<JaegerAllInOne> {
   }
 
   public JaegerTracer getTracer(String serviceName) {
-    String endpoint = String.format("http://localhost:%d/api/traces", getMappedPort(JAEGER_COLLECTOR_THRIFT_PORT));
+    String endpoint = String.format("http://localhost:%d/api/traces", getCollectorThriftPort());
     Sender sender = new HttpSender.Builder(endpoint)
         .build();
     Reporter reporter = new RemoteReporter.Builder()
