@@ -3,6 +3,12 @@ DOCKER_IMAGE?=quay.io/jaegertracing/jaeger-analytics-java
 DOCKER_TAG?=latest
 SPARK_DOCKER_IMAGE?=quay.io/jaegertracing/jaeger-analytics-java-spark
 
+JAEGER_DOCKER_PROTOBUF ?= jaegertracing/protobuf:0.1.0
+PROTOC := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${JAEGER_DOCKER_PROTOBUF} --proto_path=${PWD}
+PROTO_INCLUDES ?= \
+	-Iprotodef \
+	-I/usr/include/github.com/gogo/protobuf
+
 .PHONY: test
 test:
 	./mvnw clean test
@@ -39,11 +45,6 @@ grafana-run:
 	echo "Open browser on :3000"
 	docker run --rm -it --net=host -v ${PWD}/grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml -v ${PWD}/grafana/dashboard-trace.yml:/etc/grafana/provisioning/dashboards/dashboard-trace.yml -v ${PWD}/grafana/dashboard-tracequality.json:/var/lib/grafana/dashboards/tracequality.json grafana/grafana
 
-JAEGER_DOCKER_PROTOBUF=jaegertracing/protobuf:0.1.0
-PROTOC := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${JAEGER_DOCKER_PROTOBUF} --proto_path=${PWD}
-PROTO_INCLUDES := \
-	-Iprotodef \
-	-I/usr/include/github.com/gogo/protobuf
 
 .PHONY: proto
 proto:
@@ -62,12 +63,6 @@ proto:
 	# The lines starting with Mgoogle/... are proto import replacements,
 	# which cause the generated file to import the specified packages
 	# instead of the go_package's declared by the imported protof files.
-	#
-	# $$GOPATH/src is the output directory. It is relative to the GOPATH/src directory
-	# since we've specified a go_package option relative to that directory.
-	#
-	# model/proto/jaeger.proto is the location of the protofile we use.
-	#
 	$(PROTOC) \
 		$(PROTO_INCLUDES) \
 		--java_out=$(PWD)/proto/src/main/java protodef/model.proto

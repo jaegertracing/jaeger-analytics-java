@@ -18,6 +18,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
 
+    <version.jaeger.client>1.2.0</version.jaeger.client>
     <version.tinkerpop.gremlin>3.4.3</version.tinkerpop.gremlin>
     <version.io.opentracing>0.33.0</version.io.opentracing>
     <!-- Align with the version used in Spark -->
@@ -28,6 +29,8 @@
     <version.scala>2.12</version.scala>
     <version.kafka>2.3.0</version.kafka>
     <version.prometheus>0.7.0</version.prometheus>
+    <version.testcontainers>1.13.0</version.testcontainers>
+    <version.junit>4.11</version.junit>
     <version.maven-shade-plugin>3.1.0</version.maven-shade-plugin>
     <version.maven-release-plugin>2.5.3</version.maven-release-plugin>
   </properties>
@@ -48,6 +51,12 @@
         <groupId>${project.groupId}</groupId>
         <artifactId>jaeger-spark</artifactId>
         <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.jaegertracing</groupId>
+        <artifactId>jaeger-client</artifactId>
+        <version>${version.jaeger.client}</version>
       </dependency>
 
       <dependency>
@@ -106,7 +115,7 @@
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.11</version>
+        <version>${version.junit}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
