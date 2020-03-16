@@ -1,5 +1,6 @@
 package io.jaegertracing.analytics.model;
 
+import com.google.protobuf.ByteString;
 import io.jaegertracing.api_v2.Model;
 import java.math.BigInteger;
 import java.util.LinkedHashMap;
@@ -16,7 +17,7 @@ public class Converter {
     Trace trace = new Trace();
     for (Model.Span protoSpan: spanList) {
       if (trace.traceId == null || trace.traceId.isEmpty()) {
-        trace.traceId = new BigInteger(1, protoSpan.getTraceId().toByteArray()).toString(16);
+        trace.traceId = toStringId(protoSpan.getTraceId());
       }
       trace.spans.add(toModel(protoSpan));
     }
@@ -25,9 +26,11 @@ public class Converter {
 
   public static Span toModel(Model.Span protoSpan) {
     Span span = new Span();
-    span.spanId = protoSpan.getSpanId().toStringUtf8();
-    span.traceId = protoSpan.getTraceId().toStringUtf8();
-    span.parentId = protoSpan.getSpanId().toStringUtf8();
+    span.spanId = toStringId(protoSpan.getSpanId());
+    span.traceId = toStringId(protoSpan.getTraceId());
+    if (protoSpan.getReferencesList().size() > 0) {
+      span.parentId = toStringId(protoSpan.getReferencesList().get(0).getSpanId());
+    }
 
     span.serviceName = protoSpan.getProcess().getServiceName();
     span.operationName = protoSpan.getOperationName();
@@ -60,5 +63,13 @@ public class Converter {
       default:
         return "unrecognized";
     }
+  }
+
+  public static String toStringId(ByteString id) {
+    return new BigInteger(1, id.toByteArray()).toString(16);
+  }
+
+  public static ByteString toProtoId(String id) {
+    return ByteString.copyFrom(new BigInteger(id, 16).toByteArray());
   }
 }
