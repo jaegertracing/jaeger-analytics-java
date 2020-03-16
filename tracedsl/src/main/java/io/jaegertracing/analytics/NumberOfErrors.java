@@ -19,8 +19,8 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
 public class NumberOfErrors implements ModelRunner {
 
   private static final Counter counter = Counter.build()
-      .name("network_latency_seconds")
-      .help("Network latency between client and server span")
+      .name("errors_total")
+      .help("Number of errors split by service and operation name")
       .labelNames("service", "operation")
       .create()
       .register();
