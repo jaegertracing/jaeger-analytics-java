@@ -49,7 +49,7 @@ if [[ "$GITHUB_REF" =~ ^refs/tags/release-[[:digit:]]+\.[[:digit:]]+\.[[:digit:]
     safe_checkout_master_or_release
     git config user.email "jaeger-maintainers@googlegroups.com"
     git config user.name "Jaeger Release"
-    ./mvnw -s ./.settings.xml --batch-mode release:prepare -Prelease -nsu -DreleaseVersion=$version
+    ./mvnw -s ./.settings.xml --batch-mode release:prepare -Prelease -nsu -DreleaseVersion=$version -DdevelopmentVersion=999-SNAPSHOT
     ./mvnw -s ./.settings.xml release:perform
 fi
 
