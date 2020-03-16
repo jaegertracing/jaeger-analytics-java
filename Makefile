@@ -65,15 +65,15 @@ proto:
 	# instead of the go_package's declared by the imported protof files.
 	$(PROTOC) \
 		$(PROTO_INCLUDES) \
-		--java_out=$(PWD)/proto/src/main/java protodef/model.proto
+		--java_out=$(PWD)/proto/src/main/java jaeger-idl/proto/api_v2/model.proto
 
 	$(PROTOC) \
 		$(PROTO_INCLUDES) \
-		--java_out=$(PWD)/proto/src/main/java protodef/api_v2/query.proto
+		--java_out=$(PWD)/proto/src/main/java jaeger-idl/proto/api_v2/query.proto
 
 	$(PROTOC) \
 		$(PROTO_INCLUDES) \
-		--grpc-java_out=$(PWD)/proto/src/main/java protodef/api_v2/query.proto
+		--grpc-java_out=$(PWD)/proto/src/main/java jaeger-idl/proto/api_v2/query.proto
 
 	$(PROTOC) \
 		$(PROTO_INCLUDES) \
