@@ -16,13 +16,11 @@ import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 /**
- * Number of service hops from a service to the root service.
- *
  * @author Pavol Loffay
  */
-public class ServiceDepth implements ModelRunner {
+public class ServiceHeight implements ModelRunner {
 
-  private static final Summary SERVICE_DEPTH_SUMMARY = Summary.build()
+  private static final Summary SERVICE_HEIGHT_SUMMARY = Summary.build()
       .quantile(0.1, 0.01)
       .quantile(0.2, 0.01)
       .quantile(0.3, 0.01)
@@ -33,16 +31,16 @@ public class ServiceDepth implements ModelRunner {
       .quantile(0.8, 0.01)
       .quantile(0.9, 0.01)
       .quantile(0.99, 0.01)
-      .name("service_depth_total")
+      .name("service_height_total")
       .labelNames("service")
-      .help("Service depth - number of service hops from a service to the root service")
+      .help("Service height - number of service hops from a service to the leaf service")
       .register();
 
   @Override
   public void runWithMetrics(Graph graph) {
     Map<String, Integer> depths = calculate(graph);
     for (Map.Entry<String, Integer> entry: depths.entrySet()) {
-      SERVICE_DEPTH_SUMMARY.labels(entry.getKey())
+      SERVICE_HEIGHT_SUMMARY.labels(entry.getKey())
           .observe(entry.getValue());
     }
   }
@@ -52,32 +50,30 @@ public class ServiceDepth implements ModelRunner {
     TraceTraversal<Vertex, Vertex> leafs = graph.traversal(TraceTraversalSource.class)
         .leafSpans();
 
-    // service to depth
-    List<Map<String, Integer>> depths = new ArrayList<>();
-    Set<String> serviceNames = new HashSet<>();
+    // service to height
+    Map<String, Integer> heights = new LinkedHashMap<>();
 
     while (leafs.hasNext()) {
-      Map<String, Integer> branchDepths = new LinkedHashMap<>();
-      depths.add(branchDepths);
+      int height = 0;
 
       Vertex node = leafs.next();
       Vertex parent = Util.parent(node);
       Span nodeSpan = GraphCreator.toSpan(node);
-      branchDepths.put(nodeSpan.operationName, 0);
-      serviceNames.add(nodeSpan.serviceName);
+
+      Integer heightNode = heights.get(nodeSpan.serviceName);
+      if (heightNode == null) {
+        heights.put(nodeSpan.serviceName, height);
+      }
 
       while (parent != null) {
         Span parentSpan = GraphCreator.toSpan(parent);
         if (!nodeSpan.serviceName.equals(parentSpan.serviceName)) {
-          for (String service: branchDepths.keySet()) {
-            Integer d = branchDepths.get(service);
-            branchDepths.put(service, d + 1);
-          }
+          height++;
         }
-        Integer parentDepth = branchDepths.get(parentSpan.serviceName);
-        if (parentDepth == null) {
-          branchDepths.put(parentSpan.serviceName, 0);
-          serviceNames.add(parentSpan.serviceName);
+
+        heightNode = heights.get(parentSpan.serviceName);
+        if (heightNode == null || height > heightNode) {
+          heights.put(parentSpan.serviceName, height);
         }
 
         node = parent;
@@ -86,17 +82,6 @@ public class ServiceDepth implements ModelRunner {
       }
     }
 
-    Map<String, Integer> result = new LinkedHashMap<>();
-    for (String serviceName: serviceNames) {
-      Integer depth = 0;
-      for (Map<String, Integer> map: depths) {
-        Integer d = map.get(serviceName);
-        if (d != null && d > depth) {
-          depth = d;
-        }
-      }
-      result.put(serviceName, depth);
-    }
-    return result;
+    return heights;
   }
 }
