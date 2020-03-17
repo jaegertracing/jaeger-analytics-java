@@ -16,7 +16,7 @@ import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 
 /**
- * Maximum number of service changes from root to leaf.
+ * Number of service hops from a service to the root service.
  *
  * @author Pavol Loffay
  */
