@@ -20,7 +20,9 @@ currently exposed in Prometheus format.
 Currently these metrics are calculated:
 
 * Trace height - trace tree height. Maximum number of spans from root to leaf
-* Service height - maximum number of service changes from root to leaf. In other words maximum service depth
+* Service depth - number of service hops from a service to the root service
+* Service height - number of service hops from a service to the leaf service
+* Number of errors - number of errors per service
 * Network latency - latency between client and server spans split by service names
 
 ```
