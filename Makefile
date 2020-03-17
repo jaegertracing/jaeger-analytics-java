@@ -6,7 +6,7 @@ SPARK_DOCKER_IMAGE?=quay.io/jaegertracing/jaeger-analytics-java-spark
 JAEGER_DOCKER_PROTOBUF ?= jaegertracing/protobuf:0.1.0
 PROTOC := docker run --rm -u ${shell id -u} -v${PWD}:${PWD} -w${PWD} ${JAEGER_DOCKER_PROTOBUF} --proto_path=${PWD}
 PROTO_INCLUDES ?= \
-	-Iprotodef \
+	-Iidl/proto/api_v2 \
 	-I/usr/include/github.com/gogo/protobuf
 
 .PHONY: test
@@ -65,15 +65,13 @@ proto:
 	# instead of the go_package's declared by the imported protof files.
 	$(PROTOC) \
 		$(PROTO_INCLUDES) \
-		--java_out=$(PWD)/proto/src/main/java protodef/model.proto
+		--java_out=$(PWD)/proto/src/main/java idl/proto/api_v2/model.proto
 
 	$(PROTOC) \
 		$(PROTO_INCLUDES) \
-		--java_out=$(PWD)/proto/src/main/java protodef/api_v2/query.proto
-
-	$(PROTOC) \
-		$(PROTO_INCLUDES) \
-		--grpc-java_out=$(PWD)/proto/src/main/java protodef/api_v2/query.proto
+		--java_out=$(PWD)/proto/src/main/java \
+		--grpc-java_out=$(PWD)/proto/src/main/java \
+		idl/proto/api_v2/query.proto
 
 	$(PROTOC) \
 		$(PROTO_INCLUDES) \
