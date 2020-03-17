@@ -1,7 +1,6 @@
 # Release
 
-Release is automated on CI and is triggered by pushing a tag: `git tag release-0.4.0 && git push origin release-0.4.0`.
-Make sure not changes are make to 
+Release is fully automated on CI and it is triggered by pushing a tag: `git tag release-0.4.0 && git push origin release-0.4.0`.
 
 ## Maintenance branches
 
@@ -9,7 +8,7 @@ Use `release-M.N` naming convention for maintenance branches.
 
 ## Releasing locally
 
-Use local release as a backup solution:
+Use local release only as a backup solution:
 
 ```
 GH_TOKEN= GH_USER= PASSPHRASE_SIGING_KEY= ./mvnw -s ./.settings.xml --batch-mode release:prepare -Prelease -nsu -DreleaseVersion="<version>" -DdevelopmentVersion=999-SNAPSHOT #-Dgpg.passphrase=
