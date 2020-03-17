@@ -22,6 +22,8 @@ Currently these metrics are calculated:
 * Trace height - trace tree height. Maximum number of spans from root to leaf
 * Service depth - number of service hops from a service to the root service
 * Service height - number of service hops from a service to the leaf service
+* Service's direct downstream dependencies - number services a service directly calls
+* Service's direct upstream parents - number of services directly calling a service
 * Number of errors - number of errors per service
 * Network latency - latency between client and server spans split by service names
 

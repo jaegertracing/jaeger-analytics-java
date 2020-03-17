@@ -1,5 +1,6 @@
 package io.jaegertracing.analytics.spark;
 
+import io.jaegertracing.analytics.DirectDependencies;
 import io.jaegertracing.analytics.ModelRunner;
 import io.jaegertracing.analytics.NetworkLatency;
 import io.jaegertracing.analytics.NumberOfErrors;
@@ -98,6 +99,7 @@ public class SparkRunner {
         new ServiceHeight(),
         new NetworkLatency(),
         new NumberOfErrors(),
+        new DirectDependencies(),
         // trace quality
         minimumClientVersion,
         new HasClientServerSpans(),
