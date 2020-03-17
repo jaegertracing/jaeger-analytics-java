@@ -4,6 +4,7 @@ import io.jaegertracing.analytics.gremlin.GraphCreator;
 import io.jaegertracing.analytics.model.Span;
 import io.jaegertracing.analytics.model.Trace;
 import java.util.Arrays;
+import java.util.Map;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,7 +12,7 @@ import org.junit.Test;
 /**
  * @author Pavol Loffay
  */
-public class ServiceHeightTest {
+public class ServiceDepthTest {
 
   @Test
   public void calculateOnlyRoot() {
@@ -20,8 +21,9 @@ public class ServiceHeightTest {
     trace.spans = Arrays.asList(root);
     Graph graph = GraphCreator.create(trace);
 
-    int serviceHeight = ServiceHeight.calculate(graph);
-    Assert.assertEquals(0, serviceHeight);
+    Map<String, Integer> depths = ServiceDepth.calculate(graph);
+    Assert.assertEquals(1, depths.size());
+    Assert.assertEquals(new Integer(0), depths.get("root"));
   }
 
   @Test
@@ -38,7 +40,13 @@ public class ServiceHeightTest {
     trace.spans = Arrays.asList(root, child, child2, childChild, child2Child, childChildChild, child2ChildChild);
     Graph graph = GraphCreator.create(trace);
 
-    int serviceHeight = ServiceHeight.calculate(graph);
-    Assert.assertEquals(2, serviceHeight);
+    Map<String, Integer> depths = ServiceDepth.calculate(graph);
+    Assert.assertEquals(5, depths.size());
+    Assert.assertEquals(new Integer(0), depths.get("root"));
+    Assert.assertEquals(new Integer(1), depths.get("child"));
+    // 1 because child2 contains internal spans
+    Assert.assertEquals(new Integer(1), depths.get("child2"));
+    Assert.assertEquals(new Integer(2), depths.get("childChild"));
+    Assert.assertEquals(new Integer(2), depths.get("child2ChildChild"));
   }
 }
