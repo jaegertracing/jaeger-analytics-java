@@ -78,6 +78,7 @@ public class SparkRunner {
     });
 
    JavaDStream<Trace> tracesStream = traceIdSpanTuple.groupByKey().map(traceIdSpans -> {
+     System.out.printf("traceID: %s\n", traceIdSpans._1);
       Iterable<Span> spans = traceIdSpans._2();
       Trace trace = new Trace();
       trace.traceId = traceIdSpans._1();

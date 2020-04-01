@@ -79,42 +79,42 @@ public class JaegerQueryNotebookTest {
 
   @Test
   public void runFindTraces() {
-    String queryHostPort = "192.168.0.31:16686";
+String queryHostPort = "192.168.0.31:16686";
 
-    ManagedChannel channel;
-    channel = ManagedChannelBuilder.forTarget(queryHostPort).usePlaintext().build();
-    QueryServiceBlockingStub queryService = QueryServiceGrpc.newBlockingStub(channel);
+ManagedChannel channel;
+channel = ManagedChannelBuilder.forTarget(queryHostPort).usePlaintext().build();
+QueryServiceBlockingStub queryService = QueryServiceGrpc.newBlockingStub(channel);
 
-    TraceQueryParameters query = TraceQueryParameters.newBuilder().setServiceName("frontend").build();
-    Iterator<SpansResponseChunk> traceProto = queryService.findTraces(
-        FindTracesRequest.newBuilder().setQuery(query).build());
+TraceQueryParameters query = TraceQueryParameters.newBuilder().setServiceName("frontend").build();
+Iterator<SpansResponseChunk> traceProto = queryService.findTraces(
+    FindTracesRequest.newBuilder().setQuery(query).build());
 
-    List<Span> spans = new ArrayList<>();
-    while (traceProto.hasNext()) {
-      spans.addAll(traceProto.next().getSpansList());
-    }
-    Trace trace = Converter.toModel(spans);
-    Graph graph = GraphCreator.create(trace);
+List<Span> spans = new ArrayList<>();
+while (traceProto.hasNext()) {
+  spans.addAll(traceProto.next().getSpansList());
+}
+Trace trace = Converter.toModel(spans);
+Graph graph = GraphCreator.create(trace);
 
-    Set<io.jaegertracing.analytics.model.Span> errorSpans = NumberOfErrors.calculate(graph);
-    Map<String, Integer> errorTypeAndCount = new LinkedHashMap<>();
-    for (io.jaegertracing.analytics.model.Span errorSpan: errorSpans) {
-      for (io.jaegertracing.analytics.model.Span.Log log: errorSpan.logs) {
-        String err = log.fields.get(Tags.ERROR.getKey());
-        if (err != null) {
-          Integer count = errorTypeAndCount.get(err);
-          if (count == null) {
-            count = 0;
-          }
-          errorTypeAndCount.put(err, ++count);
-        }
+Set<io.jaegertracing.analytics.model.Span> errorSpans = NumberOfErrors.calculate(graph);
+Map<String, Integer> errorTypeAndCount = new LinkedHashMap<>();
+for (io.jaegertracing.analytics.model.Span errorSpan: errorSpans) {
+  for (io.jaegertracing.analytics.model.Span.Log log: errorSpan.logs) {
+    String err = log.fields.get(Tags.ERROR.getKey());
+    if (err != null) {
+      Integer count = errorTypeAndCount.get(err);
+      if (count == null) {
+        count = 0;
       }
+      errorTypeAndCount.put(err, ++count);
     }
-    System.out.printf("Error and count: %s\n", errorTypeAndCount);
+  }
+}
+System.out.printf("Error and count: %s\n", errorTypeAndCount);
 
-    int height = TraceHeight.calculate(graph);
-    Map<Name, Set<Double>> networkLatencies = NetworkLatency.calculate(graph);
-    System.out.printf("Trace height = %d\n", height);
-    System.out.printf("Network latencies = %s\n", networkLatencies);
+int height = TraceHeight.calculate(graph);
+Map<Name, Set<Double>> networkLatencies = NetworkLatency.calculate(graph);
+System.out.printf("Trace height = %d\n", height);
+System.out.printf("Network latencies = %s\n", networkLatencies);
   }
 }
