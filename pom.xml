@@ -6,7 +6,7 @@
   <groupId>io.jaegertracing</groupId>
   <artifactId>jaeger-analytics-parent</artifactId>
   <packaging>pom</packaging>
-  <version>999-SNAPSHOT</version>
+  <version>0.3.1-SNAPSHOT</version>
   <modules>
     <module>proto</module>
     <module>tracedsl</module>

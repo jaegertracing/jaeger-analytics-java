@@ -11,7 +11,7 @@ Use `release-M.N` naming convention for maintenance branches.
 Use local release only as a backup solution:
 
 ```
-GH_TOKEN= GH_USER= PASSPHRASE_SIGING_KEY= ./mvnw -s ./.settings.xml --batch-mode release:prepare -Prelease -nsu -DreleaseVersion="<version>" -DdevelopmentVersion=999-SNAPSHOT #-Dgpg.passphrase=
+GH_TOKEN= GH_USER= PASSPHRASE_SIGING_KEY= ./mvnw -s ./.settings.xml --batch-mode release:prepare -Prelease -nsu -DreleaseVersion="<version>" #-Dgpg.passphrase=
 SONATYPE_USER= SONATYPE_PASSWORD= ./mvnw -s ./.settings.xml release:perform
 ```
 

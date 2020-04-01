@@ -2,9 +2,13 @@ package io.jaegertracing.analytics.model;
 
 import com.google.protobuf.ByteString;
 import io.jaegertracing.api_v2.Model;
+import io.jaegertracing.api_v2.Model.KeyValue;
+import io.jaegertracing.api_v2.Model.Log;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Pavol Loffay
@@ -37,14 +41,27 @@ public class Converter {
     span.startTimeMicros = protoSpan.getStartTime().getNanos() / 1000;
     span.durationMicros = protoSpan.getDuration().getNanos() / 1000;
 
-    span.tags = new LinkedHashMap<>();
-    for (Model.KeyValue keyValue: protoSpan.getTagsList()) {
+    span.tags = toMap(protoSpan.getTagsList());
+    span.logs = new ArrayList<>();
+    for (Log protoLog: protoSpan.getLogsList()) {
+      Span.Log log = new Span.Log();
+      log.timestamp = protoLog.getTimestamp().getNanos()/1000;
+      log.fields = toMap(protoLog.getFieldsList());
+      span.logs.add(log);
+    }
+
+    return span;
+  }
+
+  private static Map<String, String> toMap(List<KeyValue> tags) {
+    Map<String, String> tagMap = new LinkedHashMap<>();
+    for (Model.KeyValue keyValue: tags) {
       switch (keyValue.getVType()) {
         case STRING:
       }
-      span.tags.put(keyValue.getKey(), toStringValue(keyValue));
+      tagMap.put(keyValue.getKey(), toStringValue(keyValue));
     }
-    return span;
+    return tagMap;
   }
 
   private static String toStringValue(Model.KeyValue keyValue) {
