@@ -6,6 +6,8 @@ import io.jaegertracing.api_v2.Model.KeyValue;
 import io.jaegertracing.api_v2.Model.Log;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +28,21 @@ public class Converter {
       trace.spans.add(toModel(protoSpan));
     }
     return trace;
+  }
+
+  public static Collection<Trace> toModelTraces(List<Model.Span> spanList) {
+    Map<String, Trace> traces = new LinkedHashMap<>();
+    for (Model.Span protoSpan: spanList) {
+      Span span = toModel(protoSpan);
+      Trace trace = traces.get(span.traceId);
+      if (trace == null) {
+        trace = new Trace();
+        trace.traceId = span.traceId;
+        traces.put(span.traceId, trace);
+      }
+      trace.spans.add(span);
+    }
+    return traces.values();
   }
 
   public static Span toModel(Model.Span protoSpan) {

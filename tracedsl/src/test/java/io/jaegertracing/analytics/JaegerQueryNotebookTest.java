@@ -16,6 +16,7 @@ import io.jaegertracing.api_v2.QueryServiceGrpc;
 import io.jaegertracing.api_v2.QueryServiceGrpc.QueryServiceBlockingStub;
 import io.opentracing.tag.Tags;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -79,42 +80,56 @@ public class JaegerQueryNotebookTest {
 
   @Test
   public void runFindTraces() {
-String queryHostPort = "192.168.0.31:16686";
+    String queryHostPort = "172.17.0.1:16686";
 
-ManagedChannel channel;
-channel = ManagedChannelBuilder.forTarget(queryHostPort).usePlaintext().build();
-QueryServiceBlockingStub queryService = QueryServiceGrpc.newBlockingStub(channel);
+    ManagedChannel channel;
+    channel = ManagedChannelBuilder.forTarget(queryHostPort).usePlaintext().build();
+    QueryServiceBlockingStub queryService = QueryServiceGrpc.newBlockingStub(channel);
 
-TraceQueryParameters query = TraceQueryParameters.newBuilder().setServiceName("frontend").build();
-Iterator<SpansResponseChunk> traceProto = queryService.findTraces(
-    FindTracesRequest.newBuilder().setQuery(query).build());
+    TraceQueryParameters query = TraceQueryParameters.newBuilder().setServiceName("frontend")
+        .build();
+    Iterator<SpansResponseChunk> traceProto = queryService.findTraces(
+        FindTracesRequest.newBuilder().setQuery(query).build());
 
-List<Span> spans = new ArrayList<>();
-while (traceProto.hasNext()) {
-  spans.addAll(traceProto.next().getSpansList());
-}
-Trace trace = Converter.toModel(spans);
-Graph graph = GraphCreator.create(trace);
-
-Set<io.jaegertracing.analytics.model.Span> errorSpans = NumberOfErrors.calculate(graph);
-Map<String, Integer> errorTypeAndCount = new LinkedHashMap<>();
-for (io.jaegertracing.analytics.model.Span errorSpan: errorSpans) {
-  for (io.jaegertracing.analytics.model.Span.Log log: errorSpan.logs) {
-    String err = log.fields.get(Tags.ERROR.getKey());
-    if (err != null) {
-      Integer count = errorTypeAndCount.get(err);
-      if (count == null) {
-        count = 0;
-      }
-      errorTypeAndCount.put(err, ++count);
+    List<Span> protoSpans = new ArrayList<>();
+    while (traceProto.hasNext()) {
+      protoSpans.addAll(traceProto.next().getSpansList());
     }
-  }
-}
-System.out.printf("Error and count: %s\n", errorTypeAndCount);
+    Trace traces = Converter.toModel(protoSpans);
+    Graph graph = GraphCreator.create(traces);
 
-int height = TraceHeight.calculate(graph);
-Map<Name, Set<Double>> networkLatencies = NetworkLatency.calculate(graph);
-System.out.printf("Trace height = %d\n", height);
-System.out.printf("Network latencies = %s\n", networkLatencies);
+    Set<io.jaegertracing.analytics.model.Span> errorSpans = NumberOfErrors.calculate(graph);
+    Map<String, Map<String, Integer>> result = new LinkedHashMap<>();
+    for (io.jaegertracing.analytics.model.Span errorSpan : errorSpans) {
+      for (io.jaegertracing.analytics.model.Span.Log log : errorSpan.logs) {
+        String err = log.fields.get(Tags.ERROR.getKey());
+        if (err != null) {
+          Map<String, Integer> traceIdCount = result.get(err);
+          if (traceIdCount == null) {
+            traceIdCount = new LinkedHashMap<>();
+            result.put(err, traceIdCount);
+          }
+
+          Integer count = traceIdCount.get(errorSpan.traceId);
+          if (count == null) {
+            count = 0;
+          }
+          traceIdCount.put(errorSpan.traceId, ++count);
+        }
+      }
+    }
+    System.out.println("Error type, traceID and error count:");
+    for (Map.Entry<String, Map<String, Integer>> errorMap : result.entrySet()) {
+      System.out.printf("error type: %s\n", errorMap.getKey());
+      for (Map.Entry<String, Integer> traceIdCount : errorMap.getValue().entrySet()) {
+        System.out
+            .printf("\tTraceID: %s, count %d\n", traceIdCount.getKey(), traceIdCount.getValue());
+      }
+    }
+
+    int height = TraceHeight.calculate(graph);
+    Map<Name, Set<Double>> networkLatencies = NetworkLatency.calculate(graph);
+    System.out.printf("Trace height = %d\n", height);
+    System.out.printf("Network latencies = %s\n", networkLatencies);
   }
 }
