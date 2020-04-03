@@ -1,7 +1,8 @@
-package io.jaegertracing.api_v2;
+package io.jaegertracing.testcontainers;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.jaegertracing.api_v2.QueryServiceGrpc;
 import io.jaegertracing.api_v2.QueryServiceGrpc.QueryServiceBlockingStub;
 import io.jaegertracing.internal.JaegerTracer;
 import io.jaegertracing.internal.JaegerTracer.Builder;
