@@ -6,6 +6,7 @@ COPY pom.xml $APP_HOME/
 COPY proto $APP_HOME/proto
 COPY tracedsl $APP_HOME/tracedsl
 COPY spark $APP_HOME/spark
+COPY testcontainers $APP_HOME/testcontainers
 COPY .mvn $APP_HOME/.mvn
 COPY mvnw $APP_HOME/
 
