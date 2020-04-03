@@ -11,6 +11,7 @@
     <module>proto</module>
     <module>tracedsl</module>
     <module>spark</module>
+    <module>testcontainers</module>
   </modules>
 
   <properties>
@@ -50,6 +51,11 @@
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>jaeger-spark</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>jaeger-testcontainers</artifactId>
         <version>${project.version}</version>
       </dependency>
 

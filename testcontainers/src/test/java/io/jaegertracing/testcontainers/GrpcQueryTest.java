@@ -1,4 +1,4 @@
-package io.jaegertracing.api_v2;
+package io.jaegertracing.testcontainers;
 
 import io.jaegertracing.api_v2.Query.GetOperationsRequest;
 import io.jaegertracing.api_v2.Query.GetOperationsResponse;
