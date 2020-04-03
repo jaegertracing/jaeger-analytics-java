@@ -12,6 +12,10 @@ Repository contains:
 * Data analytics models, metrics based on tracing data
 * Grafana [dashboards](./grafana)
 
+Blog posts, demos and conference talks:
+* [Data analytics with Jaeger aka traces tell us more!](https://medium.com/jaegertracing/data-analytics-with-jaeger-aka-traces-tell-us-more-973669e6f848)
+* [Jaeger data analytics with Jupyter notebooks](https://medium.com/jaegertracing/jaeger-data-analytics-with-jupyter-notebooks-b094fa7ab769)
+
 ### Metrics
 
 The library calculates various metrics from traces. The metrics are
@@ -62,6 +66,9 @@ trace_quality_server_tag_total{pass="true",service="customer",} / ignoring (pass
 // if values are missing
 (trace_quality_server_tag_total{pass="true",service="mysql",}  / trace_quality_server_tag_total{service="mysql",} ) * 100 or vector(0)
 ```
+
+![alt text](./images/grafana-trace-metrics-dashboard.png "Grafana dashboard for trace metrics")
+![alt text](./images/grafana-trace-quality-dashboard.png "Grafana dashboard for trace quality")
 
 ### Development
 
