@@ -1,8 +1,35 @@
 [![Build Status][ci-img]][ci]
 
-# Jaeger analytics Java
+# Jaeger Analytics
 
 Experimental repository with data analytics models, pipelines for Jaeger tracing data.
+
+<details>
+<summary>
+Table of Contents
+</summary>
+ 
+  * [Jaeger analytics Java](#jaeger-analytics-java)
+    + [Metrics](#metrics)
+      - [Trace quality metrics](#trace-quality-metrics)
+    + [Development](#development)
+    + [Configuration](#configuration)
+  * [Gremlin documentation](#gremlin-documentation)
+  * [Spark Kafka documentation](#spark-kafka-documentation)
+  * [Deploy Kafka, Elasticsearch and Jaeger on Kubernetes using operators](#deploy-kafka--elasticsearch-and-jaeger-on-kubernetes-using-operators)
+    + [Expose Kafka outside of cluster and get host:port](#expose-kafka-outside-of-cluster-and-get-host-port)
+    + [Expose Jaeger collector outside of the cluster](#expose-jaeger-collector-outside-of-the-cluster)
+    + [Deploy Hotrod example application](#deploy-hotrod-example-application)
+  * [Get exposed metrics](#get-exposed-metrics)
+  * [Run Jupyter as docker](#run-jupyter-as-docker)
+    + [Run on Mybinder](#run-on-mybinder)
+  * [Using Jaeger in JUnit with Testcontainers](#using-jaeger-in-junit-with-testcontainers)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+</details>
+
+## Jaeger analytics Java
 
 Repository contains:
 * Graph trace DSL based on Apache Gremlin. It helps to write graph "queries" against a trace
