@@ -1,6 +1,8 @@
 package io.jaegertracing.analytics.model;
 
 import com.google.protobuf.ByteString;
+import com.google.protobuf.Duration;
+import com.google.protobuf.Timestamp;
 import io.jaegertracing.api_v2.Model;
 import io.jaegertracing.api_v2.Model.KeyValue;
 import io.jaegertracing.api_v2.Model.Log;
@@ -11,6 +13,7 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Pavol Loffay
@@ -55,14 +58,14 @@ public class Converter {
 
     span.serviceName = protoSpan.getProcess().getServiceName();
     span.operationName = protoSpan.getOperationName();
-    span.startTimeMicros = protoSpan.getStartTime().getNanos() / 1000;
-    span.durationMicros = protoSpan.getDuration().getNanos() / 1000;
+    span.startTimeMicros = timestampToMicros(protoSpan.getStartTime());
+    span.durationMicros = durationToMicros(protoSpan.getDuration());
 
     span.tags = toMap(protoSpan.getTagsList());
     span.logs = new ArrayList<>();
     for (Log protoLog: protoSpan.getLogsList()) {
       Span.Log log = new Span.Log();
-      log.timestamp = protoLog.getTimestamp().getNanos()/1000;
+      log.timestamp = timestampToMicros(protoLog.getTimestamp());
       log.fields = toMap(protoLog.getFieldsList());
       span.logs.add(log);
     }
@@ -70,12 +73,21 @@ public class Converter {
     return span;
   }
 
+  private static long durationToMicros(Duration duration) {
+    long nanos = TimeUnit.SECONDS.toNanos(duration.getSeconds());
+    nanos += duration.getNanos();
+    return TimeUnit.NANOSECONDS.toMicros(nanos);
+  }
+
+  private static long timestampToMicros(Timestamp timestamp) {
+    long nanos = TimeUnit.SECONDS.toNanos(timestamp.getSeconds());
+    nanos += timestamp.getNanos();
+    return TimeUnit.NANOSECONDS.toMicros(nanos);
+  }
+
   private static Map<String, String> toMap(List<KeyValue> tags) {
     Map<String, String> tagMap = new LinkedHashMap<>();
     for (Model.KeyValue keyValue: tags) {
-      switch (keyValue.getVType()) {
-        case STRING:
-      }
       tagMap.put(keyValue.getKey(), toStringValue(keyValue));
     }
     return tagMap;
