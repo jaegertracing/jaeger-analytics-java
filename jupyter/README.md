@@ -16,7 +16,7 @@ For this, first we need to deploy Jaeger UI, HotROD - a demo application and Jup
 1. For Jaeger UI: 
 
 ``` bash
-docker run --rm -it -p 16686:16686 --name=jaeger jaegertracing/all-in-one:1.17
+docker run --rm -it -p 16686:16686 --name=jaeger jaegertracing/all-in-one:1.20
 ```
 This will open up the Jager UI at [http://localhost:16686](http://localhost:16686/)
 
@@ -35,20 +35,22 @@ docker run --rm -it -p 8888:8888 -p 4041:4040 -p 9001:9001 --link=jaeger -e JUPY
 
 *Note : Add `-v ${PWD}:/home/jovyan/work` to Jupyter notebook if you want to open the notebooks from your current directory.*
 
-After succesfully running the docker script, you will be able to see a URL in you terminal with unique token. Paste that URL in your browser to start the jupyter notebook.
+After successfully running the docker commands, you will be able to see a URL in you terminal with unique token. Paste that URL in your browser to start the Jupyter notebook.
 
 ## Analysis
 
 For the analysis we have to generate some data, so in the HotROD UI click on the blue boxes to order a car that generates nice traces. To verify that the trace reached Jaeger open Jaeger UI and search for traces from the `frontend` service. 
 You'll be able to see the generated traces for the services and operation. 
 
-Once we know that the data is stored in Jaeger we can move to Jupyter notebook and load the trace there. Jaeger notebooks are stored in the jupyter directory. This directory can either be opened from the project root directory or from work in case the notebooks from host filesystem are injected into the docker container.
+Once we know that the data is stored in Jaeger we can move to Jupyter notebook and load the trace on the notebook. For that we will use `jaeger-query.ipynb` notebook for further steps. Notebooks are stored in the jupyter directory. 
+
+This directory can either be opened from the project root directory or from work in case the notebooks from host filesystem are injected into the container.
 
 Before running the analysis we have to load dependencies into the notebook’s classpath. Just click on the dependencies cell to make it active and then on the play icon in the top navigation menu. 
 
-Before running the code we have to update the variable `traceIdStr` to point into one of the traces we have generated earlier in the HotROD app.
+Before running the code we have to update the variable `traceIdStr` to point into one of the traces we have generated earlier in the HotROD app. We need to do this under **Run Analysis** cell.
 It should look something like:
-``` java
+```java
 String queryHostPort = "jaeger:16686";
 String traceIdStr = "2cb1f0c274c3b4a5"
 ```
