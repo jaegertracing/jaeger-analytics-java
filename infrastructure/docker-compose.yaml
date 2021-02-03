@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - '16686:16686'
+
+  hotrod:
+    image: jaegertracing/example-hotrod:latest
+    ports:
+      - '8080:8080'
+    environment:
+      - JAEGER_ENDPOINT=http://jaeger:14268/api/traces
+    links:
+      - 'jaeger'
+
+  jaeger-analytics-java:
+    image: quay.io/jaegertracing/jaeger-analytics-java:latest
+    ports:
+      - '8888:8888'
+      - '4041:4040'
+      - '9001:9001'
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    links:
+      - 'jaeger'
