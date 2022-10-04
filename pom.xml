@@ -23,7 +23,7 @@
     <version.tinkerpop.gremlin>3.4.3</version.tinkerpop.gremlin>
     <version.io.opentracing>0.33.0</version.io.opentracing>
     <!-- Align with the version used in Spark -->
-    <version.protobuf>3.11.4</version.protobuf>
+    <version.protobuf>3.16.3</version.protobuf>
     <version.grpc>1.28.0</version.grpc>
     <version.spark>2.4.4</version.spark>
     <version.scala>2.12</version.scala>
