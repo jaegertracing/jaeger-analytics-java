@@ -25,7 +25,7 @@
     <!-- Align with the version used in Spark -->
     <version.protobuf>3.11.4</version.protobuf>
     <version.grpc>1.28.0</version.grpc>
-    <version.spark>2.4.4</version.spark>
+    <version.spark>3.4.0</version.spark>
     <version.scala>2.12</version.scala>
     <version.kafka>2.3.0</version.kafka>
     <version.prometheus>0.7.0</version.prometheus>
